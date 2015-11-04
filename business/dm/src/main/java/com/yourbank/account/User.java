@@ -1,10 +1,16 @@
 package com.yourbank.account;
 
-import common.AbstractExpiringEntity;
+import com.yourbank.bank.Credit;
+import com.yourbank.bank.Score;
+import com.yourbank.common.AbstractExpiringEntity;
+import org.hibernate.annotations.Entity;
+
+import java.util.List;
 
 /**
  * Created by admin on 11/2/2015.
  */
+@Entity
 public class User extends AbstractExpiringEntity {
 
     private String name;
@@ -14,6 +20,24 @@ public class User extends AbstractExpiringEntity {
     private String email;
 
     private String phone;
+    private List<Credit> credits;
+    private List<Score> scores;
+
+    public List<Credit> getCredits() {
+        return credits;
+    }
+
+    public void setCredits(List<Credit> credits) {
+        this.credits = credits;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
 
     public String getName() {
         return name;
@@ -46,4 +70,5 @@ public class User extends AbstractExpiringEntity {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

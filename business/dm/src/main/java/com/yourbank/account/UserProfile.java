@@ -1,12 +1,14 @@
 package com.yourbank.account;
 
-import common.AbstractExpiringEntity;
+import com.yourbank.common.AbstractExpiringEntity;
+import org.hibernate.annotations.Entity;
 
 import java.util.Date;
 
 /**
  * Created by admin on 11/2/2015.
  */
+@Entity
 public class UserProfile extends AbstractExpiringEntity {
 
     private String firstName;
@@ -18,6 +20,16 @@ public class UserProfile extends AbstractExpiringEntity {
     private Date birthday;
 
     private String personalNumber;
+
+    private String passportNumber;
+
+    public String getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
 
     public String getFirstName() {
         return firstName;
