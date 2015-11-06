@@ -17,7 +17,6 @@
         <module>web</module>
         <module>biz</module>
         <module>dm</module>
-        <module>common</module>
     </modules>
 
 

@@ -1,6 +1,5 @@
 package com.yourbank.account.service.impl;
 
-import com.sun.istack.internal.NotNull;
 import com.yourbank.account.persistence.RequestRepository;
 import com.yourbank.account.service.RequestService;
 import com.yourbank.bank.Request;
@@ -14,11 +13,11 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     RequestRepository requestRepository;
 
-    public Request add(@NotNull Request entity) {
+    public Request add(Request entity) {
         return requestRepository.saveAndFlush(entity);
     }
 
-    public void delete(@NotNull Request entity) {
+    public void delete(Request entity) {
                requestRepository.delete(entity);
     }
 

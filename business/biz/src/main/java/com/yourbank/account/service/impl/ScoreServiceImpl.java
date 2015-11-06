@@ -1,6 +1,5 @@
 package com.yourbank.account.service.impl;
 
-import com.sun.istack.internal.NotNull;
 import com.yourbank.account.persistence.ScoreRepository;
 import com.yourbank.account.service.ScoreService;
 import com.yourbank.bank.Score;
@@ -15,11 +14,11 @@ public class ScoreServiceImpl implements ScoreService {
     @Autowired
     ScoreRepository scoreRepository;
 
-    public Score add(@NotNull Score entity) {
+    public Score add(Score entity) {
         return scoreRepository.saveAndFlush(entity);
     }
 
-    public void delete(@NotNull Score entity) {
+    public void delete(Score entity) {
         scoreRepository.delete(entity);
     }
 

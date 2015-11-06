@@ -1,6 +1,5 @@
 package com.yourbank.account.service.impl;
 
-import com.sun.istack.internal.NotNull;
 import com.yourbank.account.persistence.CreditRepository;
 import com.yourbank.account.service.CreditService;
 import com.yourbank.bank.Credit;
@@ -17,11 +16,11 @@ public class CreditServiceImpl implements CreditService {
     @Autowired
     CreditRepository creditRepository;
 
-    public Credit add(@NotNull Credit entity) {
+    public Credit add(Credit entity) {
         return creditRepository.saveAndFlush(entity);
     }
 
-    public void delete(@NotNull Credit entity) {
+    public void delete(Credit entity) {
         creditRepository.delete(entity);
     }
 

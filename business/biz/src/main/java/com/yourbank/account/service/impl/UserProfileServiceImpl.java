@@ -1,6 +1,5 @@
 package com.yourbank.account.service.impl;
 
-import com.sun.istack.internal.NotNull;
 import com.yourbank.account.UserProfile;
 import com.yourbank.account.persistence.UserProfileRepository;
 import com.yourbank.account.service.UserProfileService;
@@ -15,11 +14,11 @@ public class UserProfileServiceImpl implements UserProfileService {
     @Autowired
     UserProfileRepository userProfileRepository;
 
-    public UserProfile add(@NotNull UserProfile entity) {
+    public UserProfile add(UserProfile entity) {
         return userProfileRepository.saveAndFlush(entity);
     }
 
-    public void delete(@NotNull UserProfile entity) {
+    public void delete(UserProfile entity) {
         userProfileRepository.delete(entity);
     }
 
