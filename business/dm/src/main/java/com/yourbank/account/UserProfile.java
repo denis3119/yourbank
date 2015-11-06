@@ -3,6 +3,7 @@ package com.yourbank.account;
 import com.yourbank.common.AbstractExpiringEntity;
 import org.hibernate.annotations.Entity;
 
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
@@ -22,6 +23,8 @@ public class UserProfile extends AbstractExpiringEntity {
     private String personalNumber;
 
     private String passportNumber;
+    @OneToOne
+    private User user;
 
     public String getPassportNumber() {
         return passportNumber;
@@ -69,5 +72,13 @@ public class UserProfile extends AbstractExpiringEntity {
 
     public void setPersonalNumber(String personalNumber) {
         this.personalNumber = personalNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

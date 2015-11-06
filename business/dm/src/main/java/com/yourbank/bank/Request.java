@@ -2,6 +2,8 @@ package com.yourbank.bank;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
+import javax.persistence.OneToOne;
+
 /**
  * Created by admin on 11/2/2015.
  */

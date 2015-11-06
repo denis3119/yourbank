@@ -5,6 +5,8 @@ import com.yourbank.bank.Score;
 import com.yourbank.common.AbstractExpiringEntity;
 import org.hibernate.annotations.Entity;
 
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 /**
@@ -22,6 +24,11 @@ public class User extends AbstractExpiringEntity {
     private String phone;
     private List<Credit> credits;
     private List<Score> scores;
+
+
+    @OneToOne
+
+    private UserProfile userProfile;
 
     public List<Credit> getCredits() {
         return credits;
@@ -71,4 +78,11 @@ public class User extends AbstractExpiringEntity {
         this.phone = phone;
     }
 
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 }

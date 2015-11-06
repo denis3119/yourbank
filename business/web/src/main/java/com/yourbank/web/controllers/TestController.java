@@ -21,8 +21,7 @@ public class TestController {
     public String printWelcome(ModelMap model) {
 
         final List<Long> list = Arrays.asList(3L, 4L, 10L, 5L, 8L, 4L);
-        Long t = list.stream().filter(element -> list.stream().filter(elem -> elem.equals(element)).count() > 1).findFirst().orElse(null);
-        model.addAttribute("message", t);
+        model.addAttribute("message", "123");
         return "test";
     }
 

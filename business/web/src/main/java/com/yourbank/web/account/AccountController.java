@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class AccountController {
 
-//    @Autowired
+    @Autowired
     private UserRepository userRepository;
 
     public void login() {
