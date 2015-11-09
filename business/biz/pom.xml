@@ -14,16 +14,6 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Draft-6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>LATEST</version>
-        </dependency>
-        <dependency>
             <groupId>com.yourbank</groupId>
             <artifactId>yourbank-dm</artifactId>
             <version>1.0-SNAPSHOT</version>

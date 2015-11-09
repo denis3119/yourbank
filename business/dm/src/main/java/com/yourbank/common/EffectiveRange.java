@@ -1,10 +1,12 @@
 package com.yourbank.common;
 
+import javax.persistence.Embeddable;
 import java.util.Date;
 
 /**
  * Created by admin on 11/2/2015.
  */
+@Embeddable
 public class EffectiveRange {
 
     private Date effectiveStartDate;

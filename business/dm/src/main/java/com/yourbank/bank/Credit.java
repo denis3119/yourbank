@@ -1,11 +1,10 @@
 package com.yourbank.bank;
 
 import com.yourbank.common.AbstractExpiringEntity;
-import org.hibernate.annotations.Entity;
 
 import java.util.Currency;
 
-@Entity
+//@Entity
 public class Credit extends AbstractExpiringEntity {
     private String description;
     private Currency currency;
