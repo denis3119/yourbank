@@ -6,8 +6,6 @@ import com.yourbank.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-
 /**
  * Created by admin on 11/6/2015.
  */

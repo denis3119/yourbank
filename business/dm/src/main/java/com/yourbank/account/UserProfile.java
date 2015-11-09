@@ -1,7 +1,6 @@
 package com.yourbank.account;
 
 import com.yourbank.common.AbstractExpiringEntity;
-import org.hibernate.annotations.Entity;
 
 import javax.persistence.OneToOne;
 import java.util.Date;
@@ -9,7 +8,7 @@ import java.util.Date;
 /**
  * Created by admin on 11/2/2015.
  */
-@Entity
+//@Entity
 public class UserProfile extends AbstractExpiringEntity {
 
     private String firstName;
