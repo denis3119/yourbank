@@ -2,18 +2,37 @@ package com.yourbank.bank;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 /**
- * Created by admin on 11/2/2015.
+ * @author  admin.
  */
+@Entity
 public class Request extends AbstractExpiringEntity {
     private String phoneNumber;
     private String firstName;
+    private String target;
 
-    private String lastName;
+    public String getTarget() {
+        return target;
+    }
 
-    private String patronymic;
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public Date getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Date period) {
+        this.period = period;
+    }
+
+    private Date period;
 
     public Credit getCredit() {
         return credit;
@@ -22,6 +41,11 @@ public class Request extends AbstractExpiringEntity {
     public void setCredit(Credit credit) {
         this.credit = credit;
     }
+
+    private String lastName;
+
+    private String patronymic;
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -55,5 +79,6 @@ public class Request extends AbstractExpiringEntity {
         this.patronymic = patronymic;
     }
 
+    @ManyToOne
     private Credit credit;
 }

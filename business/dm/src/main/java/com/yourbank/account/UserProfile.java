@@ -2,13 +2,14 @@ package com.yourbank.account;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
- * Created by admin on 11/2/2015.
+ * @author admin.
  */
-//@Entity
+@Entity
 public class UserProfile extends AbstractExpiringEntity {
 
     private String firstName;
