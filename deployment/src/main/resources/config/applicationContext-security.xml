@@ -6,5 +6,5 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
-
+   <security:jdbc-user-service data-source-ref="dataSource"/>
 </beans>
