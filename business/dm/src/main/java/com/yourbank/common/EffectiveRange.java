@@ -1,6 +1,7 @@
 package com.yourbank.common;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -27,5 +28,24 @@ public class EffectiveRange {
 
     public void setEffectiveEndDate(Date effectiveEndDate) {
         this.effectiveEndDate = effectiveEndDate;
+    }
+
+    @Transient
+    private boolean markedForDelete = false;
+
+
+    public void markForDelete() {
+        markedForDelete = true;
+        setEffectiveEndDate(new Date());
+    }
+
+    public void restore() {
+        markedForDelete = false;
+        effectiveEndDate = null;
+        ;
+    }
+
+    public boolean expired() {
+        return effectiveEndDate != null;
     }
 }

@@ -14,34 +14,13 @@ public class AbstractExpiringEntity extends AbstractEntity {
     @Embedded
     private EffectiveRange effectiveRange;
 
-    @Transient
-    private boolean markedForDelete = false;
-
+    public void setEffectiveRange(EffectiveRange effectiveRange) {
+        this.effectiveRange = effectiveRange;
+    }
 
     public EffectiveRange getEffectiveRange() {
         return effectiveRange;
     }
 
-    public boolean isMarkedForDelete() {
-        return markedForDelete;
-    }
-
-    public void setMarkedForDelete(boolean markedForDelete) {
-        this.markedForDelete = markedForDelete;
-    }
-
-    public void markForDelete() {
-        markedForDelete = true;
-        effectiveRange.setEffectiveEndDate(new Date());
-    }
-
-    public void restore() {
-        markedForDelete = false;
-        effectiveRange.setEffectiveEndDate(null);
-    }
-
-    public boolean expired() {
-        return effectiveRange.getEffectiveEndDate() != null;
-    }
 
 }

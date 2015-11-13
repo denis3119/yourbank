@@ -3,7 +3,6 @@ package com.yourbank.account.service.impl;
 import com.sun.istack.internal.NotNull;
 import com.yourbank.account.User;
 import com.yourbank.account.UserProfile;
-import com.yourbank.account.persistence.UserProfileRepository;
 import com.yourbank.account.persistence.UserRepository;
 import com.yourbank.account.service.UserProfileService;
 import com.yourbank.account.service.UserService;

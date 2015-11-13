@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RequestController {
     @Autowired
     RequestService requestService;
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void add(Request request){
+    public void add(Request request) {
         requestService.add(request);
     }
 

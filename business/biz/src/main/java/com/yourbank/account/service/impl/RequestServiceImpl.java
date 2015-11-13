@@ -4,11 +4,12 @@ import com.yourbank.account.persistence.RequestRepository;
 import com.yourbank.account.service.RequestService;
 import com.yourbank.bank.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 11/6/2015.
  */
-@org.springframework.stereotype.Service
+@Service
 public class RequestServiceImpl implements RequestService {
     @Autowired
     RequestRepository requestRepository;
@@ -18,7 +19,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     public void delete(Request entity) {
-               requestRepository.delete(entity);
+        requestRepository.delete(entity);
     }
 
     public Request get(long ID) {
