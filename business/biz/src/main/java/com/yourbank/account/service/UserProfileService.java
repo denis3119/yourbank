@@ -1,11 +1,12 @@
 package com.yourbank.account.service;
 
 import com.yourbank.account.UserProfile;
-import com.yourbank.account.service.Service;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 11/6/2015.
  */
-public interface UserProfileService extends Service<UserProfile> {
+@Service
+public interface UserProfileService extends AbstractService<UserProfile> {
 
 }

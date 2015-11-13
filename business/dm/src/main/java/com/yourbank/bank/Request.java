@@ -8,13 +8,34 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author  admin.
+ * @author admin.
  */
 @Entity
 public class Request extends AbstractExpiringEntity {
     private String phoneNumber;
     private String firstName;
     private String target;
+    private Date period;
+    private String lastName;
+    private String patronymic;
+    @ManyToOne
+    private Credit credit;
+
+
+    public Request() {
+
+    }
+
+    public Request(String phoneNumber, String firstName, String target, Date period,
+                   String lastName, String patronymic, Credit credit) {
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.target = target;
+        this.period = period;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.credit = credit;
+    }
 
     public String getTarget() {
         return target;
@@ -32,7 +53,6 @@ public class Request extends AbstractExpiringEntity {
         this.period = period;
     }
 
-    private Date period;
 
     public Credit getCredit() {
         return credit;
@@ -41,11 +61,6 @@ public class Request extends AbstractExpiringEntity {
     public void setCredit(Credit credit) {
         this.credit = credit;
     }
-
-    private String lastName;
-
-    private String patronymic;
-
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -79,6 +94,4 @@ public class Request extends AbstractExpiringEntity {
         this.patronymic = patronymic;
     }
 
-    @ManyToOne
-    private Credit credit;
 }
