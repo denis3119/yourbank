@@ -1,4 +1,4 @@
-package com.yourbank.account.service;
+package com.yourbank.service;
 
 import com.yourbank.bank.Score;
 

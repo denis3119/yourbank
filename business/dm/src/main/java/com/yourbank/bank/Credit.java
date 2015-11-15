@@ -1,6 +1,6 @@
 package com.yourbank.bank;
 
-import com.yourbank.account.User;
+import com.yourbank.User;
 import com.yourbank.common.AbstractExpiringEntity;
 
 import javax.persistence.*;
@@ -10,9 +10,25 @@ import java.util.List;
 
 @Entity
 public class Credit extends AbstractExpiringEntity {
+
     private String description;
+
     @ManyToOne
     private User user;
+
+    @OneToMany
+    private List<Request> requests;
+
+    private Currency currency;
+
+    @OneToOne
+    private Score score;
+
+    private String name;
+
+    private long maxSum;
+
+    private double percent;
 
     public User getUser() {
         return user;
@@ -30,8 +46,21 @@ public class Credit extends AbstractExpiringEntity {
         this.requests = requests;
     }
 
-    @OneToMany
-    private List<Request> requests;
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
@@ -49,28 +78,6 @@ public class Credit extends AbstractExpiringEntity {
         this.currency = currency;
     }
 
-    private Currency currency;
-    @OneToOne
-    private Score score;
-    private String name;
-
-    public Score getScore() {
-        return score;
-    }
-
-    public void setScore(Score score) {
-        this.score = score;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
     public long getMaxSum() {
         return maxSum;
     }
@@ -79,8 +86,6 @@ public class Credit extends AbstractExpiringEntity {
         this.maxSum = maxSumm;
     }
 
-    private long maxSum;
-
     public double getPercent() {
         return percent;
     }
@@ -88,8 +93,5 @@ public class Credit extends AbstractExpiringEntity {
     public void setPercent(double percent) {
         this.percent = percent;
     }
-
-    private double percent;
-
 
 }

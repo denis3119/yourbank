@@ -1,4 +1,4 @@
-package com.yourbank.account.persistence;
+package com.yourbank.persistence;
 
 import com.yourbank.bank.Request;
 import org.springframework.data.jpa.repository.JpaRepository;

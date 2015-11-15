@@ -1,8 +1,8 @@
-package com.yourbank.account.service.impl;
+package com.yourbank.service.impl;
 
-import com.yourbank.account.UserProfile;
-import com.yourbank.account.persistence.UserProfileRepository;
-import com.yourbank.account.service.UserProfileService;
+import com.yourbank.UserProfile;
+import com.yourbank.persistence.UserProfileRepository;
+import com.yourbank.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
+
     @Autowired
     UserProfileRepository userProfileRepository;
 

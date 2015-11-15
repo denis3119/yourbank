@@ -1,10 +1,9 @@
-package com.yourbank.web.account;
+package com.yourbank.web;
 
-import com.yourbank.account.persistence.UserRepository;
+import com.yourbank.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by admin on 11/2/2015.
@@ -16,14 +15,12 @@ public class AccountController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/sec")
-    public ModelAndView sec() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sec");
-        return modelAndView;
+    public String secView() {
+        return "sec";
     }
 
     @RequestMapping(value = "/login")
-    public String login() {
+    public String loginView() {
         return "login";
     }
 

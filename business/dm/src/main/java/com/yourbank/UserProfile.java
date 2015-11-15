@@ -1,4 +1,4 @@
-package com.yourbank.account;
+package com.yourbank;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
@@ -23,6 +23,7 @@ public class UserProfile extends AbstractExpiringEntity {
     private String personalNumber;
 
     private String passportNumber;
+
     @OneToOne
     private User user;
 

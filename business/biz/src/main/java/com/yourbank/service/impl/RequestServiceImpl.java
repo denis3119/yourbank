@@ -1,7 +1,7 @@
-package com.yourbank.account.service.impl;
+package com.yourbank.service.impl;
 
-import com.yourbank.account.persistence.RequestRepository;
-import com.yourbank.account.service.RequestService;
+import com.yourbank.persistence.RequestRepository;
+import com.yourbank.service.RequestService;
 import com.yourbank.bank.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RequestServiceImpl implements RequestService {
+
     @Autowired
     RequestRepository requestRepository;
 

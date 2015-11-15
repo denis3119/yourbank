@@ -1,7 +1,7 @@
-package com.yourbank.account.service.impl;
+package com.yourbank.service.impl;
 
-import com.yourbank.account.persistence.ScoreRepository;
-import com.yourbank.account.service.ScoreService;
+import com.yourbank.persistence.ScoreRepository;
+import com.yourbank.service.ScoreService;
 import com.yourbank.bank.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ScoreServiceImpl implements ScoreService {
+
     @Autowired
     ScoreRepository scoreRepository;
 

@@ -12,18 +12,23 @@ import java.util.List;
  */
 @Entity
 public class Request extends AbstractExpiringEntity {
+
     private String phoneNumber;
+
     private String firstName;
+
     private String target;
+
     private Date period;
+
     private String lastName;
+
     private String patronymic;
+
     @ManyToOne
     private Credit credit;
 
-
     public Request() {
-
     }
 
     public Request(String phoneNumber, String firstName, String target, Date period,

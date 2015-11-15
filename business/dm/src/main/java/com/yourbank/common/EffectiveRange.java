@@ -33,7 +33,6 @@ public class EffectiveRange {
     @Transient
     private boolean markedForDelete = false;
 
-
     public void markForDelete() {
         markedForDelete = true;
         setEffectiveEndDate(new Date());
@@ -42,7 +41,6 @@ public class EffectiveRange {
     public void restore() {
         markedForDelete = false;
         effectiveEndDate = null;
-        ;
     }
 
     public boolean expired() {

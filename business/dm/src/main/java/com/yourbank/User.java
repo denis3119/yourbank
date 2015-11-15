@@ -1,4 +1,4 @@
-package com.yourbank.account;
+package com.yourbank;
 
 import com.yourbank.bank.Credit;
 import com.yourbank.bank.Score;
@@ -28,9 +28,9 @@ public class User extends AbstractExpiringEntity {
 
     @OneToMany
     private List<Credit> credits;
+
     @OneToMany
     private List<Score> scores;
-
 
     @OneToOne
     private UserProfile userProfile;

@@ -1,7 +1,7 @@
-package com.yourbank.account.service.impl;
+package com.yourbank.service.impl;
 
-import com.yourbank.account.persistence.CreditRepository;
-import com.yourbank.account.service.CreditService;
+import com.yourbank.persistence.CreditRepository;
+import com.yourbank.service.CreditService;
 import com.yourbank.bank.Credit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import java.util.Currency;
  */
 @Service
 public class CreditServiceImpl implements CreditService {
+
     @Autowired
     CreditRepository creditRepository;
 

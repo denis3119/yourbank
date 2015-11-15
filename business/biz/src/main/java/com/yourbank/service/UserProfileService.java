@@ -1,6 +1,6 @@
-package com.yourbank.account.service;
+package com.yourbank.service;
 
-import com.yourbank.account.UserProfile;
+import com.yourbank.UserProfile;
 
 /**
  * Created by admin on 11/6/2015.
