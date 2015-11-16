@@ -7,6 +7,7 @@ import com.yourbank.service.UserProfileService;
 import com.yourbank.service.UserService;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +23,10 @@ public class UserServiceImpl implements UserService {
     UserProfileService userProfileService;
 
     public User add(@NotNull User user) {
-        if (user != null && getByEmail(user.getEmail()) != null) {
+        if (user != null && getByEmail(user.getEmail()) == null) {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
             return userRepository.saveAndFlush(user);
         }
         return null;
@@ -53,5 +57,4 @@ public class UserServiceImpl implements UserService {
         update(user);
         userProfileService.add(userProfile);
     }
-
 }
