@@ -2,11 +2,14 @@ package com.yourbank.web;
 
 import com.yourbank.User;
 import com.yourbank.persistence.UserRepository;
+import com.yourbank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,17 +19,26 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
+    @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
+    public ModelAndView printWelcome() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Spring Security Hello World");
+        model.addObject("message", "This is welcome page!");
+        model.setViewName("hello");
+        return model;
+    }
 
-        final List<Long> list = Arrays.asList(3L, 4L, 10L, 5L, 8L, 4L);
-        User user= new User();
-        user.setEmail("drop table user;");
-        userRepository.saveAndFlush(user);
-        model.addAttribute("message", "123");
-        return "test";
+
+    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
+    public ModelAndView adminPage() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Spring Security Hello World");
+        model.addObject("message", "This is protected page!");
+        model.setViewName("admin");
+        return model;
+
     }
 
 }

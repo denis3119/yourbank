@@ -5,7 +5,9 @@ import com.yourbank.bank.Score;
 import com.yourbank.common.AbstractExpiringEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User extends AbstractExpiringEntity {
@@ -18,12 +20,24 @@ public class User extends AbstractExpiringEntity {
 
     private String phone;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+
     public List<Credit> getCredits() {
         return credits;
     }
 
     public void setCredits(List<Credit> credits) {
         this.credits = credits;
+    }
+
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 
     @OneToMany
