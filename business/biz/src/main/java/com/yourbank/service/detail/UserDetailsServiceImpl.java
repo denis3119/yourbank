@@ -42,6 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     // Converts User user to
     // org.springframework.security.core.userdetails.User
+//    TODO:  first true   - accountNonExpired
     @org.jetbrains.annotations.Contract("_, _ -> !null")
     private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
