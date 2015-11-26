@@ -2,18 +2,73 @@ package com.yourbank.bank;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
+import java.util.Date;
 
 /**
- * Created by admin on 11/2/2015.
+ * @author admin.
  */
+@Entity
 public class Request extends AbstractExpiringEntity {
+
+    private boolean aproved;
+
     private String phoneNumber;
+
     private String firstName;
+
+    private String target;
+
+    private Date created;
 
     private String lastName;
 
     private String patronymic;
+
+    private Integer period; // месяцы
+
+    @ManyToOne
+    private Credit credit;
+
+    public boolean isAproved() {
+        return aproved;
+    }
+
+    public void setAproved(boolean aprove) {
+        this.aproved = aprove;
+    }
+
+    public Request() {
+    }
+
+    public Request(String phoneNumber, String firstName, String target, Date period,
+                   String lastName, String patronymic, Credit credit) {
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.target = target;
+        this.created = period;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.credit = credit;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
 
     public Credit getCredit() {
         return credit;
@@ -55,5 +110,12 @@ public class Request extends AbstractExpiringEntity {
         this.patronymic = patronymic;
     }
 
-    private Credit credit;
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
 }

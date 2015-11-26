@@ -1,18 +1,61 @@
 package com.yourbank.bank;
 
+import com.yourbank.User;
 import com.yourbank.common.AbstractExpiringEntity;
 
+import javax.persistence.*;
 import java.util.Currency;
+import java.util.List;
 
-//@Entity
+
+@Entity
 public class Credit extends AbstractExpiringEntity {
+
     private String description;
+
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<Request> requests;
+
     private Currency currency;
+
+    @OneToOne
     private Score score;
+
     private String name;
 
-    private Long maxValue;
+    private long maxSum;
+
     private double percent;
+
+    public List<CreditType> getCreditTypes() {
+        return creditTypes;
+    }
+
+    public void setCreditTypes(List<CreditType> creditTypes) {
+        this.creditTypes = creditTypes;
+    }
+
+    @ManyToMany
+    private List<CreditType> creditTypes;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
 
     public Score getScore() {
         return score;
@@ -20,14 +63,6 @@ public class Credit extends AbstractExpiringEntity {
 
     public void setScore(Score score) {
         this.score = score;
-    }
-
-    public double getPercent() {
-        return percent;
-    }
-
-    public void setPercent(double percent) {
-        this.percent = percent;
     }
 
     public String getName() {
@@ -54,13 +89,20 @@ public class Credit extends AbstractExpiringEntity {
         this.currency = currency;
     }
 
-    public Long getMaxValue() {
-        return maxValue;
+    public long getMaxSum() {
+        return maxSum;
     }
 
-    public void setMaxValue(Long maxValue) {
-        this.maxValue = maxValue;
+    public void setMaxSum(long maxSumm) {
+        this.maxSum = maxSumm;
     }
 
+    public double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
 
 }
