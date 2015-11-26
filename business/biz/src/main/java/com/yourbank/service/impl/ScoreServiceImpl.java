@@ -1,10 +1,13 @@
 package com.yourbank.service.impl;
 
+import com.yourbank.User;
 import com.yourbank.persistence.ScoreRepository;
 import com.yourbank.service.ScoreService;
 import com.yourbank.bank.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.

@@ -2,13 +2,18 @@ package com.yourbank.service.impl;
 
 import com.yourbank.User;
 import com.yourbank.UserProfile;
+import com.yourbank.bank.Score;
 import com.yourbank.persistence.UserRepository;
 import com.yourbank.service.UserProfileService;
 import com.yourbank.service.UserService;
+
 import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.
@@ -56,5 +61,9 @@ public class UserServiceImpl implements UserService {
         user.setUserProfile(userProfile);
         update(user);
         userProfileService.add(userProfile);
+    }
+
+    public List<Score> getAllScores(Long ID) {
+        return get(ID).getScores();
     }
 }

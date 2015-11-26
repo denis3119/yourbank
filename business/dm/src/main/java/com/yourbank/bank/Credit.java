@@ -30,6 +30,17 @@ public class Credit extends AbstractExpiringEntity {
 
     private double percent;
 
+    public List<CreditType> getCreditTypes() {
+        return creditTypes;
+    }
+
+    public void setCreditTypes(List<CreditType> creditTypes) {
+        this.creditTypes = creditTypes;
+    }
+
+    @ManyToMany
+    private List<CreditType> creditTypes;
+
     public User getUser() {
         return user;
     }

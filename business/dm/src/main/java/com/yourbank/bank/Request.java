@@ -5,7 +5,6 @@ import com.yourbank.common.AbstractExpiringEntity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author admin.
@@ -13,20 +12,32 @@ import java.util.List;
 @Entity
 public class Request extends AbstractExpiringEntity {
 
+    private boolean aproved;
+
     private String phoneNumber;
 
     private String firstName;
 
     private String target;
 
-    private Date period;
+    private Date created;
 
     private String lastName;
 
     private String patronymic;
 
+    private Integer period; // месяцы
+
     @ManyToOne
     private Credit credit;
+
+    public boolean isAproved() {
+        return aproved;
+    }
+
+    public void setAproved(boolean aprove) {
+        this.aproved = aprove;
+    }
 
     public Request() {
     }
@@ -36,7 +47,7 @@ public class Request extends AbstractExpiringEntity {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.target = target;
-        this.period = period;
+        this.created = period;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.credit = credit;
@@ -50,12 +61,12 @@ public class Request extends AbstractExpiringEntity {
         this.target = target;
     }
 
-    public Date getPeriod() {
-        return period;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setPeriod(Date period) {
-        this.period = period;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
 
@@ -97,6 +108,14 @@ public class Request extends AbstractExpiringEntity {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
     }
 
 }

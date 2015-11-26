@@ -4,9 +4,11 @@ import com.yourbank.User;
 import com.yourbank.common.AbstractExpiringEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.util.Currency;
+import java.util.List;
 
 /**
  * @author admin.
@@ -21,6 +23,17 @@ public class Score extends AbstractExpiringEntity {
 
     @OneToOne
     private Credit credit;
+
+    @ManyToMany
+    private List<ScoreType> scoreTypes;
+
+    public List<ScoreType> getScoreTypes() {
+        return scoreTypes;
+    }
+
+    public void setScoreTypes(List<ScoreType> scoreTypes) {
+        this.scoreTypes = scoreTypes;
+    }
 
     public Credit getCredit() {
         return credit;
