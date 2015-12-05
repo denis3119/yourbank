@@ -43,7 +43,6 @@ public class AccountController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
-
         // implement your own registration logic here...
         user = userService.add(user);
         UserRole role = new UserRole(user, "ROLE_ADMIN");

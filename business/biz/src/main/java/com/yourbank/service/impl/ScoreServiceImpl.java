@@ -33,4 +33,9 @@ public class ScoreServiceImpl implements ScoreService {
     public Score update(Score entity) {
         return scoreRepository.saveAndFlush(entity);
     }
+
+    @Override
+    public List<Score> getAll() {
+        return scoreRepository.findAll();
+    }
 }

@@ -20,7 +20,7 @@ public class RequestController {
     @Autowired
     RequestService requestService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_request", method = RequestMethod.GET)
     public String add(Map<String, Object> model) {
         Request request = new Request();
         model.put("requestForm", request);
@@ -28,7 +28,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/add_request", method = RequestMethod.POST)
-    public String addPost(@ModelAttribute("requestForm") Request request, Map<String, Object> model) {
+    public String add(@ModelAttribute("requestForm") Request request, Map<String, Object> model) {
         requestService.add(request);
         return "admin";
     }

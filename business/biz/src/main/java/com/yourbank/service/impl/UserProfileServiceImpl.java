@@ -6,6 +6,8 @@ import com.yourbank.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by admin on 11/6/2015.
  */
@@ -29,5 +31,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     public UserProfile update(UserProfile entity) {
         return userProfileRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public List<UserProfile> getAll() {
+        return userProfileRepository.findAll();
     }
 }

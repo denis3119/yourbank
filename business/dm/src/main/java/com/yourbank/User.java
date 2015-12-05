@@ -12,15 +12,18 @@ import java.util.Set;
 @Entity
 public class User extends AbstractExpiringEntity {
 
+    @Column(unique = true)
     private String name;
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String phone;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
 

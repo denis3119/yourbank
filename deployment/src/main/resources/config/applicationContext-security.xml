@@ -10,8 +10,8 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/admin**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <logout invalidate-session="true" logout-success-url="/login" logout-url="/logout"/>
+        <!--<intercept-url pattern="/credit**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>-->
     </http>
-
 
     <authentication-manager>
         <authentication-provider user-service-ref="userDetailsServiceImpl">

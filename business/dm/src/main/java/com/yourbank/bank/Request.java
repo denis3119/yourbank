@@ -20,8 +20,6 @@ public class Request extends AbstractExpiringEntity {
 
     private String target;
 
-    private Date created;
-
     private String lastName;
 
     private String patronymic;
@@ -42,12 +40,11 @@ public class Request extends AbstractExpiringEntity {
     public Request() {
     }
 
-    public Request(String phoneNumber, String firstName, String target, Date period,
+    public Request(String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit) {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.target = target;
-        this.created = period;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.credit = credit;
@@ -60,15 +57,6 @@ public class Request extends AbstractExpiringEntity {
     public void setTarget(String target) {
         this.target = target;
     }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
 
     public Credit getCredit() {
         return credit;

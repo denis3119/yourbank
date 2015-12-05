@@ -19,12 +19,17 @@ public class Credit extends AbstractExpiringEntity {
     @OneToMany
     private List<Request> requests;
 
-    private Currency currency;
+    @Enumerated(EnumType.STRING)
+    private CurrencyCode currency;
 
     @OneToOne
     private Score score;
 
     private String name;
+
+
+    private long minSum;
+
 
     private long maxSum;
 
@@ -81,11 +86,11 @@ public class Credit extends AbstractExpiringEntity {
         this.description = description;
     }
 
-    public Currency getCurrency() {
+    public CurrencyCode getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(CurrencyCode currency) {
         this.currency = currency;
     }
 
@@ -105,4 +110,15 @@ public class Credit extends AbstractExpiringEntity {
         this.percent = percent;
     }
 
+    public long getMinSum() {
+        return minSum;
+    }
+
+    public void setMinSum(long minSum) {
+        this.minSum = minSum;
+    }
+
+    public enum CurrencyCode {
+        BLR, EUR, USD
+    }
 }

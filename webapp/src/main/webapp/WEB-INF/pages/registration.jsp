@@ -20,11 +20,11 @@
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><form:password path="password" /></td>
+                <td><form:password type="password" path="password" /></td>
             </tr>
             <tr>
                 <td>E-mail:</td>
-                <td><form:input path="email" /></td>
+                <td><form:input type="email" path="email" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Register" /></td>

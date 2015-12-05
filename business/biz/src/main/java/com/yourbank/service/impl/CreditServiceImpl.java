@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Currency;
+import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.
@@ -31,6 +32,11 @@ public class CreditServiceImpl implements CreditService {
 
     public Credit update(Credit entity) {
         return creditRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public List<Credit> getAll() {
+        return creditRepository.findAll();
     }
 
     public Credit getByCurrency(Currency currency) {
