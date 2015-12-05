@@ -12,5 +12,11 @@
 
     <artifactId>yourbank-dm</artifactId>
     <packaging>jar</packaging>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>LATEST</version>
+        </dependency>
+    </dependencies>
 </project>
