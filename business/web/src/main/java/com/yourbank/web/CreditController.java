@@ -1,0 +1,40 @@
+package com.yourbank.web;
+
+import com.yourbank.bank.Credit;
+import com.yourbank.service.CreditService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Map;
+
+/**
+ * @author admin.
+ */
+@Controller
+public class CreditController {
+    @Autowired
+    CreditService creditService;
+
+    @RequestMapping(value = "/add_credit", method = RequestMethod.GET)
+    public String add(Map<String, Object> model) {
+        Credit credit = new Credit();
+        model.put("creditForm", credit);
+        model.put("currency", Credit.CurrencyCode.values());
+        return "/credit/create";
+    }
+
+    @RequestMapping(value = "/add_credit", method = RequestMethod.POST)
+    public String add(Map<String, Object> model, Credit credit) {
+        creditService.add(credit);
+        model.put("credits", creditService.getAll());
+        return "/credit/list";
+    }
+
+    @RequestMapping(value = "/credits", method = RequestMethod.GET)
+    public String credits(Map<String, Object> model) {
+        model.put("credits", creditService.getAll());
+        return "/credit/list";
+    }
+}

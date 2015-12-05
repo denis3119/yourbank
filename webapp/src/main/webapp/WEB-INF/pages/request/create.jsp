@@ -17,12 +17,12 @@
                 <td><form:input path="lastName"/></td>
             </tr>
             <tr>
-                <td>Date:</td>
-                <%--<td><form:input type="date" pattern="dd/MM/yyyy"  path="period" value="<%=new Date()%>"/></td>--%>
-            </tr>
-            <tr>
                 <td>Patronymic:</td>
                 <td><form:input path="patronymic"/></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><form:input type="number"  path="period" min="3" max="100" value="12"/></td>
             </tr>
             <tr>
                 <td>Target:</td>

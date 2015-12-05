@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>E-mail:</td>
-                <td><form:input path="email" /></td>
+                <td><form:input type="email" path="email" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Register" /></td>

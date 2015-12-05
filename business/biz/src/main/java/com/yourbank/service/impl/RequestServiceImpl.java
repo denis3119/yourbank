@@ -20,7 +20,6 @@ public class RequestServiceImpl implements RequestService {
     RequestRepository requestRepository;
 
     public Request add(Request entity) {
-        entity.setCreated(new Date());
         return requestRepository.saveAndFlush(entity);
     }
 

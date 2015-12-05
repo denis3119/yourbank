@@ -1,9 +1,11 @@
 package com.yourbank;
 
-import com.yourbank.common.AbstractEntity;
 import com.yourbank.common.AbstractExpiringEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author admin.
@@ -11,25 +13,32 @@ import javax.persistence.*;
 @Entity
 public class UserRole extends AbstractExpiringEntity {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> users;
+
+    @Column(unique = true)
     private String role;
 
     public UserRole() {
     }
 
-    public UserRole(User user, String role) {
-        this.user = user;
+    public UserRole(Set<User> users, String role) {
+        this.users = users;
         this.role = role;
     }
 
-
-    public User getUser() {
-        return this.user;
+    public UserRole(User user, String role) {
+        Set<User> users = new HashSet<>();
+        users.add(user);
+        this.users = users;
+        this.role = role;
+    }
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Set<User> user) {
+        this.users = user;
     }
 
     public String getRole() {

@@ -3,6 +3,7 @@ package com.yourbank;
 import com.yourbank.bank.Credit;
 import com.yourbank.bank.Score;
 import com.yourbank.common.AbstractExpiringEntity;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,17 +13,27 @@ import java.util.Set;
 @Entity
 public class User extends AbstractExpiringEntity {
 
+    @Column(unique = true, nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(unique = true, nullable = false)
+    @Email
     private String email;
 
+    @Column(unique = true)
     private String phone;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
-
+    @OneToMany
+    private List<Credit> credits;
+    @OneToMany
+    private List<Score> scores;
+    @OneToOne
+    private UserProfile userProfile;
 
     public List<Credit> getCredits() {
         return credits;
@@ -39,15 +50,6 @@ public class User extends AbstractExpiringEntity {
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
     }
-
-    @OneToMany
-    private List<Credit> credits;
-
-    @OneToMany
-    private List<Score> scores;
-
-    @OneToOne
-    private UserProfile userProfile;
 
     public List<Score> getScores() {
         return scores;

@@ -6,15 +6,20 @@ import com.yourbank.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author admin.
  */
 @Service
-public class UserRoleImpl implements UserRoleService {
+public class UserRoleServiceImpl implements UserRoleService {
     @Autowired
     UserRoleRepository userRoleRepository;
 
     public UserRole add(UserRole entity) {
+        if (getByRole(entity.getRole()) != null) {
+            return getByRole(entity.getRole());
+        }
         return userRoleRepository.saveAndFlush(entity);
     }
 
@@ -28,5 +33,15 @@ public class UserRoleImpl implements UserRoleService {
 
     public UserRole update(UserRole entity) {
         return userRoleRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public List<UserRole> getAll() {
+        return userRoleRepository.findAll();
+    }
+
+    @Override
+    public UserRole getByRole(String role) {
+        return userRoleRepository.getByRole(role);
     }
 }
