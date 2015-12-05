@@ -36,6 +36,7 @@ public class TestController {
             User user = new User();
             user.setName("admin");
             user.setPassword("admin");
+            user.setEmail("admin@gmail.com");
             user = userService.add(user);
             userService.addRole(user, "ROLE_ADMIN");
             userService.addRole(user, "ROLE_USER");
@@ -44,6 +45,7 @@ public class TestController {
             User user = new User();
             user.setName("user");
             user.setPassword("user");
+            user.setEmail("user@gmail.com");
             user = userService.add(user);
             userService.addRole(user, "ROLE_USER");
         }
@@ -51,6 +53,7 @@ public class TestController {
             User user = new User();
             user.setName("user1");
             user.setPassword("user1");
+            user.setEmail("user1@gmail.com");
             user = userService.add(user);
             userService.addRole(user, "ROLE_USER");
         }
