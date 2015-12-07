@@ -1,13 +1,15 @@
 package com.yourbank.service.impl;
 
+import com.yourbank.bank.Credit;
 import com.yourbank.persistence.CreditRepository;
 import com.yourbank.service.CreditService;
-import com.yourbank.bank.Credit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by admin on 11/6/2015.
@@ -27,7 +29,7 @@ public class CreditServiceImpl implements CreditService {
     }
 
     public Credit get(long ID) {
-        return creditRepository.getOne(ID);
+        return creditRepository.findOne(ID);
     }
 
     public Credit update(Credit entity) {
@@ -37,6 +39,15 @@ public class CreditServiceImpl implements CreditService {
     @Override
     public List<Credit> getAll() {
         return creditRepository.findAll();
+    }
+
+   @Override
+    public Map<String, String> getMapAll() {
+        Map<String, String> map = new TreeMap<>();
+        for (Credit credit : getAll()) {
+            map.put(credit.getId().toString(), credit.getName());
+        }
+        return map;
     }
 
     public Credit getByCurrency(Currency currency) {

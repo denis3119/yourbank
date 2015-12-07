@@ -4,8 +4,10 @@ import com.yourbank.bank.Credit;
 import com.yourbank.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -36,5 +38,11 @@ public class CreditController {
     public String credits(Map<String, Object> model) {
         model.put("credits", creditService.getAll());
         return "/credit/list";
+    }
+
+    @RequestMapping(value = "/credit_{creditID}", method = RequestMethod.GET)
+    public String detail(@PathVariable long creditID, Map<String, Object> model) {
+        model.put("credit", creditService.get(creditID));
+        return "/credit/detail";
     }
 }

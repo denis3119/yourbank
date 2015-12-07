@@ -2,9 +2,10 @@ package com.yourbank.bank;
 
 import com.yourbank.common.AbstractExpiringEntity;
 
-
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
 /**
  * @author admin.
@@ -26,16 +27,8 @@ public class Request extends AbstractExpiringEntity {
 
     private Integer period; // месяцы
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
-
-    public boolean isAproved() {
-        return aproved;
-    }
-
-    public void setAproved(boolean aprove) {
-        this.aproved = aprove;
-    }
 
     public Request() {
     }
@@ -48,6 +41,14 @@ public class Request extends AbstractExpiringEntity {
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.credit = credit;
+    }
+
+    public boolean isAproved() {
+        return aproved;
+    }
+
+    public void setAproved(boolean aprove) {
+        this.aproved = aprove;
     }
 
     public String getTarget() {

@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td>Процентная ставка</td>
-                <td><form:input type="number" path="percent"/></td>
+                <td><form:input type="number"  step="0.01" min="0" path="percent"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Create"/></td>

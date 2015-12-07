@@ -1,14 +1,15 @@
 package com.yourbank.service.impl;
 
+import com.yourbank.User;
+import com.yourbank.bank.Request;
 import com.yourbank.persistence.RequestRepository;
 import com.yourbank.service.RequestService;
-import com.yourbank.bank.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by admin on 11/6/2015.
@@ -28,7 +29,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     public Request get(long ID) {
-        return requestRepository.getOne(ID);
+        return requestRepository.findOne(ID);
     }
 
     public Request update(Request entity) {
