@@ -1,5 +1,6 @@
 package com.yourbank.web;
 
+import com.yourbank.bank.Credit;
 import com.yourbank.bank.Request;
 import com.yourbank.service.CreditService;
 import com.yourbank.service.RequestService;

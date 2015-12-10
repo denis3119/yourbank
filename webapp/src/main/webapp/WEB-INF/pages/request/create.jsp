@@ -28,7 +28,7 @@
             </tr>
             <%--<tr>--%>
                 <%--<td>Кредит</td>--%>
-                <%--<td><form:select path="credit" items="${credits}"/></td>--%>
+                <%--<td><form:select path="creditName" items="${credits}"/></td>--%>
             <%--</tr>--%>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Подать"/></td>
