@@ -13,12 +13,13 @@ import org.springframework.context.annotation.Import;
 /**
  * @author Yugov Alexandr.
  */
-//@Import({SecurityConfig.class, DatabaseConfig.class})
+
 @Configuration
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
-@ComponentScan("com.yourbank.web")
+@ComponentScan({"com.yourbank.web","com.yourbank.data"})
 @Import(DatabaseConfig.class)
+//@Import({SecurityConfig.class, DatabaseConfig.class})
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
