@@ -17,9 +17,9 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
-@ComponentScan({"com.yourbank.web","com.yourbank.data"})
-@Import(DatabaseConfig.class)
-//@Import({SecurityConfig.class, DatabaseConfig.class})
+@ComponentScan
+//@Import(DatabaseConfig.class)
+@Import({SecurityConfig.class, DatabaseConfig.class})
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

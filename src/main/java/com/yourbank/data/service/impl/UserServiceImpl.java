@@ -1,9 +1,9 @@
 package com.yourbank.data.service.impl;
 
+import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.repository.UserRepository;
 import com.yourbank.data.service.UserProfileService;
 import com.yourbank.data.service.UserRoleService;
@@ -11,7 +11,6 @@ import com.yourbank.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -84,6 +83,16 @@ public class UserServiceImpl implements UserService {
         }
         user.setUserRole(roles);
         update(user);
+    }
+
+    @Override
+    public boolean hasRole(String string, User user) {
+        for (UserRole role : user.getUserRole()) {
+            if (role.getRole().equals(string)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @SuppressWarnings("unchecked")

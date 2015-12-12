@@ -1,6 +1,5 @@
 package com.yourbank.data.model.user;
 
-import com.yourbank.data.Identifiable;
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
@@ -35,6 +34,16 @@ public class User extends AbstractExpiringEntity {
     private List<Score> scores;
     @OneToOne
     private UserProfile userProfile;
+
+    public User() {
+
+    }
+
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
 
     public List<Credit> getCredits() {
         return credits;
@@ -100,3 +109,4 @@ public class User extends AbstractExpiringEntity {
         this.userProfile = userProfile;
     }
 }
+
