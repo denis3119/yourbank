@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by admin on 11/2/2015.
- */
+* Created by admin on 11/2/2015.
+*/
 @Controller
 public class AccountController {
 

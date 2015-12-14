@@ -4,7 +4,7 @@ import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.HashSet;

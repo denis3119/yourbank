@@ -1,8 +1,9 @@
 package com.yourbank.config;
 
 import com.yourbank.data.config.DatabaseConfig;
-import com.yourbank.web.config.WebConfig;
 import com.yourbank.service.ServiceConfig;
+import com.yourbank.web.config.WebConfig;
+import org.apache.catalina.security.SecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

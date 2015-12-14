@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by admin on 14.12.2015.
- */
+* Created by admin on 14.12.2015.
+*/
 @Controller
 public class ProfileController {
 
