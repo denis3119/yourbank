@@ -9,20 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("")
-public class BaseController {
+public class BasicController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "index";
     }
 
-    @RequestMapping(value = "/public/test/layout", method = RequestMethod.GET)
-    public String test() {
-        return "test";
-    }
-
-    @RequestMapping(value = "/public/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/public/home/layout", method = RequestMethod.GET)
     public String testHome() {
-        return "test";
+        return "layout/home";
     }
 }

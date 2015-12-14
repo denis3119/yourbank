@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html ng-app="yourbank">
 <head>
-    <title>Yourbank</title>
+  <title>Yourbank</title>
+  <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="../css/bootstrap-theme.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-controller="GlobalController">
 
@@ -15,10 +17,10 @@
 
 <script src="<c:url value="/js/internal/app.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/GlobalController.js"/>"></script>
-<script src="<c:url value="/js/internal/controllers/TestController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/HomeController.js"/>"></script>
 
 <div class="container-fluid">
-  <%--<jsp:include page="partials/header.jsp"/>--%>
+  <jsp:include page="partials/header.jsp"/>
   <div class="container-fluid layout-center" data-layout>
     <div class="ui-layout-west">
       <%--<jsp:include page="partials/menu.jsp"/>--%>
