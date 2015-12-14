@@ -13,7 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -55,6 +56,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> update(List<User> users) {
+        List<User> result = new ArrayList<>();
+        for (User user : users) {
+            result.add(update(user));
+        }
+        return result;
+    }
+
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
@@ -77,7 +87,7 @@ public class UserServiceImpl implements UserService {
         user = getByName(user.getName());
         UserRole role = new UserRole(user, roleName);
         role = userRoleService.add(role);
-        HashSet<UserRole> roles = new HashSet<>(Arrays.asList(role));
+        HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
         if (user.getUserRole() != null) {
             roles.addAll(user.getUserRole());
         }

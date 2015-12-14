@@ -6,6 +6,7 @@ import com.yourbank.data.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,15 @@ public class RequestServiceImpl implements RequestService {
 
     public Request update(Request entity) {
         return requestRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public List<Request> update(List<Request> entities) {
+        List<Request> result = new ArrayList<>();
+        for (Request request : entities) {
+            result.add(update(request));
+        }
+        return result;
     }
 
     public List<Request> getAll() {

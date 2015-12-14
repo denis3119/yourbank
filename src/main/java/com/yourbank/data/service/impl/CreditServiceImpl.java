@@ -6,10 +6,7 @@ import com.yourbank.data.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Currency;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by admin on 11/6/2015.
@@ -37,11 +34,20 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
+    public List<Credit> update(List<Credit> entities) {
+        List<Credit> result = new ArrayList<>();
+        for (Credit credit : entities) {
+            result.add(update(credit));
+        }
+        return result;
+    }
+
+    @Override
     public List<Credit> getAll() {
         return creditRepository.findAll();
     }
 
-   @Override
+    @Override
     public Map<String, String> getMapAll() {
         Map<String, String> map = new TreeMap<>();
         for (Credit credit : getAll()) {

@@ -6,6 +6,7 @@ import com.yourbank.data.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,15 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     public UserRole update(UserRole entity) {
         return userRoleRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public List<UserRole> update(List<UserRole> userRoles) {
+        List<UserRole> result = new ArrayList<>();
+        for (UserRole userRole : userRoles) {
+            result.add(update(userRole));
+        }
+        return result;
     }
 
     @Override

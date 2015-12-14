@@ -15,5 +15,8 @@ public interface Service<T> {
 
     T update(T entity);
 
+    List<T> update(List<T> entities);
+
     List<T> getAll();
+
 }

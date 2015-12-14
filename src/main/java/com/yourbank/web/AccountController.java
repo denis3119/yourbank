@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class AccountController {
         return "sec";
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginView() {
         return "login";
     }
@@ -44,13 +45,11 @@ public class AccountController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
-        // implement your own registration logic here...
         user = userService.add(user);
-        UserRole role = new UserRole(user, "ROLE_ADMIN");
+        UserRole role = new UserRole(user, "ROLE_USER");
         role = userRoleService.add(role);
-        HashSet<UserRole> roles = new HashSet<>(Arrays.asList(role));
+        HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
         user.setUserRole(roles);
-        // for testing purpose:
         System.out.println("username: " + user.getName());
         System.out.println("password: " + user.getPassword());
         System.out.println("email: " + user.getEmail());

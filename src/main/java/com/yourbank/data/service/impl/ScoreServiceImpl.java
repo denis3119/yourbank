@@ -6,6 +6,8 @@ import com.yourbank.data.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +36,23 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
+    public List<Score> update(List<Score> entities) {
+        List<Score> result = new ArrayList<>();
+        for (Score score : entities) {
+            result.add(update(score));
+        }
+        return result;
+    }
+
+    @Override
     public List<Score> getAll() {
         return scoreRepository.findAll();
+    }
+
+    @Override
+    public List<Score> update(Score... scores) {
+        List<Score> scoreList = new ArrayList<>();
+        Collections.addAll(scoreList, scores);
+        return update(scoreList);
     }
 }

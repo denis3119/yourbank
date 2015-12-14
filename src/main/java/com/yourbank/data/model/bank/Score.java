@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 public class Score extends AbstractExpiringEntity {
 
-    private Double value;
+    private double value;
 
     @ManyToOne
     private User user;
@@ -54,11 +54,11 @@ public class Score extends AbstractExpiringEntity {
         this.currency = currency;
     }
 
-    public Double getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
