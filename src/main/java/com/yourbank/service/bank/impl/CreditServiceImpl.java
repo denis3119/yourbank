@@ -1,8 +1,8 @@
-package com.yourbank.data.service.impl;
+package com.yourbank.service.bank.impl;
 
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.repository.CreditRepository;
-import com.yourbank.data.service.CreditService;
+import com.yourbank.service.bank.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

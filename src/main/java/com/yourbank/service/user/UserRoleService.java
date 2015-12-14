@@ -1,7 +1,8 @@
-package com.yourbank.data.service;
+package com.yourbank.service.user;
 
 
 import com.yourbank.data.model.user.UserRole;
+import com.yourbank.service.common.Service;
 
 /**
  * @author admin.

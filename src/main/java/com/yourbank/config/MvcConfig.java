@@ -1,22 +1,16 @@
 package com.yourbank.config;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
  * Created by admin on 14.12.2015.
  */
 @Configuration
-@ComponentScan(basePackages = "com.yourbank.*")
-@EnableAutoConfiguration
+//@ComponentScan(basePackages = "com.yourbank.*")
+//@EnableAutoConfiguration
 public class MvcConfig extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter {
 
     @Override

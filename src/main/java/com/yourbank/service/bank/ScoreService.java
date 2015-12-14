@@ -1,8 +1,8 @@
-package com.yourbank.data.service;
+package com.yourbank.service.bank;
 
 
 import com.yourbank.data.model.bank.Score;
-
+import com.yourbank.service.common.Service;
 import java.util.List;
 
 /**

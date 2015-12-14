@@ -1,8 +1,8 @@
-package com.yourbank.web;
+package com.yourbank.web.controller;
 
 import com.yourbank.data.model.user.User;
-import com.yourbank.data.service.UserRoleService;
-import com.yourbank.data.service.UserService;
+import com.yourbank.service.user.UserRoleService;
+import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +15,7 @@ public class TestController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private UserRoleService userRoleService;
 

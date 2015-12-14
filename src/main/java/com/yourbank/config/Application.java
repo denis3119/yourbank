@@ -1,25 +1,25 @@
 package com.yourbank.config;
 
+import com.yourbank.data.config.DatabaseConfig;
+import com.yourbank.web.config.WebConfig;
+import com.yourbank.service.ServiceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 /**
  * @author Yugov Alexandr.
  */
 
-@Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @SpringBootApplication
-@ComponentScan(value = {"com.yourbank.web", "com.yourbank.data"})
-//@Import(DatabaseConfig.class)
-@Import({SecurityConfig.class, DatabaseConfig.class, MvcConfig.class})
+@Import({SecurityConfig.class, DatabaseConfig.class, WebConfig.class, ServiceConfig.class})
+@EnableAutoConfiguration()
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

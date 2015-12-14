@@ -1,20 +1,20 @@
-package com.yourbank.web;
+package com.yourbank.web.controller;
 
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.data.service.CreditService;
+import com.yourbank.service.bank.CreditService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Map;
-
 /**
  * @author admin.
  */
 @Controller
 public class CreditController {
+
     @Autowired
     CreditService creditService;
 

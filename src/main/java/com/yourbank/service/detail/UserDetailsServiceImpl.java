@@ -1,19 +1,15 @@
-package com.yourbank.data.service.detail;
+package com.yourbank.service.detail;
 
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserRole;
-import com.yourbank.data.service.UserService;
+import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package com.yourbank.config;
+package com.yourbank.data.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;

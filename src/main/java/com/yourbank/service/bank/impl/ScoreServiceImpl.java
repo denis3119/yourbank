@@ -1,8 +1,8 @@
-package com.yourbank.data.service.impl;
+package com.yourbank.service.bank.impl;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.repository.ScoreRepository;
-import com.yourbank.data.service.ScoreService;
+import com.yourbank.service.bank.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,16 +2,15 @@ package com.yourbank.bankLogic;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
-import com.yourbank.data.service.ScoreService;
+import com.yourbank.service.bank.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 12.12.2015.
  */
 
 public class ScoreUtil {
+
     @Autowired
     ScoreService scoreService;
 

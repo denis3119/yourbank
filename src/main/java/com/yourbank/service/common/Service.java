@@ -1,4 +1,4 @@
-package com.yourbank.data.service;
+package com.yourbank.service.common;
 
 
 import java.util.List;

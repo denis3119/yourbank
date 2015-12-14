@@ -1,22 +1,21 @@
-package com.yourbank.data.service.impl;
+package com.yourbank.service.user.impl;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
 import com.yourbank.data.repository.UserRepository;
-import com.yourbank.data.service.UserProfileService;
-import com.yourbank.data.service.UserRoleService;
-import com.yourbank.data.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import javax.validation.constraints.NotNull;
+import com.yourbank.service.user.UserProfileService;
+import com.yourbank.service.user.UserRoleService;
+import com.yourbank.service.user.UserService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 11/6/2015.

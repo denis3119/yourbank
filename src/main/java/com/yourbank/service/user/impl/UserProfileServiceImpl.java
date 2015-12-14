@@ -1,14 +1,12 @@
-package com.yourbank.data.service.impl;
+package com.yourbank.service.user.impl;
 
-import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.repository.UserProfileRepository;
-import com.yourbank.data.service.UserProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.yourbank.service.user.UserProfileService;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 11/6/2015.
