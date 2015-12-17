@@ -1,4 +1,4 @@
-package com.yourbank.service.detail;
+package com.yourbank.config.security;
 
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.repository.UserRepository;
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
 * @author admin.
 */
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Component
+public class UsernameDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
