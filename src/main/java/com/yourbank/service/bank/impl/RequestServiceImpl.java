@@ -17,7 +17,7 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     RequestRepository requestRepository;
 
-    public Request add(Request entity) {
+    public Request register(Request entity) {
         return requestRepository.saveAndFlush(entity);
     }
 

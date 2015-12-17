@@ -5,10 +5,11 @@
 <html ng-app="yourbank">
 <head>
   <title>Yourbank</title>
-  <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
-  <link href="../css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+  <link href="<c:url value="/css/internal/style.css"/>" rel="stylesheet" type="text/css">
+  <link href="<c:url value="/css/external/bootstrap.css"/>" rel="stylesheet" type="text/css">
+  <link href="<c:url value="/css/external/bootstrap-theme.css"/>" rel="stylesheet" type="text/css">
 </head>
-<body ng-controller="GlobalController">
+<body ng-controller="GlobalController as global">
 
 <script src="<c:url value="/js/external/angular/angular.js"/>"></script>
 <script src="<c:url value="/js/external/angular/angular-route.js"/>"></script>

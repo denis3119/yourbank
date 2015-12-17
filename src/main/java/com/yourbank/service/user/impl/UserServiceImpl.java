@@ -3,7 +3,7 @@ package com.yourbank.service.user.impl;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
-import com.yourbank.data.model.user.UserRole;
+import com.yourbank.data.model.user.Group;
 import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,13 +30,38 @@ public class UserServiceImpl implements UserService {
     UserProfileService userProfileService;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     UserRoleService userRoleService;
 
+    @Override
+    public User register(@NotNull User registrationDto) {
+        User existingUser = userRepository.getByUsername(registrationDto.getUsername());
+        if (existingUser != null) {
+            return null;
+        }
+
+        User user = new User();
+        user.setUsername(registrationDto.getUsername());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEmail(registrationDto.getEmail());
+        user.setPhone(registrationDto.getPhone());
+        user.setEnabled(true);
+
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUser(user);
+
+//        if (user != null && getByName(user.getUsername()) == null) {
+//            user.setPassword(passwordEncoder.encode(user.getPassword()));
+//            return userRepository.saveAndFlush(user);
+//        }
+        return user;
+    }
+
     public User add(@NotNull User user) {
-        if (user != null && getByName(user.getName()) == null) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
+        if (user != null && getByName(user.getUsername()) == null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userRepository.saveAndFlush(user);
         }
         return user;
@@ -54,7 +79,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<User> update(List<User> users) {
         List<User> result = new ArrayList<>();
         for (User user : users) {
@@ -63,15 +87,16 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
+    @Override
     public User getByName(String name) {   //пусть будет
-        return userRepository.getByName(name);
+        return userRepository.getByUsername(name);
     }
 
+    @Override
     public User getByEmail(String email) {
         return userRepository.getByEmail(email);
     }
@@ -83,25 +108,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addRole(User user, String roleName) {
-        user = getByName(user.getName());
-        UserRole role = new UserRole(user, roleName);
+        user = getByName(user.getUsername());
+        Group role = new Group(user, roleName);
         role = userRoleService.add(role);
-        HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
-        if (user.getUserRole() != null) {
-            roles.addAll(user.getUserRole());
+        HashSet<Group> roles = new HashSet<>(Collections.singletonList(role));
+        if (user.getGroup() != null) {
+            roles.addAll(user.getGroup());
         }
-        user.setUserRole(roles);
+        user.setGroup(roles);
         update(user);
     }
 
     @Override
     public boolean hasRole(String string, User user) {
-        for (UserRole role : user.getUserRole()) {
-            if (role.getRole().equals(string)) {
-                return true;
-            }
-        }
-        return false;
+        return user.getGroup().stream()
+                .map(Group::getRole)
+                .anyMatch(role -> role.equals(string));
     }
 
     @SuppressWarnings("unchecked")

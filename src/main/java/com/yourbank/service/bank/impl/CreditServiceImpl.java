@@ -17,7 +17,7 @@ public class CreditServiceImpl implements CreditService {
     @Autowired
     CreditRepository creditRepository;
 
-    public Credit add(Credit entity) {
+    public Credit register(Credit entity) {
         return creditRepository.saveAndFlush(entity);
     }
 

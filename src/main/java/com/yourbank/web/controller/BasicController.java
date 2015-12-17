@@ -18,6 +18,6 @@ public class BasicController {
 
     @RequestMapping(value = "/public/home/layout", method = RequestMethod.GET)
     public String testHome() {
-        return "layout/home";
+        return "public/home";
     }
 }

@@ -19,7 +19,7 @@ public class ScoreServiceImpl implements ScoreService {
     @Autowired
     ScoreRepository scoreRepository;
 
-    public Score add(Score entity) {
+    public Score register(Score entity) {
         return scoreRepository.saveAndFlush(entity);
     }
 

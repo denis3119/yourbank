@@ -1,12 +1,11 @@
 package com.yourbank.service.user;
 
 
-import com.yourbank.data.model.user.UserRole;
-import com.yourbank.service.common.Service;
+import com.yourbank.data.model.user.Group;
 
 /**
  * @author admin.
  */
-public interface UserRoleService extends Service<UserRole> {
-    UserRole getByRole(String role);
+public interface UserRoleService {
+    Group getByRole(String role);
 }

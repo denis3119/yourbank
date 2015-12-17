@@ -1,4 +1,4 @@
-package com.yourbank.bankLogic;
+package com.yourbank.utils;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;

@@ -3,11 +3,13 @@ var App = angular.module('yourbank', [
 ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: 'public/test/layout', controller: 'TestController'
+            .when('/home', {
+                templateUrl: 'public/home/layout', controller: 'HomeController', controllerAs: 'home'
             })
-            .when('/public/home/', {
-                templateUrl: 'public/home/layout', controller: 'HomeController'
+            .when('/login', {
+                templateUrl: 'login/layout', controller: 'LoginController', controllerAs: 'login'
             })
-            .otherwise({redirectTo: '/'});
+            .otherwise({
+                redirectTo: '/home'
+            });
     }]);

@@ -1,4 +1,4 @@
-package com.yourbank.data;
+package com.yourbank.data.model.common;
 
 /**
  * @author Yugov Alexandr.

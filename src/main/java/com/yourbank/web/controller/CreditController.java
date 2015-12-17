@@ -28,7 +28,7 @@ public class CreditController {
 
     @RequestMapping(value = "/add_credit", method = RequestMethod.POST)
     public String add(Map<String, Object> model, Credit credit) {
-        creditService.add(credit);
+        creditService.register(credit);
         model.put("credits", creditService.getAll());
         return "/credit/list";
     }

@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td>User Name:</td>
-            <td>${userForm.name}</td>
+            <td>${userForm.username}</td>
         </tr>
         <tr>
             <td>E-mail:</td>

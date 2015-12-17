@@ -1,22 +1,22 @@
 package com.yourbank.data.model.common;
 
-import com.yourbank.data.Identifiable;
-
+import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Created by admin on 11/2/2015.
+ * @author admin.
  */
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Identifiable, Serializable, JsonSerializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Override
     public Long getId() {
         return id;
     }

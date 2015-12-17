@@ -1,15 +1,15 @@
 package com.yourbank.data.repository;
 
+import com.yourbank.data.config.repository.EntityRepository;
 import com.yourbank.data.model.bank.Credit;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Currency;
 import org.springframework.stereotype.Repository;
 
-import java.util.Currency;
-
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Repository
-public interface CreditRepository extends JpaRepository<Credit, Long> {
+public interface CreditRepository extends EntityRepository<Credit> {
+
     Credit getByCurrency(Currency currency);
 }

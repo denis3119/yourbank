@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td>Название:</td>
-                <td><form:input path="name"/></td>
+                <td><form:input path="username"/></td>
             </tr>
             <tr>
                 <td>Описание:</td>

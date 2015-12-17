@@ -5,10 +5,16 @@ import com.yourbank.data.model.common.AbstractExpiringEntity;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author admin.
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Request extends AbstractExpiringEntity {
 
@@ -24,13 +30,10 @@ public class Request extends AbstractExpiringEntity {
 
     private String patronymic;
 
-    private Integer period; // месяцы
+    private Integer monthPeriod; // месяцы
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
-
-    public Request() {
-    }
 
     public Request(String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit) {
@@ -41,69 +44,4 @@ public class Request extends AbstractExpiringEntity {
         this.patronymic = patronymic;
         this.credit = credit;
     }
-
-    public boolean isAproved() {
-        return aproved;
-    }
-
-    public void setAproved(boolean aprove) {
-        this.aproved = aprove;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
-
-    public Credit getCredit() {
-        return credit;
-    }
-
-    public void setCredit(Credit credit) {
-        this.credit = credit;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
-    public Integer getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Integer period) {
-        this.period = period;
-    }
-
 }
