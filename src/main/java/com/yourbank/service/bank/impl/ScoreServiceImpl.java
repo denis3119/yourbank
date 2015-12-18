@@ -55,4 +55,9 @@ public class ScoreServiceImpl implements ScoreService {
         Collections.addAll(scoreList, scores);
         return update(scoreList);
     }
+
+    @Override
+    public Score getByName(String name) {
+        return scoreRepository.getByName(name);
+    }
 }
