@@ -1,13 +1,10 @@
 package com.yourbank.data.model.bank;
 
 
-import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import com.yourbank.data.model.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Currency;
 import java.util.List;
 
@@ -17,16 +14,32 @@ import java.util.List;
 @Entity
 public class Score extends AbstractExpiringEntity {
 
+    @Column(unique = true)
+    private String name;
     private double value;
-
     @ManyToOne
     private User user;
-
     @OneToOne
     private Credit credit;
-
     @ManyToMany
     private List<ScoreType> scoreTypes;
+    private Currency currency;
+
+    public Score(String name, double value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public Score() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<ScoreType> getScoreTypes() {
         return scoreTypes;
@@ -43,8 +56,6 @@ public class Score extends AbstractExpiringEntity {
     public void setCredit(Credit credit) {
         this.credit = credit;
     }
-
-    private Currency currency;
 
     public Currency getCurrency() {
         return currency;

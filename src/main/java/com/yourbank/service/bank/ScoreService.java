@@ -3,6 +3,7 @@ package com.yourbank.service.bank;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.service.common.Service;
+
 import java.util.List;
 
 /**
@@ -11,4 +12,6 @@ import java.util.List;
 
 public interface ScoreService extends Service<Score> {
     List<Score> update(Score... scores);
+
+    Score getByName(String name);
 }

@@ -3,7 +3,6 @@ package com.yourbank.bankLogic;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.service.bank.ScoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by admin on 12.12.2015.
@@ -11,45 +10,62 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ScoreUtil {
 
-    @Autowired
-    ScoreService scoreService;
-
-    private boolean notValidated(Score fromScore, Score toScore) {
+    private static boolean notValidated(Score fromScore, Score toScore) {
         return validateScore(fromScore) || validateScore(toScore);
     }
 
     @org.jetbrains.annotations.Contract("null -> true")
-    private boolean validateScore(Score fromScore) {
+    private static boolean validateScore(Score fromScore) {
         return fromScore == null || fromScore.getValue() <= 0;
     }
 
-    public Score downValue(Score score, double value) {
+    public static Score downValue(Score score, double value) {
         value = Math.abs(value);
         return editValue(score, -value);
     }
 
-    public synchronized State transfer(Score fromScore, Score toScore, User user, double value) {
-        if (notValidated(fromScore, toScore)) return State.FAIL;
-        fromScore = downValue(fromScore, value);
-        if (fromScore.getValue() < value) {
-            return State.FAIL;
+    private static boolean hasPermissions(User user, Score score) {
+        if (score == null || user == null) {
+            return false;
         }
-        toScore = upValue(toScore, value);
-        scoreService.update(fromScore, toScore);
-        return State.OK;
+        if (score.getUser().getName().equals(user.getName())) {
+            return true;
+        }
+        return false;
     }
 
-    public Score upValue(Score score, double value) {
+    public static synchronized State transfer(Score fromScore, Score toScore, User user, double value, ScoreService scoreService) {
+        try {
+            if (!hasPermissions(user, fromScore)) {
+                return State.PERMISSION_ERROR;
+            }
+            if (notValidated(fromScore, toScore)) {
+                return State.VALUE_ERROR;
+            }
+            fromScore = downValue(fromScore, value);
+            if (fromScore.getValue() < value) {
+                return State.VALUE_ERROR;
+            }
+            toScore = upValue(toScore, value);
+            scoreService.update(fromScore, toScore);
+            return State.OK;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return State.FAIL;
+        }
+    }
+
+    public static Score upValue(Score score, double value) {
         value = Math.abs(value);
         return editValue(score, value);
     }
 
-    private Score editValue(Score score, double value) {
+    private static Score editValue(Score score, double value) {
         score.setValue(score.getValue() + value);
         return score;
     }
 
     public enum State {
-        OK, FAIL;
+        OK, FAIL, VALUE_ERROR, PERMISSION_ERROR;
     }
 }
