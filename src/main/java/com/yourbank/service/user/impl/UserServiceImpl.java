@@ -6,7 +6,6 @@ import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.Group;
 import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
-import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,8 +31,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    UserRoleService userRoleService;
+//    @Autowired
+//    UserRoleService userRoleService;
 
     @Override
     public User register(@NotNull User registrationDto) {

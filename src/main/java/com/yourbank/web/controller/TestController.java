@@ -1,7 +1,5 @@
 package com.yourbank.web.controller;
 
-import com.yourbank.data.model.user.User;
-import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +14,6 @@ public class TestController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRoleService userRoleService;
-
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     public ModelAndView printWelcome() {
         ModelAndView model = new ModelAndView();
@@ -31,31 +26,31 @@ public class TestController {
     }
 
     private void createDefaultUser() {
-        if (!userService.userCreated("admin")) {
-            User user = new User();
-            user.getUsername("admin");
-            user.setPassword("admin");
-            user.setEmail("admin@gmail.com");
-            user = userService.register(user);
-            userService.addRole(user, "ROLE_ADMIN");
-            userService.addRole(user, "ROLE_USER");
-        }
-        if (!userService.userCreated("user")) {
-            User user = new User();
-            user.getUsername("user");
-            user.setPassword("user");
-            user.setEmail("user@gmail.com");
-            user = userService.register(user);
-            userService.addRole(user, "ROLE_USER");
-        }
-        if (!userService.userCreated("user1")) {
-            User user = new User();
-            user.getUsername("user1");
-            user.setPassword("user1");
-            user.setEmail("user1@gmail.com");
-            user = userService.register(user);
-            userService.addRole(user, "ROLE_USER");
-        }
+//        if (!userService.userCreated("admin")) {
+//            User user = new User();
+//            user.getUsername("admin");
+//            user.setPassword("admin");
+//            user.setEmail("admin@gmail.com");
+//            user = userService.register(user);
+//            userService.addRole(user, "ROLE_ADMIN");
+//            userService.addRole(user, "ROLE_USER");
+//        }
+//        if (!userService.userCreated("user")) {
+//            User user = new User();
+//            user.getUsername("user");
+//            user.setPassword("user");
+//            user.setEmail("user@gmail.com");
+//            user = userService.register(user);
+//            userService.addRole(user, "ROLE_USER");
+//        }
+//        if (!userService.userCreated("user1")) {
+//            User user = new User();
+//            user.getUsername("user1");
+//            user.setPassword("user1");
+//            user.setEmail("user1@gmail.com");
+//            user = userService.register(user);
+//            userService.addRole(user, "ROLE_USER");
+//        }
     }
 
 
