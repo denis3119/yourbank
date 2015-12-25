@@ -21,9 +21,8 @@ public class TestController {
     private UserRoleService userRoleService;
 
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
-    public
     @ResponseBody
-    User printWelcome() {
+    public User printWelcome() {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Hello World");
         model.addObject("message", "This is welcome page!");
