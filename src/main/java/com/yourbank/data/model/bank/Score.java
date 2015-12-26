@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Currency;
 import java.util.List;
 
@@ -23,10 +20,13 @@ import java.util.List;
 @Entity
 public class Score extends AbstractExpiringEntity {
 
+    @Column(unique = true)
+    private String name;
+
     private double value;
 
     @ManyToOne
-    private UserProfile user;
+    private UserProfile userProfile;
 
     @OneToOne
     private Credit credit;

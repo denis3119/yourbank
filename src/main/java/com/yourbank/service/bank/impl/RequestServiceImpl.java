@@ -18,12 +18,8 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     RequestRepository requestRepository;
 
-    public Request register(Request entity) {
+    public Request add(Request entity) {
         return requestRepository.saveAndFlush(entity);
-    }
-
-    public void delete(Request entity) {
-        requestRepository.delete(entity);
     }
 
     public Request get(long ID) {

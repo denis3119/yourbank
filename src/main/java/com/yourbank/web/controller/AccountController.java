@@ -15,23 +15,16 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping(value = "/sec")
-//    public String secView() {
-//        return "sec";
-//    }
-
-    @RequestMapping(value = "/public/login/layout", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/layout", method = RequestMethod.GET)
     public String loginView() {
         return "public/login";
     }
 
-//    @RequestMapping(value = "/register", method = RequestMethod.GET)
-//    public String viewRegistration(Map<String, Object> model) {
-//        User userForm = new User();
-//        model.put("userForm", userForm);
-//        return "registration";
-//    }
-//
+    @RequestMapping(value = "/register/layout", method = RequestMethod.GET)
+    public String registrationView() {
+        return "public/register";
+    }
+
 //    @RequestMapping(value = "/register", method = RequestMethod.POST)
 //    public String processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
 //        user = userService.register(user);

@@ -7,7 +7,10 @@ var App = angular.module('yourbank', [
                 templateUrl: 'public/home/layout', controller: 'HomeController', controllerAs: 'home'
             })
             .when('/login', {
-                templateUrl: 'public/login/layout', controller: 'LoginController', controllerAs: 'login'
+                templateUrl: 'login/layout', controller: 'LoginController', controllerAs: 'login'
+            })
+            .when('/register', {
+                templateUrl: 'register/layout', controller: 'RegisterController', controllerAs: 'register'
             })
             .otherwise({
                 redirectTo: '/home'
