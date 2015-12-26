@@ -2,20 +2,16 @@ package com.yourbank.data.model.bank;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import com.yourbank.data.model.user.User;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Credit extends AbstractExpiringEntity {
 

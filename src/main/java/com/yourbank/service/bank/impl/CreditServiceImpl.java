@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Service
 public class CreditServiceImpl implements CreditService {
@@ -33,7 +33,6 @@ public class CreditServiceImpl implements CreditService {
         return creditRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<Credit> update(List<Credit> entities) {
         List<Credit> result = new ArrayList<>();
         for (Credit credit : entities) {
@@ -42,7 +41,6 @@ public class CreditServiceImpl implements CreditService {
         return result;
     }
 
-    @Override
     public List<Credit> getAll() {
         return creditRepository.findAll();
     }

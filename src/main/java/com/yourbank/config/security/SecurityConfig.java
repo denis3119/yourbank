@@ -27,14 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/public/**").permitAll()
                 .antMatchers("/register**").permitAll()
                 .antMatchers("/login**").permitAll()
-                .antMatchers("/users/**").hasAuthority("ADMIN")
+                .antMatchers("/users/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
-                .formLogin().loginPage("/login").failureUrl("/login?error").usernameParameter("username").permitAll()
+                .formLogin().loginPage("/login").failureUrl("/login?error").usernameParameter("username")
+                .defaultSuccessUrl("/").permitAll()
                 .and()
-                .logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/").permitAll()
-                .and()
-                .rememberMe();
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll()
+                .and().csrf().disable();
     }
 
     @Override

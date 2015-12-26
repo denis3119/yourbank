@@ -1,6 +1,5 @@
 package com.yourbank.web.controller;
 
-import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,15 +15,12 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRoleService userRoleService;
-
 //    @RequestMapping(value = "/sec")
 //    public String secView() {
 //        return "sec";
 //    }
 
-    @RequestMapping(value = "/login/layout", method = RequestMethod.GET)
+    @RequestMapping(value = "/public/login/layout", method = RequestMethod.GET)
     public String loginView() {
         return "public/login";
     }

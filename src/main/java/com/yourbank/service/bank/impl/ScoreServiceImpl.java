@@ -35,7 +35,6 @@ public class ScoreServiceImpl implements ScoreService {
         return scoreRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<Score> update(List<Score> entities) {
         List<Score> result = new ArrayList<>();
         for (Score score : entities) {
@@ -44,7 +43,6 @@ public class ScoreServiceImpl implements ScoreService {
         return result;
     }
 
-    @Override
     public List<Score> getAll() {
         return scoreRepository.findAll();
     }

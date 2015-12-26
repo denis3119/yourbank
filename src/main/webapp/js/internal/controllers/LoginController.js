@@ -1,9 +1,11 @@
-App.controller('LoginController', ['$scope',
-    function() {
+App.controller('LoginController', ['$scope', '$http',
+    function($scope, $http) {
         var vm = this;
 
         vm.submit = function() {
-            alert('login!')
+            $http.post('/login', {username: vm.user.username, password: vm.user.password}).then(function (data) {
+                console.log(data);
+            });
         };
     }
 ]);

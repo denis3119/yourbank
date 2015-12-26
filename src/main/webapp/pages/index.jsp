@@ -19,6 +19,8 @@
 <script src="<c:url value="/js/internal/app.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/GlobalController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/HomeController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/LoginController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/SecuredController.js"/>"></script>
 
 <div class="container-fluid">
   <jsp:include page="partials/header.jsp"/>

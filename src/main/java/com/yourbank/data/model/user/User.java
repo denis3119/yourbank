@@ -1,15 +1,6 @@
 package com.yourbank.data.model.user;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +8,12 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -41,7 +38,7 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     private String phone;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Group> groups = new HashSet<>();
+    private Set<GroupAuthority> groupAuthorities = new HashSet<>();
 
     @OneToOne
     private UserProfile userProfile;
@@ -84,9 +81,7 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getGroups().stream()
-                .map(Group::getAuthorities)
-                .flatMap(Collection::stream)
+        return getGroupAuthorities().stream()
                 .map(GroupAuthority::getAuthority)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());

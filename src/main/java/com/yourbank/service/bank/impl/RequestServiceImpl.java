@@ -3,10 +3,11 @@ package com.yourbank.service.bank.impl;
 import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.repository.RequestRepository;
 import com.yourbank.service.bank.RequestService;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.
@@ -33,7 +34,6 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<Request> update(List<Request> entities) {
         List<Request> result = new ArrayList<>();
         for (Request request : entities) {

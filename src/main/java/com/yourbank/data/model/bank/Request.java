@@ -1,13 +1,13 @@
 package com.yourbank.data.model.bank;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author admin.
