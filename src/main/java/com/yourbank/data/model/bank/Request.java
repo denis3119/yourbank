@@ -2,6 +2,7 @@ package com.yourbank.data.model.bank;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -12,42 +13,56 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Request extends AbstractExpiringEntity {
 
-    private boolean aproved;
-
+    @Column(unique = true)
+    private String name;
+    private boolean approved = false;
     private String phoneNumber;
-
     private String firstName;
-
     private String target;
-
     private String lastName;
-
     private String patronymic;
-
+    private String email;
     private Integer period; // месяцы
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
 
     public Request() {
     }
 
-    public Request(String phoneNumber, String firstName, String target,
-                   String lastName, String patronymic, Credit credit) {
+    public Request(String name, String phoneNumber, String firstName, String target,
+                   String lastName, String patronymic, Credit credit, String email) {
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.target = target;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.credit = credit;
+        this.email = email;
     }
 
-    public boolean isAproved() {
-        return aproved;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAproved(boolean aprove) {
-        this.aproved = aprove;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean aprove) {
+        this.approved = aprove;
     }
 
     public String getTarget() {

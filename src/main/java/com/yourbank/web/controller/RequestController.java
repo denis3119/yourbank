@@ -49,6 +49,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/delete_request", method = RequestMethod.POST)
+    @ResponseBody
     public List<Request> delete(Request request) {
         requestService.delete(request);
         return requestService.getAll();
