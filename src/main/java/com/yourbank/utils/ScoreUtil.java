@@ -5,7 +5,7 @@ import com.yourbank.data.model.user.User;
 import com.yourbank.service.bank.ScoreService;
 
 /**
- * Created by admin on 12.12.2015.
+ * @author admin.
  */
 
 public class ScoreUtil {
@@ -25,13 +25,7 @@ public class ScoreUtil {
     }
 
     private static boolean hasPermissions(User user, Score score) {
-        if (score == null || user == null) {
-            return false;
-        }
-        if (score.getUser().getName().equals(user.getName())) {
-            return true;
-        }
-        return false;
+        return !(score == null || user == null) && score.getUserProfile().getUser().getUsername().equals(user.getUsername());
     }
 
     public static synchronized State transfer(Score fromScore, Score toScore, User user, double value, ScoreService scoreService) {

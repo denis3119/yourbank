@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 * Created by admin on 14.12.2015.
 */
 @Controller
+@RequestMapping("/profile")
 public class ProfileController {
 
-    @RequestMapping(value = "/profile/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @Secured("ROLE_USER")
     @ResponseBody
     public UserDetails loginView() {

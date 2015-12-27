@@ -14,7 +14,8 @@ import java.util.List;
 /**
 * @author admin.
 */
-@Controller("/credit")
+@Controller
+@RequestMapping("/credit")
 public class CreditController {
 
     @Autowired
@@ -25,7 +26,7 @@ public class CreditController {
         return "private/credit";
     }
 
-    @RequestMapping(value = "/credit")
+    @RequestMapping(method = RequestMethod.POST)
     public List<Credit> add(Credit credit) {
         creditService.add(credit);
         return creditService.getAll();

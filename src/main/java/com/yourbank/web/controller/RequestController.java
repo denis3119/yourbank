@@ -16,7 +16,8 @@ import java.util.List;
 /**
 * @author admin.
 */
-@Controller(value = "/request")
+@Controller
+@RequestMapping("/request")
 public class RequestController {
 
     @Autowired
@@ -48,7 +49,7 @@ public class RequestController {
         return requestService.getAll();
     }
 
-    @RequestMapping(value = "/request_{requestID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{requestID}", method = RequestMethod.GET)
     @ResponseBody
     public Request detail(@PathVariable long requestID) {
         return requestService.findById(requestID);
