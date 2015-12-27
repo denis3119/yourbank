@@ -7,10 +7,9 @@ import com.yourbank.service.common.Service;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
-
-public interface ScoreService extends Service<Score> {
+public interface ScoreService {
     List<Score> update(Score... scores);
 
     Score getByName(String name);

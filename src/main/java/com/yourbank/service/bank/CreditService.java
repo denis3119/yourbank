@@ -2,15 +2,22 @@ package com.yourbank.service.bank;
 
 
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.service.common.Service;
 import java.util.Currency;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
-public interface CreditService extends Service<Credit> {
+public interface CreditService {
+
+    Credit add(Credit credit);
+
+    Credit get(long creditID);
+
     Credit getByCurrency(Currency currency);
 
     Map<String, String> getMapAll();
+
+    List<Credit> getAll();
 }

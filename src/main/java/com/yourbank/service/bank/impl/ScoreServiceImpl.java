@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Service
 public class ScoreServiceImpl implements ScoreService {
@@ -19,7 +19,7 @@ public class ScoreServiceImpl implements ScoreService {
     @Autowired
     ScoreRepository scoreRepository;
 
-    public Score add(Score entity) {
+    public Score register(Score entity) {
         return scoreRepository.saveAndFlush(entity);
     }
 
@@ -35,7 +35,6 @@ public class ScoreServiceImpl implements ScoreService {
         return scoreRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<Score> update(List<Score> entities) {
         List<Score> result = new ArrayList<>();
         for (Score score : entities) {
@@ -44,7 +43,6 @@ public class ScoreServiceImpl implements ScoreService {
         return result;
     }
 
-    @Override
     public List<Score> getAll() {
         return scoreRepository.findAll();
     }

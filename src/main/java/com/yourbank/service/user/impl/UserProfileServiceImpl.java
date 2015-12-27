@@ -33,7 +33,6 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.saveAndFlush(entity);
     }
 
-    @Override
     public List<UserProfile> update(List<UserProfile> entities) {
         List<UserProfile> result = new ArrayList<>();
         for (UserProfile userProfile : entities) {
@@ -42,7 +41,6 @@ public class UserProfileServiceImpl implements UserProfileService {
         return result;
     }
 
-    @Override
     public List<UserProfile> getAll() {
         return userProfileRepository.findAll();
     }

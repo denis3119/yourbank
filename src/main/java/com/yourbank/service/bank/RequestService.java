@@ -1,14 +1,24 @@
 package com.yourbank.service.bank;
 
 import com.yourbank.data.model.bank.Request;
+
+import java.util.List;
 import com.yourbank.data.model.user.User;
 import com.yourbank.service.common.Service;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
-public interface RequestService extends Service<Request> {
-        Request getByName(String name);
-        Request approve(Request request);
-        User createUserFromRequest(Request request);
+public interface RequestService {
+
+    Request save(Request request);
+
+    Request findById(long requestID);
+
+    List<Request> getAll();
+
+    void delete(Request request);
+    Request getByName(String name);
+    Request approve(Request request);
+    User createUserFromRequest(Request request);
 }

@@ -11,11 +11,13 @@ import com.yourbank.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -27,20 +29,14 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     UserProfileService userProfileService;
 
-    public Request add(Request entity) {
+    @Override
+    public Request save(Request entity) {
         return requestRepository.saveAndFlush(entity);
     }
 
-    public void delete(Request entity) {
-        requestRepository.delete(entity);
-    }
-
-    public Request get(long ID) {
+    @Override
+    public Request findById(long ID) {
         return requestRepository.findOne(ID);
-    }
-
-    public Request update(Request entity) {
-        return requestRepository.saveAndFlush(entity);
     }
 
     @Override
@@ -56,8 +52,9 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAll();
     }
 
-    public List<Request> getAll(Iterable<Long> listID) {
-        return requestRepository.findAll(listID);
+    @Override
+    public void delete(Request request) {
+
     }
 
     @Override

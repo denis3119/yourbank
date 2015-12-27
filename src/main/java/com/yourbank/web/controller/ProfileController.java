@@ -9,19 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by admin on 14.12.2015.
- */
+* Created by admin on 14.12.2015.
+*/
 @Controller
+@RequestMapping("/profile")
 public class ProfileController {
 
-    @RequestMapping(value = "/profile/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @Secured("ROLE_USER")
     @ResponseBody
     public UserDetails loginView() {
-//        ModelAndView modelAndView = new ModelAndView();
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
-//        modelAndView.addObject("user", userDetails);
-//        modelAndView.setViewName("/profile/index");
-        return userDetails;
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
     }
 }
