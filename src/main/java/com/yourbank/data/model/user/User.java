@@ -1,5 +1,7 @@
 package com.yourbank.data.model.user;
 
+import com.yourbank.data.model.bank.Credit;
+import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,8 +43,6 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<GroupAuthority> groupAuthorities = new HashSet<>();
 
-    @OneToOne
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
     @OneToMany
     private List<Credit> credits;
     @OneToMany

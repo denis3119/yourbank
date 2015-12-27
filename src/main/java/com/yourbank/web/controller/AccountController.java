@@ -1,23 +1,11 @@
 package com.yourbank.web.controller;
 
-import com.yourbank.data.model.user.User;
-import com.yourbank.data.model.user.UserRole;
-import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
 
 /**
 * @author admin.

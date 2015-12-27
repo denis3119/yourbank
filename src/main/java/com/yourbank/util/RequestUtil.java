@@ -15,7 +15,7 @@ public class RequestUtil {
             return null;
         }
         User user = new User();
-        user.setName(request.getFirstName());
+        user.setUsername(request.getFirstName());
         user.setEmail(request.getEmail());
         user.setPassword("123");
         return user;

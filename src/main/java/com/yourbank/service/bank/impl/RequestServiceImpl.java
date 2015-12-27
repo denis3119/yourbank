@@ -11,8 +11,6 @@ import com.yourbank.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +46,10 @@ public class RequestServiceImpl implements RequestService {
         return result;
     }
 
+    public Request update(Request request) {
+        return requestRepository.saveAndFlush(request);
+    }
+
     public List<Request> getAll() {
         return requestRepository.findAll();
     }
@@ -71,7 +73,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public User createUserFromRequest(Request request) {
         User user = RequestUtil.getUserFromRequest(request);
-        userService.add(user);
+        userService.register(user);
         UserProfile userProfile = RequestUtil.getUserProfile(request);
         userProfile.setUser(user);
         userProfile = userProfileService.add(userProfile);

@@ -1,7 +1,11 @@
 package com.yourbank.data.model.bank;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -33,8 +37,7 @@ public class Request extends AbstractExpiringEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
 
-    public Request() {
-    }
+    private String email;
 
     public Request(String name, String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit, String email) {

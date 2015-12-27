@@ -39,13 +39,13 @@ public class UserServiceImplTest {
     @Test
     public void createUser() {
         User user = createAndGetUser();
-        assertEquals(user.getName(), userService.getByName(TEST_NAME).getName());
+        assertEquals(user.getUsername(), userService.getByName(TEST_NAME).getUsername());
     }
 
     @NotNull
     private User createAndGetUser() {
         User user = new User(TEST_NAME, TEST_PASSWORD, TEST_EMAIL);
-        userService.add(user);
+        userService.register(user);
         return user;
     }
 
@@ -60,9 +60,9 @@ public class UserServiceImplTest {
     public void updateUser() {
         deleteTestUser();
         User user = createAndGetUser();
-        user.setName(TEST_NAME_SECOND);
+        user.setUsername(TEST_NAME_SECOND);
         userService.update(user);
-        assertEquals(user.getName(), userService.getByName(TEST_NAME_SECOND).getName());
+        assertEquals(user.getUsername(), userService.getByName(TEST_NAME_SECOND).getUsername());
     }
 
     @After

@@ -1,11 +1,11 @@
 package com.yourbank.service.user.impl;
 
-import com.yourbank.bankLogic.ScoreUtil;
 import com.yourbank.config.Application;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.service.bank.ScoreService;
 import com.yourbank.service.user.UserService;
+import com.yourbank.utils.ScoreUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,8 +38,8 @@ public class TestBankLogic {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
         User user = new User("test", "test", "test@test.by");
-        user = userService.add(user);
-        from.setUser(user);
+        user = userService.register(user);
+        from.setUserProfile(user.getUserProfile());
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 50, scoreService);
         assertEquals(state, ScoreUtil.State.OK);
     }
@@ -49,7 +49,7 @@ public class TestBankLogic {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
         User user = new User("test", "test", "test@test.by");
-        from.setUser(user);
+        from.setUserProfile(user.getUserProfile());
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 500, scoreService);
         assertEquals(state, ScoreUtil.State.VALUE_ERROR);
     }
@@ -59,7 +59,7 @@ public class TestBankLogic {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
         User user = new User("test", "test", "test@test.by");
-        from.setUser(user);
+        from.setUserProfile(user.getUserProfile());
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 50, null);
         assertEquals(state, ScoreUtil.State.FAIL);
     }
@@ -68,8 +68,8 @@ public class TestBankLogic {
     public void createScores() {
         Score from = new Score(FROM_NAME, 100);
         Score to = new Score(TO_NAME, 50);
-        scoreService.add(from);
-        scoreService.add(to);
+        scoreService.register(from);
+        scoreService.register(to);
         deleteUser();
     }
 

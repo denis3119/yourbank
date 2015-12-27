@@ -2,7 +2,6 @@ package com.yourbank.service.bank;
 
 
 import com.yourbank.data.model.bank.Score;
-import com.yourbank.service.common.Service;
 
 import java.util.List;
 
@@ -12,5 +11,9 @@ import java.util.List;
 public interface ScoreService {
     List<Score> update(Score... scores);
 
+    Score register(Score score);
+
     Score getByName(String name);
+
+    void delete(Score score);
 }
