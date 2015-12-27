@@ -22,7 +22,7 @@ public class Score extends AbstractExpiringEntity {
 
     @Column(unique = true)
     private String name;
-
+    
     private double value;
 
     @ManyToOne

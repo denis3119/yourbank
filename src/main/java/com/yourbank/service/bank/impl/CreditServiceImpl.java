@@ -17,7 +17,8 @@ public class CreditServiceImpl implements CreditService {
     @Autowired
     CreditRepository creditRepository;
 
-    public Credit register(Credit entity) {
+    @Override
+    public Credit add(Credit entity) {
         return creditRepository.saveAndFlush(entity);
     }
 
@@ -41,6 +42,7 @@ public class CreditServiceImpl implements CreditService {
         return result;
     }
 
+    @Override
     public List<Credit> getAll() {
         return creditRepository.findAll();
     }

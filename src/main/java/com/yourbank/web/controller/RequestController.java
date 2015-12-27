@@ -9,13 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
+import java.util.List;
 
 /**
 * @author admin.
 */
-@Controller
+@Controller(value = "/request")
 public class RequestController {
 
     @Autowired
@@ -24,36 +25,32 @@ public class RequestController {
     @Autowired
     CreditService creditService;
 
-    @RequestMapping(value = "/add_request", method = RequestMethod.GET)
-    public String add(Map<String, Object> model) {
-        Request request = new Request();
-        model.put("requestForm", request);
-        model.put("credits", creditService.getMapAll());
-        return "/request/create";
+    @RequestMapping(value = "/layout", method = RequestMethod.GET)
+    public String add() {
+        return "public/request";
     }
 
-    @RequestMapping(value = "/add_request", method = RequestMethod.POST)
-    public String add(Request request, Map<String, Object> model) {
-//        requestService.add(request);
-        return "/request/list";
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @ResponseBody
+    public Request add(Request request) {
+        return requestService.save(request);
     }
 
-    @RequestMapping(value = "/requests", method = RequestMethod.GET)
-    public String list(Map<String, Object> model) {
-//        model.put("requests", requestService.getAll());
-        return "/request/list";
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Request> list() {
+        return requestService.getAll();
     }
 
-    @RequestMapping(value = "/delete_request", method = RequestMethod.POST)
-    public String delete(Request request, Map<String, Object> model) {
-//        requestService.delete(request);
-        return "/request/list";
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public List<Request> delete(Request request) {
+        requestService.delete(request);
+        return requestService.getAll();
     }
 
     @RequestMapping(value = "/request_{requestID}", method = RequestMethod.GET)
-    public String detail(@PathVariable long requestID, Map<String, Object> model) {
-//        Request request = requestService.get(requestID);
-//        model.put("request", request);
-        return "/request/detail";
+    @ResponseBody
+    public Request detail(@PathVariable long requestID) {
+        return requestService.findById(requestID);
     }
 }

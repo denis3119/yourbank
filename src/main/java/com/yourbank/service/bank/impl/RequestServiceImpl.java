@@ -6,11 +6,10 @@ import com.yourbank.service.bank.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -18,31 +17,23 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     RequestRepository requestRepository;
 
-    public Request add(Request entity) {
+    @Override
+    public Request save(Request entity) {
         return requestRepository.saveAndFlush(entity);
     }
 
-    public Request get(long ID) {
+    @Override
+    public Request findById(long ID) {
         return requestRepository.findOne(ID);
     }
 
-    public Request update(Request entity) {
-        return requestRepository.saveAndFlush(entity);
-    }
-
-    public List<Request> update(List<Request> entities) {
-        List<Request> result = new ArrayList<>();
-        for (Request request : entities) {
-            result.add(update(request));
-        }
-        return result;
-    }
-
+    @Override
     public List<Request> getAll() {
         return requestRepository.findAll();
     }
 
-    public List<Request> getAll(Iterable<Long> listID) {
-        return requestRepository.findAll(listID);
+    @Override
+    public void delete(Request request) {
+
     }
 }

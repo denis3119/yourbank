@@ -7,42 +7,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
+import java.util.List;
 
 /**
 * @author admin.
 */
-@Controller
+@Controller("/credit")
 public class CreditController {
 
     @Autowired
     CreditService creditService;
 
-    @RequestMapping(value = "/add_credit", method = RequestMethod.GET)
-    public String add(Map<String, Object> model) {
-        Credit credit = new Credit();
-        model.put("creditForm", credit);
-        model.put("currency", Credit.CurrencyCode.values());
-        return "/credit/create";
+    @RequestMapping(value = "/layout", method = RequestMethod.GET)
+    public String creditLayout() {
+        return "private/credit";
     }
 
-    @RequestMapping(value = "/add_credit", method = RequestMethod.POST)
-    public String add(Map<String, Object> model, Credit credit) {
-//        creditService.register(credit);
-//        model.put("credits", creditService.getAll());
-        return "/credit/list";
+    @RequestMapping(value = "/credit")
+    public List<Credit> add(Credit credit) {
+        creditService.add(credit);
+        return creditService.getAll();
     }
 
-    @RequestMapping(value = "/credits", method = RequestMethod.GET)
-    public String credits(Map<String, Object> model) {
-//        model.put("credits", creditService.getAll());
-        return "/credit/list";
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Credit> credits() {
+        return creditService.getAll();
     }
 
-    @RequestMapping(value = "/credit_{creditID}", method = RequestMethod.GET)
-    public String detail(@PathVariable long creditID, Map<String, Object> model) {
-//        model.put("credit", creditService.get(creditID));
-        return "/credit/detail";
+    @RequestMapping(value = "/{creditID}", method = RequestMethod.GET)
+    @ResponseBody
+    public Credit detail(@PathVariable long creditID) {
+        return creditService.get(creditID);
     }
 }

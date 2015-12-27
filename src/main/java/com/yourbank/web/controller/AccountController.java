@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
-* Created by admin on 11/2/2015.
+* @author admin.
 */
 @Controller
 public class AccountController {
@@ -21,21 +22,22 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/register/layout", method = RequestMethod.GET)
+    @ResponseBody
     public String registrationView() {
         return "public/register";
     }
 
 //    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
-//        user = userService.register(user);
-//        Group role = new Group(user, "ROLE_USER");
-//        role = userRoleService.register(role);
-//        HashSet<Group> roles = new HashSet<>(Collections.singletonList(role));
-//        user.setGroup(roles);
-//        System.out.println("username: " + user.getUsername());
+//    public User processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
+//        user = userService.add(user);
+//        UserRole role = new UserRole(user, "ROLE_USER");
+//        role = userRoleService.add(role);
+//        HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
+//        user.setUserRole(roles);
+//        System.out.println("username: " + user.getName());
 //        System.out.println("password: " + user.getPassword());
 //        System.out.println("email: " + user.getEmail());
 //        userService.update(user);
-//        return "registration_success";
+//        return user;
 //    }
 }

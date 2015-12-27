@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
 @Service
 public class ScoreServiceImpl implements ScoreService {
@@ -52,5 +52,10 @@ public class ScoreServiceImpl implements ScoreService {
         List<Score> scoreList = new ArrayList<>();
         Collections.addAll(scoreList, scores);
         return update(scoreList);
+    }
+
+    @Override
+    public Score getByName(String name) {
+        return scoreRepository.getByName(name);
     }
 }

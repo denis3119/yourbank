@@ -5,9 +5,10 @@ import com.yourbank.data.model.bank.Score;
 import java.util.List;
 
 /**
- * Created by admin on 11/6/2015.
+ * @author admin.
  */
-
 public interface ScoreService {
     List<Score> update(Score... scores);
+
+    Score getByName(String name);
 }

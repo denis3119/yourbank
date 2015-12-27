@@ -1,7 +1,9 @@
 package com.yourbank.service.user.impl;
 
+import com.yourbank.data.model.user.GroupAuthority;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
+import com.yourbank.data.repository.UserProfileRepository;
 import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserService;
@@ -23,43 +25,37 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Autowired
+    UserProfileRepository userProfileRepository;
+
+    @Autowired
     UserProfileService userProfileService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    UserRoleService userRoleService;
-
     @Override
-    public User register(@NotNull User registrationDto) {
-        User existingUser = userRepository.getByUsername(registrationDto.getUsername());
+    public User register(@NotNull User userDto) {
+        User existingUser = userRepository.getByUsername(userDto.getUsername());
         if (existingUser != null) {
             return null;
         }
 
         User user = new User();
-        user.setUsername(registrationDto.getUsername());
+        user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(registrationDto.getEmail());
-        user.setPhone(registrationDto.getPhone());
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
         user.setEnabled(true);
+        user.getGroupAuthorities().add(new GroupAuthority() {{
+            this.setAuthority("ROLE_USER");
+        }});
 
         UserProfile userProfile = new UserProfile();
         userProfile.setUser(user);
 
-//        if (user != null && getByName(user.getUsername()) == null) {
-//            user.setPassword(passwordEncoder.encode(user.getPassword()));
-//            return userRepository.saveAndFlush(user);
-//        }
-        return user;
-    }
+        userRepository.save(user);
+        userProfileRepository.save(userProfile);
 
-    public User add(@NotNull User user) {
-        if (user != null && getByName(user.getUsername()) == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return userRepository.saveAndFlush(user);
-        }
         return user;
     }
 
