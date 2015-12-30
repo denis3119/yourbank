@@ -2,18 +2,16 @@ package com.yourbank.service.bank;
 
 
 import com.yourbank.data.model.bank.Score;
+import com.yourbank.service.common.Service;
 
 import java.util.List;
 
 /**
- * @author admin.
+ * Created by admin on 11/6/2015.
  */
-public interface ScoreService {
+
+public interface ScoreService extends Service<Score> {
     List<Score> update(Score... scores);
 
-    Score register(Score score);
-
     Score getByName(String name);
-
-    void delete(Score score);
 }

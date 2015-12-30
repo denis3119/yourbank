@@ -2,20 +2,20 @@ package com.yourbank.service.user;
 
 
 import com.yourbank.data.model.user.User;
-
-import java.util.List;
+import com.yourbank.service.common.Service;
 
 /**
- * @author admin.
+ * Created by admin on 11/3/2015.
  */
-public interface UserService {
-    User register(User user);
+public interface UserService extends Service<User> {
 
     User getByName(String name);
 
-    void delete(User user);
+    User getByEmail(String name);
 
-    User update(User user);
+    boolean userCreated(String name);
 
-    List<User> getAll();
+    void addRole(User user, String role);
+
+    boolean hasRole(String string, User user);
 }

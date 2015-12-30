@@ -1,13 +1,15 @@
 package com.yourbank.data.model.common;
 
+import com.yourbank.data.Identifiable;
+
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 
 /**
- * @author admin.
+ * Created by admin on 11/2/2015.
  */
 @MappedSuperclass
-public abstract class AbstractExpiringEntity extends AbstractEntity {
+public class AbstractExpiringEntity extends AbstractEntity {
 
     @Embedded
     private EffectiveRange effectiveRange;
@@ -19,4 +21,6 @@ public abstract class AbstractExpiringEntity extends AbstractEntity {
     public EffectiveRange getEffectiveRange() {
         return effectiveRange;
     }
+
+
 }

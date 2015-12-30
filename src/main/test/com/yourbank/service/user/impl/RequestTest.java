@@ -49,7 +49,7 @@ public class RequestTest {
     }
 
     private Request createRequest() {
-        return requestService.save(testRequest);
+        return requestService.add(testRequest);
     }
 
     @Test

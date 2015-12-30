@@ -3,10 +3,11 @@ package com.yourbank.service.user.impl;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.repository.UserProfileRepository;
 import com.yourbank.service.user.UserProfileService;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.
@@ -33,6 +34,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.saveAndFlush(entity);
     }
 
+    @Override
     public List<UserProfile> update(List<UserProfile> entities) {
         List<UserProfile> result = new ArrayList<>();
         for (UserProfile userProfile : entities) {
@@ -41,6 +43,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         return result;
     }
 
+    @Override
     public List<UserProfile> getAll() {
         return userProfileRepository.findAll();
     }

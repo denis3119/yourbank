@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author admin.
+ * Created by admin on 11/6/2015.
  */
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -27,14 +27,20 @@ public class RequestServiceImpl implements RequestService {
     @Autowired
     UserProfileService userProfileService;
 
-    @Override
-    public Request save(Request entity) {
+    public Request add(Request entity) {
         return requestRepository.saveAndFlush(entity);
     }
 
-    @Override
-    public Request findById(long ID) {
+    public void delete(Request entity) {
+        requestRepository.delete(entity);
+    }
+
+    public Request get(long ID) {
         return requestRepository.findOne(ID);
+    }
+
+    public Request update(Request entity) {
+        return requestRepository.saveAndFlush(entity);
     }
 
     @Override
@@ -46,17 +52,12 @@ public class RequestServiceImpl implements RequestService {
         return result;
     }
 
-    public Request update(Request request) {
-        return requestRepository.saveAndFlush(request);
-    }
-
     public List<Request> getAll() {
         return requestRepository.findAll();
     }
 
-    @Override
-    public void delete(Request request) {
-
+    public List<Request> getAll(Iterable<Long> listID) {
+        return requestRepository.findAll(listID);
     }
 
     @Override
@@ -73,7 +74,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public User createUserFromRequest(Request request) {
         User user = RequestUtil.getUserFromRequest(request);
-        userService.register(user);
+        userService.add(user);
         UserProfile userProfile = RequestUtil.getUserProfile(request);
         userProfile.setUser(user);
         userProfile = userProfileService.add(userProfile);

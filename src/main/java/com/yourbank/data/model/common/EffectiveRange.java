@@ -5,7 +5,7 @@ import javax.persistence.Transient;
 import java.util.Date;
 
 /**
- * @author admin.
+ * Created by admin on 11/2/2015.
  */
 @Embeddable
 public class EffectiveRange {

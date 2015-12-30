@@ -3,29 +3,18 @@ package com.yourbank.data.model.user;
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
-public class User extends AbstractExpiringEntity implements UserDetails {
+public class User extends AbstractExpiringEntity {
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String name;
 
     @Column(nullable = false)
     private String password;
@@ -34,15 +23,11 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @Email
     private String email;
 
-    @Column(nullable = false)
-    private boolean enabled;
-
     @Column(unique = true)
     private String phone;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<GroupAuthority> groupAuthorities = new HashSet<>();
-
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
     @OneToMany
     private List<Credit> credits;
     @OneToMany
@@ -50,48 +35,78 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 
-    public User(String username, String password, String email) {
-        this.username = username;
+    public User() {
+
+    }
+
+    public User(String name, String password, String email) {
+        this.name = name;
         this.password = password;
         this.email = email;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
+    public List<Credit> getCredits() {
+        return credits;
     }
 
-    @Override
+    public void setCredits(List<Credit> credits) {
+        this.credits = credits;
+    }
+
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
+    public String getPhone() {
+        return phone;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getGroupAuthorities().stream()
-                .map(GroupAuthority::getAuthority)
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toSet());
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }
 

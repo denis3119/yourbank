@@ -2,10 +2,11 @@ package com.yourbank.service.user;
 
 
 import com.yourbank.data.model.user.UserProfile;
+import com.yourbank.service.common.Service;
 
 /**
- * @author admin.
+ * Created by admin on 11/6/2015.
  */
-public interface UserProfileService {
-    UserProfile add(UserProfile profile);
+public interface UserProfileService extends Service<UserProfile> {
+
 }
