@@ -22,15 +22,12 @@ public class TestController {
 
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     @ResponseBody
-    public User printWelcome() {
+    public ModelAndView printWelcome() {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Hello World");
         model.addObject("message", "This is welcome page!");
         model.setViewName("hello");
-        createDefaultUser();
-
-        User user = new User("123", "123", "123");
-        return user;
+        return model;
     }
 
     private void createDefaultUser() {
