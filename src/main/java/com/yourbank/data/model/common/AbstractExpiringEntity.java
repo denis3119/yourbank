@@ -1,6 +1,8 @@
 package com.yourbank.data.model.common;
 
-import com.yourbank.data.Identifiable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
@@ -9,18 +11,11 @@ import javax.persistence.MappedSuperclass;
  * Created by admin on 11/2/2015.
  */
 @MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
 public class AbstractExpiringEntity extends AbstractEntity {
 
     @Embedded
     private EffectiveRange effectiveRange;
-
-    public void setEffectiveRange(EffectiveRange effectiveRange) {
-        this.effectiveRange = effectiveRange;
-    }
-
-    public EffectiveRange getEffectiveRange() {
-        return effectiveRange;
-    }
-
-
 }

@@ -1,6 +1,9 @@
 package com.yourbank.data.model.user;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -10,6 +13,9 @@ import java.util.Date;
  * @author admin.
  */
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserProfile extends AbstractExpiringEntity {
 
     private String firstName;
@@ -26,60 +32,4 @@ public class UserProfile extends AbstractExpiringEntity {
 
     @OneToOne
     private User user;
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getPersonalNumber() {
-        return personalNumber;
-    }
-
-    public void setPersonalNumber(String personalNumber) {
-        this.personalNumber = personalNumber;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

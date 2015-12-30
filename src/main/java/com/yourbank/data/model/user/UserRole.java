@@ -2,6 +2,9 @@ package com.yourbank.data.model.user;
 
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +17,9 @@ import java.util.Set;
  * @author admin.
  */
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserRole extends AbstractExpiringEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -21,9 +27,6 @@ public class UserRole extends AbstractExpiringEntity {
 
     @Column(unique = true)
     private String role;
-
-    public UserRole() {
-    }
 
     public UserRole(Set<User> users, String role) {
         this.users = users;
@@ -36,20 +39,4 @@ public class UserRole extends AbstractExpiringEntity {
         this.users = users;
         this.role = role;
     }
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> user) {
-        this.users = user;
-    }
-
-    public String getRole() {
-        return this.role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
 }
