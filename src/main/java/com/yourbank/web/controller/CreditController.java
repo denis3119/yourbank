@@ -2,12 +2,14 @@ package com.yourbank.web.controller;
 
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.service.bank.CreditService;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author admin.
@@ -19,29 +21,31 @@ public class CreditController {
     CreditService creditService;
 
     @RequestMapping(value = "/add_credit", method = RequestMethod.GET)
-    public String add(Map<String, Object> model) {
+    public Credit add() {
         Credit credit = new Credit();
-        model.put("creditForm", credit);
-        model.put("currency", Credit.CurrencyCode.values());
-        return "/credit/create";
+//        model.put("creditForm", credit);
+//        model.put("currency", Credit.CurrencyCode.values());
+        return credit;
     }
 
     @RequestMapping(value = "/add_credit", method = RequestMethod.POST)
-    public String add(Map<String, Object> model, Credit credit) {
+    @ResponseBody
+    public List<Credit> add(Credit credit) {
         creditService.add(credit);
-        model.put("credits", creditService.getAll());
-        return "/credit/list";
+//        model.put("credits", );
+        return creditService.getAll();
     }
 
     @RequestMapping(value = "/credits", method = RequestMethod.GET)
-    public String credits(Map<String, Object> model) {
-        model.put("credits", creditService.getAll());
-        return "/credit/list";
+    @ResponseBody
+    public List<Credit> credits() {
+        return creditService.getAll();
     }
 
     @RequestMapping(value = "/credit_{creditID}", method = RequestMethod.GET)
-    public String detail(@PathVariable long creditID, Map<String, Object> model) {
-        model.put("credit", creditService.get(creditID));
-        return "/credit/detail";
+    @ResponseBody
+    public Credit detail(@PathVariable long creditID) {
+//        model.put("credit", );
+        return creditService.get(creditID);
     }
 }

@@ -8,14 +8,15 @@ import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import javax.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by admin on 11/6/2015.
