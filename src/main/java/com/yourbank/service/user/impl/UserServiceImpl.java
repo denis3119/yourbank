@@ -1,6 +1,5 @@
 package com.yourbank.service.user.impl;
 
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
@@ -110,9 +109,5 @@ public class UserServiceImpl implements UserService {
         user.setUserProfile(userProfile);
         update(user);
         userProfileService.add(userProfile);
-    }
-
-    public List<Score> getAllScores(Long ID) {
-        return get(ID).getScores();
     }
 }

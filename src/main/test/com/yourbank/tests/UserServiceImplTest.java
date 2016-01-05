@@ -1,4 +1,4 @@
-package com.yourbank.service.user.impl;
+package com.yourbank.tests;
 
 import com.yourbank.config.Application;
 import com.yourbank.data.model.user.User;
