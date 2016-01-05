@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Embedded;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -14,8 +14,7 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AbstractExpiringEntity extends AbstractEntity {
-
-    @Embedded
-    private EffectiveRange effectiveRange;
+public abstract class AbstractExpiringEntity extends AbstractEntity {
+    @Column
+    private boolean expired = false;
 }

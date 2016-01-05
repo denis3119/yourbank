@@ -15,20 +15,18 @@ import java.util.List;
  * @author admin.
  */
 @Controller
+@RequestMapping("credit")
 public class CreditController {
 
     @Autowired
     CreditService creditService;
 
-    @RequestMapping(value = "/add_credit", method = RequestMethod.GET)
-    public Credit add() {
-        Credit credit = new Credit();
-//        model.put("creditForm", credit);
-//        model.put("currency", Credit.CurrencyCode.values());
-        return credit;
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String add() {
+        return "create";
     }
 
-    @RequestMapping(value = "/add_credit", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public List<Credit> add(Credit credit) {
         creditService.add(credit);
@@ -42,10 +40,16 @@ public class CreditController {
         return creditService.getAll();
     }
 
-    @RequestMapping(value = "/credit_{creditID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseBody
+    public List<Credit> Delete(Credit credit) {
+        creditService.delete(credit);
+        return creditService.getAll();
+    }
+
+    @RequestMapping(value = "/{creditID}", method = RequestMethod.GET)
     @ResponseBody
     public Credit detail(@PathVariable long creditID) {
-//        model.put("credit", );
         return creditService.get(creditID);
     }
 }

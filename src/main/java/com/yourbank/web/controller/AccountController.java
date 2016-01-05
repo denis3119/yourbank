@@ -20,7 +20,6 @@ import java.util.Map;
  */
 @Controller
 public class AccountController {
-
     @Autowired
     private UserService userService;
 

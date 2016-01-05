@@ -1,7 +1,6 @@
 package com.yourbank.data.model.user;
 
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,14 +18,16 @@ import java.util.Set;
 @NoArgsConstructor
 public class User extends AbstractExpiringEntity {
 
+    private boolean enabled = false;
+
     @Column(unique = true, nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(unique = true, nullable = false)
     @Email
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(unique = true)
@@ -36,8 +37,6 @@ public class User extends AbstractExpiringEntity {
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
     @OneToMany
     private List<Credit> credits;
-    @OneToMany
-    private List<Score> scores;
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 

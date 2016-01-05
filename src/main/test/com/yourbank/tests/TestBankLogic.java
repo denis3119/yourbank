@@ -1,4 +1,4 @@
-package com.yourbank.service.user.impl;
+package com.yourbank.tests;
 
 import com.yourbank.bankLogic.ScoreUtil;
 import com.yourbank.config.Application;

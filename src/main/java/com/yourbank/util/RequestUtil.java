@@ -5,6 +5,8 @@ import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import org.jetbrains.annotations.Contract;
 
+import java.util.UUID;
+
 /**
  * Created by admin on 26.12.2015.
  */
@@ -17,7 +19,7 @@ public class RequestUtil {
         User user = new User();
         user.setName(request.getFirstName());
         user.setEmail(request.getEmail());
-        user.setPassword("123");
+        user.setPassword(UUID.randomUUID().toString());
         return user;
     }
 
