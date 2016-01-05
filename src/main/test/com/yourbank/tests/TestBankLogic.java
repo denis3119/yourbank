@@ -1,6 +1,6 @@
 package com.yourbank.tests;
 
-import com.yourbank.bankLogic.ScoreUtil;
+import com.yourbank.util.ScoreUtil;
 import com.yourbank.config.Application;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;

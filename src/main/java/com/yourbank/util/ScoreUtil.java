@@ -1,4 +1,4 @@
-package com.yourbank.bankLogic;
+package com.yourbank.util;
 
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
@@ -50,7 +50,6 @@ public class ScoreUtil {
             scoreService.update(fromScore, toScore);
             return State.OK;
         } catch (Exception e) {
-            e.printStackTrace();
             return State.FAIL;
         }
     }
