@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -80,13 +78,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addRole(User user, String roleName) {
         user = getByEmail(user.getEmail());
-        UserRole role = new UserRole(user, roleName);
+        UserRole role = new UserRole(roleName);
         role = userRoleService.add(role);
-        HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
-        if (user.getUserRole() != null) {
-            roles.addAll(user.getUserRole());
-        }
-        user.setUserRole(roles);
+        user.getUserRole().add(role);
         update(user);
     }
 

@@ -28,7 +28,7 @@
           <a href="<c:url value="/#/login"/>" type="button" class="btn btn-success navbar-btn">Log in</a>
         </div>
         <div ng-if="global.current.user">
-          <span class="navbar-text">Logged as: <span class="well well-sm">{{global.current.user.name}}</span></span>
+          <span class="navbar-text">Logged as: <span class="well well-sm">{{global.current.user.email}}</span></span>
           <a href="<c:url value="/logout"/>" type="button" class="btn btn-success navbar-btn">Logout</a>
         </div>
       </div>
