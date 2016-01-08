@@ -7,8 +7,8 @@ import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
+import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -33,10 +33,8 @@ public class UserServiceImpl implements UserService {
     UserRoleService userRoleService;
 
     public User add(@NotNull User user) {
-        if (user != null && getByName(user.getName()) == null) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
+        if (user != null && getByEmail(user.getEmail()) == null) {
+            user.setPassword(UserUtil.getPasswordHash(user.getPassword()));
             return userRepository.saveAndFlush(user);
         }
         return user;
@@ -68,7 +66,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public User getByName(String name) {   //пусть будет
+    public User getByUserName(String name) {   //пусть будет
         return userRepository.getByName(name);
     }
 
@@ -83,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addRole(User user, String roleName) {
-        user = getByName(user.getName());
+        user = getByEmail(user.getEmail());
         UserRole role = new UserRole(user, roleName);
         role = userRoleService.add(role);
         HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
@@ -102,6 +100,14 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public void confirm(String email, String password) {
+        User user = getByEmail(email);
+        user.setPassword(UserUtil.getPasswordHash(password));
+        user.setEnabled(true);
+        update(user);
     }
 
     @SuppressWarnings("unchecked")

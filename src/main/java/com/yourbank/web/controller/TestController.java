@@ -33,7 +33,6 @@ public class TestController {
     private void createDefaultUser() {
         if (!userService.userCreated("admin")) {
             User user = new User();
-            user.setName("admin");
             user.setPassword("admin");
             user.setEmail("admin@gmail.com");
             user = userService.add(user);
@@ -42,7 +41,6 @@ public class TestController {
         }
         if (!userService.userCreated("user")) {
             User user = new User();
-            user.setName("user");
             user.setPassword("user");
             user.setEmail("user@gmail.com");
             user = userService.add(user);
@@ -50,7 +48,6 @@ public class TestController {
         }
         if (!userService.userCreated("user1")) {
             User user = new User();
-            user.setName("user1");
             user.setPassword("user1");
             user.setEmail("user1@gmail.com");
             user = userService.add(user);

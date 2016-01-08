@@ -1,7 +1,7 @@
 package com.yourbank.tests;
 
 import com.yourbank.config.Application;
-import com.yourbank.config.SmtpMailSender;
+import com.yourbank.config.mail.MailSender;
 import com.yourbank.util.Misc;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,12 +24,18 @@ import static org.junit.Assert.assertTrue;
 @WebAppConfiguration
 public class MailTest {
     @Autowired
-    SmtpMailSender sendMail;
+    MailSender sendMail;
 
     @Test
     public void send() throws MessagingException {
         if (Misc.isOnline())
             sendMail.send("yourbankyour@gmail.com", "yourbankyour@gmail.com", "test", " test body");
         assertTrue(true);
+    }
+
+    @Test
+    public void getBody() {
+        String body = sendMail.getConfirmUserBody(null);
+        assertTrue(!Misc.isNull(body));
     }
 }

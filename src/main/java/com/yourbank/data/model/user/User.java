@@ -20,9 +20,6 @@ public class User extends AbstractExpiringEntity {
 
     private boolean enabled = false;
 
-    @Column(unique = true, nullable = false)
-    private String name;
-
     @Column(nullable = false)
     private String password;
 
@@ -34,14 +31,13 @@ public class User extends AbstractExpiringEntity {
     private String phone;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+    private Set<UserRole> userRole = new HashSet<>(0);
     @OneToMany
     private List<Credit> credits;
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 
-    public User(String name, String password, String email) {
-        this.name = name;
+    public User(String password, String email) {
         this.password = password;
         this.email = email;
     }

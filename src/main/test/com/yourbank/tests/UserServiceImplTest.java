@@ -39,30 +39,28 @@ public class UserServiceImplTest {
     @Test
     public void createUser() {
         User user = createAndGetUser();
-        assertEquals(user.getName(), userService.getByName(TEST_NAME).getName());
+        assertEquals(user.getEmail(), userService.getByUserName(TEST_NAME).getEmail());
     }
 
     @NotNull
     private User createAndGetUser() {
-        User user = new User(TEST_NAME, TEST_PASSWORD, TEST_EMAIL);
-        userService.add(user);
-        return user;
+        User user = new User( TEST_PASSWORD, TEST_EMAIL);
+        return userService.add(user);
     }
 
     @Test
     public void delete() {
         User user = createAndGetUser();
         userService.delete(user);
-        assertEquals(userService.getByName(TEST_NAME), null);
+        assertEquals(userService.getByUserName(TEST_NAME), null);
     }
 
     @Test
     public void updateUser() {
         deleteTestUser();
         User user = createAndGetUser();
-        user.setName(TEST_NAME_SECOND);
         userService.update(user);
-        assertEquals(user.getName(), userService.getByName(TEST_NAME_SECOND).getName());
+        assertEquals(user.getEmail(), userService.getByEmail(TEST_EMAIL).getEmail());
     }
 
     @After
@@ -72,7 +70,7 @@ public class UserServiceImplTest {
     }
 
     private void deleteUserByName(String name) {
-        User user = userService.getByName(name);
+        User user = userService.getByUserName(name);
         if (user != null) {
             userService.delete(user);
         }

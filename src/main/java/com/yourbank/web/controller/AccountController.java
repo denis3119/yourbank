@@ -49,7 +49,7 @@ public class AccountController {
         role = userRoleService.add(role);
         HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
         user.setUserRole(roles);
-        System.out.println("username: " + user.getName());
+        System.out.println("username: " + user.getEmail());
         System.out.println("password: " + user.getPassword());
         System.out.println("email: " + user.getEmail());
         userService.update(user);
