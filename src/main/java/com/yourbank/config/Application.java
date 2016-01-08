@@ -1,5 +1,6 @@
 package com.yourbank.config;
 
+import com.yourbank.config.security.SecurityConfig;
 import com.yourbank.data.config.DatabaseConfig;
 import com.yourbank.service.ServiceConfig;
 import com.yourbank.util.MailUtil;

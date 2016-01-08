@@ -18,4 +18,6 @@ public interface UserService extends Service<User> {
     void addRole(User user, String role);
 
     boolean hasRole(String string, User user);
+
+    User current();
 }

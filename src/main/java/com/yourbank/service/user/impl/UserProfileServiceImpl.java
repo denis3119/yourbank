@@ -16,7 +16,7 @@ import java.util.List;
 public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired
-    UserProfileRepository userProfileRepository;
+    private UserProfileRepository userProfileRepository;
 
     public UserProfile add(UserProfile entity) {
         return userProfileRepository.saveAndFlush(entity);
