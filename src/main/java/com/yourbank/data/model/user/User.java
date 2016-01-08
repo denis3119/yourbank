@@ -59,7 +59,7 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return email;
     }
 
     @Override

@@ -11,7 +11,6 @@ import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -69,10 +68,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public User getByUserName(String name) {   //пусть будет
-        return userRepository.getByName(name);
-    }
-
     public User getByEmail(String email) {
         return userRepository.getByEmail(email);
     }
@@ -108,8 +103,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User current() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.getByName(authentication.getName());
+        return userRepository.getByEmail(authentication.getName());
 //        return (User) authentication.getPrincipal();
+    }
+
+    @Override
+    public User register(User user, String... roleList) {
+        user = add(user);
+        for (String userRole : roleList) {
+            addRole(user, userRole);
+        }
+        return getByEmail(user.getEmail());
     }
 
     @Override

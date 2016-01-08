@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 * @author admin.
 */
 @Component
-public class UsernameDetailsService implements UserDetailsService {
+public class EmailDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        User persistedUser = userRepository.getByName(username);
+    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+        User persistedUser = userRepository.getByEmail(email);
         if (persistedUser == null) {
-            throw new UsernameNotFoundException("No user found for username: " + username);
+            throw new UsernameNotFoundException("No user found for username: " + email);
         }
         return persistedUser;
     }

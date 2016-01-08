@@ -11,7 +11,7 @@ public interface UserService extends Service<User> {
 
     User getByEmail(String email);
 
-    boolean userCreated(String name);
+    boolean userCreated(String email);
 
     void addRole(User user, String role);
 
@@ -20,4 +20,6 @@ public interface UserService extends Service<User> {
     void confirm(String email, String  newPassword);
 
     User current();
+
+    User register(User user, String... roleList);
 }
