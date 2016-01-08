@@ -9,6 +9,9 @@ import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -100,6 +103,13 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public User current() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.getByName(authentication.getName());
+//        return (User) authentication.getPrincipal();
     }
 
     @Override

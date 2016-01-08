@@ -1,0 +1,7 @@
+body {
+    padding-top: 70px;
+}
+
+body .navbar-header-right {
+    padding-right: 3%;
+}
