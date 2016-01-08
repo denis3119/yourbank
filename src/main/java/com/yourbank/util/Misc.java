@@ -22,14 +22,6 @@ public class Misc {
         return false;
     }
 
-    public long norm(String item, long def) {
-        try {
-            return Long.parseLong(item);
-        } catch (Exception e) {
-            return def;
-        }
-    }
-
     /*
     если сервер  соеденен с интернетом
     * */
@@ -46,5 +38,20 @@ public class Misc {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static String norm(String st) {
+        if (st == null) {
+            return "";
+        }
+        return st;
+    }
+
+    public long getLong(String item, long def) {
+        try {
+            return Long.parseLong(item);
+        } catch (Exception e) {
+            return def;
+        }
     }
 }

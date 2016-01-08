@@ -37,7 +37,7 @@ public class TestBankLogic {
     public void testTransfer() {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
-        User user = new User("test", "test", "test@test.by");
+        User user = new User("test", "test@test.by");
         user = userService.add(user);
         from.setUser(user);
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 50, scoreService);
@@ -48,7 +48,7 @@ public class TestBankLogic {
     public void testTransferErrorValue() {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
-        User user = new User("test", "test", "test@test.by");
+        User user = new User("test", "test@test.by");
         from.setUser(user);
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 500, scoreService);
         assertEquals(state, ScoreUtil.State.VALUE_ERROR);
@@ -58,7 +58,7 @@ public class TestBankLogic {
     public void testTransferError() {
         Score from = scoreService.getByName(FROM_NAME);
         Score to = scoreService.getByName(TO_NAME);
-        User user = new User("test", "test", "test@test.by");
+        User user = new User("test", "test@test.by");
         from.setUser(user);
         ScoreUtil.State state = ScoreUtil.transfer(from, to, user, 50, null);
         assertEquals(state, ScoreUtil.State.FAIL);
@@ -74,7 +74,7 @@ public class TestBankLogic {
     }
 
     private void deleteUser() {
-        User user = userService.getByName("test");
+        User user = userService.getByUserName("test");
         if (user != null) {
             userService.delete(user);
         }

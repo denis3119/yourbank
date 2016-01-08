@@ -45,11 +45,11 @@ public class AccountController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
         user = userService.add(user);
-        UserRole role = new UserRole(user, "ROLE_USER");
+        UserRole role = new UserRole("ROLE_USER");
         role = userRoleService.add(role);
         HashSet<UserRole> roles = new HashSet<>(Collections.singletonList(role));
         user.setUserRole(roles);
-        System.out.println("username: " + user.getName());
+        System.out.println("username: " + user.getEmail());
         System.out.println("password: " + user.getPassword());
         System.out.println("email: " + user.getEmail());
         userService.update(user);

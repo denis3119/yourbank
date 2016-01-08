@@ -9,15 +9,17 @@ import com.yourbank.service.common.Service;
  */
 public interface UserService extends Service<User> {
 
-    User getByName(String name);
+    User getByEmail(String email);
 
-    User getByEmail(String name);
-
-    boolean userCreated(String name);
+    boolean userCreated(String email);
 
     void addRole(User user, String role);
 
     boolean hasRole(String string, User user);
 
+    void confirm(String email, String  newPassword);
+
     User current();
+
+    User register(User user, String... roleList);
 }

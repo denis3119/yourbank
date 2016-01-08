@@ -25,9 +25,6 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     private boolean enabled = false;
 
-    @Column(unique = true, nullable = false)
-    private String name;
-
     @Column(nullable = false)
     private String password;
 
@@ -47,8 +44,7 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 
-    public User(String name, String password, String email) {
-        this.name = name;
+    public User(String password, String email) {
         this.password = password;
         this.email = email;
     }
@@ -63,7 +59,7 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return email;
     }
 
     @Override

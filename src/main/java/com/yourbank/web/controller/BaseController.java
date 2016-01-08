@@ -19,7 +19,32 @@ public class BaseController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
+        createDefaultUser();
         return "index";
+    }
+
+    private void createDefaultUser() {
+        if (!userService.userCreated("admin@gmail.com")) {
+            User user = new User();
+            user.setPassword("admin");
+            user.setEmail("admin@gmail.com");
+            user.setEnabled(true);
+            userService.register(user, "ROLE_ADMIN", "ROLE_USER");
+        }
+        if (!userService.userCreated("user@gmail.com")) {
+            User user = new User();
+            user.setPassword("user");
+            user.setEmail("user@gmail.com");
+            user.setEnabled(true);
+            userService.register(user, "ROLE_USER");
+        }
+        if (!userService.userCreated("user1@gmail.com")) {
+            User user = new User();
+            user.setPassword("user1");
+            user.setEmail("user1@gmail.com");
+            user.setEnabled(true);
+            userService.register(user, "ROLE_USER");
+        }
     }
 
     @RequestMapping(value = "/public/home/layout", method = RequestMethod.GET)

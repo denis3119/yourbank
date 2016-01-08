@@ -38,7 +38,7 @@ public class RequestTest {
         request = requestService.approve(request);
         assertTrue(request.isApproved());
         User user2 = requestService.createUserFromRequest(request);
-        User user = userService.getByName(testRequest.getFirstName());
+        User user = userService.getByUserName(testRequest.getFirstName());
         assertNotNull(user);
     }
 
@@ -67,7 +67,7 @@ public class RequestTest {
     }
 
     private void deleteUser() {
-        User user = userService.getByName(testRequest.getFirstName());
+        User user = userService.getByUserName(testRequest.getFirstName());
         if (user != null) {
             userService.delete(user);
         }

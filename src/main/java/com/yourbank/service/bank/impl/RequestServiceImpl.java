@@ -1,5 +1,6 @@
 package com.yourbank.service.bank.impl;
 
+import com.yourbank.config.mail.MailSender;
 import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
@@ -20,6 +21,8 @@ import java.util.List;
 @Service
 public class RequestServiceImpl implements RequestService {
 
+    @Autowired
+    MailSender sender;
     @Autowired
     RequestRepository requestRepository;
     @Autowired
@@ -79,6 +82,7 @@ public class RequestServiceImpl implements RequestService {
         userProfile.setUser(user);
         userProfile = userProfileService.add(userProfile);
         user.setUserProfile(userProfile);
+        sender.sendConfirmMail(user);
         return userService.update(user);
     }
 }
