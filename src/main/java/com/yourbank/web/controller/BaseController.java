@@ -57,6 +57,11 @@ public class BaseController {
         return "public/login";
     }
 
+    @RequestMapping(value = "/profile/layout", method = RequestMethod.GET)
+    public String profileView() {
+        return "private/profile";
+    }
+
     @RequestMapping(value = "/account/current", method = RequestMethod.GET)
     @ResponseBody
     public User currentUser() {

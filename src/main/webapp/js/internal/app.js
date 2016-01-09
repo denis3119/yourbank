@@ -12,6 +12,9 @@
                 .when('/login', {
                     templateUrl: 'login/layout', controller: 'LoginController', controllerAs: 'login'
                 })
+                .when('/profile', {
+                    templateUrl: 'profile/layout', controller: 'ProfileController', controllerAs: 'profile'
+                })
                 .when('/register', {
                     templateUrl: 'register/layout', controller: 'RegisterController', controllerAs: 'register'
                 })

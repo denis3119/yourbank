@@ -1,14 +1,13 @@
 package com.yourbank.data.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +35,9 @@ public class UserProfile extends AbstractExpiringEntity {
     @OneToMany
     private List<Score> scores;
 
-    @OneToOne
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private User user;
 
     @OneToOne
