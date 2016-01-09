@@ -38,7 +38,4 @@ public class UserProfile extends AbstractExpiringEntity {
 
     @OneToOne
     private User user;
-
-    @OneToOne
-    private ZP zpList;
 }

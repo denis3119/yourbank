@@ -23,24 +23,20 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class User extends AbstractExpiringEntity implements UserDetails {
 
+    @OneToMany
+    public List<UserCredit> userCredits;
     private boolean enabled = false;
-
     @Column(nullable = false)
     private String password;
-
     @Email
     @Column(unique = true, nullable = false)
     private String email;
-
     @Column(unique = true)
     private String phone;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet<>();
-
     @OneToMany(fetch = FetchType.EAGER)
     private List<Credit> credits;
-
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 

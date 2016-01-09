@@ -2,7 +2,6 @@ package com.yourbank.data.model.bank;
 
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
-import com.yourbank.data.model.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,15 +14,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Credit extends AbstractExpiringEntity {
+public class Credit extends AbstractExpiringEntity implements Cloneable {
 
     private String description;
-
-    @ManyToOne
-    private User user;
-
-    @OneToMany
-    private List<Request> requests;
+//
+//    @ManyToOne
+//    private User user;
+//
+//    @OneToMany
+//    private List<Request> requests;
 
     @Enumerated(EnumType.STRING)
     private CurrencyCode currency;
@@ -38,6 +37,7 @@ public class Credit extends AbstractExpiringEntity {
     private long maxSum;
 
     private double percent;
+
     @ManyToMany
     private List<CreditType> creditTypes;
 
@@ -51,5 +51,9 @@ public class Credit extends AbstractExpiringEntity {
 
     public enum CurrencyCode {
         BLR, EUR, USD
+    }
+
+    public Credit clone() throws CloneNotSupportedException {
+        return (Credit) super.clone();
     }
 }
