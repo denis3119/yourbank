@@ -1,5 +1,7 @@
 package com.yourbank.data.model.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,17 +26,27 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     @OneToMany
     public List<UserCredit> userCredits;
+
     private boolean enabled = false;
+
     @Column(nullable = false)
     private String password;
+
     @Email
     @Column(unique = true, nullable = false)
     private String email;
+
     @Column(unique = true)
     private String phone;
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<UserRole> userRole = new HashSet<>();
-    @OneToOne(cascade = CascadeType.REMOVE)
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Credit> credits;
+
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = UserProfile.class)
     private UserProfile userProfile;
 
     public User(String password, String email) {

@@ -3,6 +3,7 @@ package com.yourbank.service.user.impl;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
+import com.yourbank.data.repository.UserProfileRepository;
 import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Autowired
+    private UserProfileRepository userProfileRepository;
+
+    @Autowired
     UserProfileService userProfileService;
 
     @Autowired
@@ -34,6 +38,8 @@ public class UserServiceImpl implements UserService {
 
     public User add(@NotNull User user) {
         if (user != null && getByEmail(user.getEmail()) == null) {
+            UserProfile userProfile = new UserProfile();
+            user.setUserProfile(userProfile);
             user.setPassword(UserUtil.getPasswordHash(user.getPassword()));
             return userRepository.saveAndFlush(user);
         }

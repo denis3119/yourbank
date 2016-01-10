@@ -17,6 +17,7 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 public class UserRole extends AbstractExpiringEntity {
+
     @Column(unique = true)
     private String role;
 
