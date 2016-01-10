@@ -1,6 +1,5 @@
 package com.yourbank.data.model.user;
 
-import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,8 +34,6 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     private String phone;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> userRole = new HashSet<>();
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Credit> credits;
     @OneToOne(cascade = CascadeType.REMOVE)
     private UserProfile userProfile;
 
