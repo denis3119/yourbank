@@ -1,7 +1,10 @@
 package com.yourbank.service.bank.impl;
 
 import com.yourbank.data.model.bank.Credit;
+import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.CreditRepository;
+import com.yourbank.data.repository.UserCreditRepository;
 import com.yourbank.service.bank.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ public class CreditServiceImpl implements CreditService {
 
     @Autowired
     CreditRepository creditRepository;
+    @Autowired
+    UserCreditRepository userCreditRepository;
 
     public Credit add(Credit entity) {
         return creditRepository.saveAndFlush(entity);
@@ -54,6 +59,15 @@ public class CreditServiceImpl implements CreditService {
             map.put(credit.getId().toString(), credit.getName());
         }
         return map;
+    }
+
+    @Override
+    public UserCredit approveCredit(UserCredit userCredit, User user) {
+        userCredit.getCredit().setId(null);
+        Credit oldCredit = add(userCredit.getCredit());
+        userCredit.setCredit(oldCredit);
+        userCreditRepository.saveAndFlush(userCredit);
+        return userCreditRepository.saveAndFlush(userCredit);
     }
 
     public Credit getByCurrency(Currency currency) {
