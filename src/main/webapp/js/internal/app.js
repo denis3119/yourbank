@@ -18,6 +18,9 @@
                 .when('/register', {
                     templateUrl: 'register/layout', controller: 'RegisterController', controllerAs: 'register'
                 })
+                .when('/request/new', {
+                    templateUrl: 'request/new/layout', controller: 'CreateRequestController', controllerAs: 'request'
+                })
                 .otherwise({
                     redirectTo: '/home'
                 });

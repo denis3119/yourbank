@@ -9,6 +9,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li  ng-if="global.current.user"><a href="<c:url value="/#/profile"/>">Profile</a></li>
+        <li><a href="<c:url value="/#/request/new"/>">Create request</a></li>
       </ul>
       <div class="navbar-header-right navbar-right">
         <div ng-if="!global.current.user">

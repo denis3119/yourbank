@@ -17,9 +17,7 @@
     <div class="tab-content">
       <div ng-if="profile.view == 'general'" class="col-md-offset-1 col-md-7">
         <ul class="list-group">
-          <li class="list-group-item">
-            First name: <em>{{global.current.user.userProfile.firstName}}</em>
-          </li>
+          <li class="list-group-item">First name: <em>{{global.current.user.userProfile.firstName}}</em></li>
           <li class="list-group-item">Last name: <em>{{global.current.user.userProfile.lastname}}</em></li>
           <li class="list-group-item">Patronymic: <em>{{global.current.user.userProfile.patronymic}}</em></li>
           <li class="list-group-item">Birthday date: <em>{{global.current.user.userProfile.bithday}}</em></li>
@@ -27,7 +25,14 @@
           <li class="list-group-item">Passport number: <em>{{global.current.user.userProfile.passportNumber}}</em></li>
         </ul>
       </div>
-      <div ng-if="profile.view == 'credits'" class="col-md-10">credits</div>
+      <div ng-if="profile.view == 'credits'" class="col-md-10">
+        <div class="col-md-3">
+          <h3>Filters</h3>
+        </div>
+        <div class="col-md-9">
+          adfasdfasdf
+        </div>
+      </div>
       <div ng-if="profile.view == 'scores'">scores</div>
     </div>
   </div>
