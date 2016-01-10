@@ -31,6 +31,7 @@ public class Request extends AbstractExpiringEntity {
     private Integer period; // месяцы
     @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
+    private double income; //доходы за 3 месяца
 
     public Request(String name, String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit, String email) {

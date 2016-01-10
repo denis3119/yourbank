@@ -39,7 +39,4 @@ public class UserProfile extends AbstractExpiringEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     private User user;
-
-    @OneToOne
-    private ZP zpList;
 }
