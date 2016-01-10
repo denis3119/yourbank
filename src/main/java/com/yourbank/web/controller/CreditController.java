@@ -34,7 +34,7 @@ public class CreditController {
         return creditService.getAll();
     }
 
-    @RequestMapping(value = "/credits", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Credit> credits() {
         return creditService.getAll();

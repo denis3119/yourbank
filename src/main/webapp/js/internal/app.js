@@ -2,7 +2,8 @@
 
     angular
         .module('yourbank', [
-            'ngRoute'
+            'ngRoute',
+            'ui.bootstrap'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider
@@ -20,6 +21,9 @@
                 })
                 .when('/request/new', {
                     templateUrl: 'request/new/layout', controller: 'CreateRequestController', controllerAs: 'request'
+                })
+                .when('/manager', {
+                    templateUrl: 'manager/layout', controller: 'ManagerController', controllerAs: 'manager'
                 })
                 .otherwise({
                     redirectTo: '/home'

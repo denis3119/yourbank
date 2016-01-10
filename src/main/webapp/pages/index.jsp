@@ -25,6 +25,7 @@
 <script src="<c:url value="/js/internal/controllers/LoginController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/ProfileController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/CreateRequestController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/ManagerController.js"/>"></script>
 
 <script src="<c:url value="/js/internal/services/current-user.service.js"/>"></script>
 
