@@ -122,6 +122,7 @@ public class UserCreditServiceImpl implements UserCreditService {
     @Contract(pure = true)
     private double round(double sum) {
         sum *= 100;
+        sum = Math.round(sum);
         sum = (int) sum;
         return sum / 100;
     }
