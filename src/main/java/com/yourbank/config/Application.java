@@ -21,7 +21,7 @@ import org.springframework.core.annotation.Order;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @SpringBootApplication
 @ComponentScan
-@Import({SecurityConfig.class, DatabaseConfig.class, WebConfig.class, ServiceConfig.class})
+@Import({SecurityConfig.class, DatabaseConfig.class, WebConfig.class, ServiceConfig.class, SchedulingConfig.class})
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
 

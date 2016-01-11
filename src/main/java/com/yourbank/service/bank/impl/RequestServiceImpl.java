@@ -64,11 +64,6 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public Request getByName(String name) {
-        return requestRepository.getByName(name);
-    }
-
-    @Override
     public Request approve(Request request) {
         request.setApproved(true);
         return update(request);

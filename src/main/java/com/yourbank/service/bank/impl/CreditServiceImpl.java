@@ -62,11 +62,13 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public UserCredit approveCredit(UserCredit userCredit, User user) {
-        userCredit.getCredit().setId(null);
-        Credit oldCredit = add(userCredit.getCredit());
-        userCredit.setCredit(oldCredit);
-        userCreditRepository.saveAndFlush(userCredit);
+    public List<Credit> findByShowOnlyForUser() {
+        return creditRepository.getByShowOnlyForUserTrue();
+    }
+
+    @Override
+    public UserCredit approveCredit(Credit credit, User user, double sum, int term) throws CloneNotSupportedException {
+        UserCredit userCredit = new UserCredit(credit, user, sum, term);
         return userCreditRepository.saveAndFlush(userCredit);
     }
 

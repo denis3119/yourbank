@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -19,8 +18,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Request extends AbstractExpiringEntity {
 
-    @Column(unique = true)
-    private String name;
     private boolean approved = false;
     private String phoneNumber;
     private String firstName;
@@ -33,9 +30,8 @@ public class Request extends AbstractExpiringEntity {
     private Credit credit;
     private double income; //доходы за 3 месяца
 
-    public Request(String name, String phoneNumber, String firstName, String target,
+    public Request(String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit, String email) {
-        this.name = name;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.target = target;
