@@ -1,7 +1,6 @@
 package com.yourbank.data.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,9 +40,6 @@ public class User extends AbstractExpiringEntity implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<UserRole> userRole = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Credit> credits;
 
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, targetEntity = UserProfile.class)

@@ -35,8 +35,8 @@ public class UserProfile extends AbstractExpiringEntity {
     @OneToMany
     private List<Score> scores;
 
-    @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
+    @JsonBackReference
     private User user;
 }

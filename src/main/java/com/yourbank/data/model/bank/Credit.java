@@ -17,12 +17,8 @@ import java.util.List;
 public class Credit extends AbstractExpiringEntity implements Cloneable {
 
     private String description;
-//
-//    @ManyToOne
-//    private User user;
-//
-//    @OneToMany
-//    private List<Request> requests;
+
+    private boolean showOnlyForUser;
 
     @Enumerated(EnumType.STRING)
     private CurrencyCode currency;
@@ -41,19 +37,11 @@ public class Credit extends AbstractExpiringEntity implements Cloneable {
     @ManyToMany
     private List<CreditType> creditTypes;
 
-    public List<CreditType> getCreditTypes() {
-        return creditTypes;
-    }
-
-    public void setCreditTypes(List<CreditType> creditTypes) {
-        this.creditTypes = creditTypes;
+    public Credit clone() throws CloneNotSupportedException {
+        return (Credit) super.clone();
     }
 
     public enum CurrencyCode {
         BLR, EUR, USD
-    }
-
-    public Credit clone() throws CloneNotSupportedException {
-        return (Credit) super.clone();
     }
 }
