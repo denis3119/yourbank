@@ -10,7 +10,7 @@
 
         (function () {
             $http.get('request/all').then(function (data) {
-                vm.requests = data;
+                vm.requests = data.data;
             })
         })();
 
