@@ -1,13 +1,12 @@
 package com.yourbank.data.model.bank;
 
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import com.yourbank.service.status.RequestStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * @author admin.
@@ -18,14 +17,15 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Request extends AbstractExpiringEntity {
 
-    private boolean approved = false;
+    @Enumerated(EnumType.STRING)
+    private RequestStatus status = RequestStatus.PENDING;
     private String phoneNumber;
     private String firstName;
     private String target;
     private String lastName;
     private String patronymic;
     private String email;
-    private Integer period; // месяцы
+    private int period; // месяцы
     @ManyToOne(fetch = FetchType.EAGER)
     private Credit credit;
     private double income; //доходы за 3 месяца

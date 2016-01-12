@@ -9,5 +9,6 @@ import com.yourbank.service.common.Service;
  */
 public interface RequestService extends Service<Request> {
         Request approve(Request request);
+        Request unApprove(Request request);
         User createUserFromRequest(Request request);
 }

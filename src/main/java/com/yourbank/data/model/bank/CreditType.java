@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import java.util.List;
 
 /**
  * @author admin.
@@ -20,6 +18,8 @@ public class CreditType extends AbstractExpiringEntity {
     @Getter
     @Setter
     private String name;
-    @ManyToMany
-    private List<Credit> credits;
+
+    public CreditType(String name) {
+        this.name = name;
+    }
 }

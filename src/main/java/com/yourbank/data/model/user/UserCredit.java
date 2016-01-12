@@ -29,7 +29,6 @@ public class UserCredit extends Credit {
 
     public UserCredit(Credit credit, User user, double sum, int term) {
         setDescription(credit.getDescription());
-        setShowOnlyForUser(credit.isShowOnlyForUser());
         setCreditTypes(credit.getCreditTypes());
         setCurrency(credit.getCurrency());
         setMaxSum(credit.getMaxSum());

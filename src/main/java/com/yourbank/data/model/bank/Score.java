@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.Currency;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * @author admin.
@@ -20,16 +20,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Score extends AbstractExpiringEntity {
 
-    @Column(unique = true)
     private String name;
     private double value;
     @ManyToOne
     private User user;
-    @OneToOne
-    private Credit credit;
-    @ManyToMany
-    private List<ScoreType> scoreTypes;
-    private Currency currency;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ScoreType scoreTypes;
+    private Credit.CurrencyCode currency;
 
     public Score(String name, double value) {
         this.name = name;

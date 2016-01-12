@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Currency;
-import java.util.List;
 
 /**
  * Created by admin on 11/6/2015.
@@ -15,6 +14,4 @@ import java.util.List;
 public interface CreditRepository extends JpaRepository<Credit, Long> {
     @Query
     Credit getByCurrency(Currency currency);
-    @Query
-    List<Credit> getByShowOnlyForUserTrue();
 }
