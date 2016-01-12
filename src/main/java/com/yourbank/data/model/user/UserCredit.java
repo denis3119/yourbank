@@ -29,8 +29,6 @@ public class UserCredit extends AbstractExpiringEntity {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Score score;
 
-    private String name;
-
     private double percent;
     @ManyToOne
     private User user;
@@ -43,7 +41,6 @@ public class UserCredit extends AbstractExpiringEntity {
     public UserCredit(UserCredit credit, User user, double sum, int term) {
         setDescription(credit.getDescription());
         setCurrency(credit.getCurrency());
-        setName(credit.getName());
         setPercent(credit.getPercent());
         this.user = user;
         this.sum = sum;
