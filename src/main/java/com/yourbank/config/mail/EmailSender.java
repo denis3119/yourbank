@@ -1,8 +1,8 @@
 package com.yourbank.config.mail;
 
+import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.util.MailUtil;
-import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,12 +14,13 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 @Component
-public class MailSender {
+public class EmailSender {
+    private String link = "https://localhost:8443";
 
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void send(String from, String to, String subject, String body) {
+    private void send(String from, String to, String subject, String body) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper;
         try {
@@ -34,8 +35,8 @@ public class MailSender {
         javaMailSender.send(message);
     }
 
-    public String getConfirmUserBody(User user) {
-        String url = "https://localhost:8443/profile/confirm/" + user.getId() + "/" + user.getEmail().hashCode() + "/";
+    private String getConfirmUserBody(User user) {
+        String url = link + "/profile/confirm/" + user.getId() + "/" + user.getEmail().hashCode() + "/";
         return "<a href='" + url + "'>Нажми сюда</a>";
     }
 
@@ -44,9 +45,17 @@ public class MailSender {
         send(MailUtil.FROM, user.getEmail(), "Confirm", body);
     }
 
-    public void sendConfirmInBank(String email) {
-        String body = "Приходите в банк";
-        send(MailUtil.FROM, email, "Ваша заявка одобрена", body);
+    public void sendConfirmInBank(String email, boolean approve, Request request) {
+        String body;
+        if (approve) {
+            body = "Приходите в банк";
+        } else {
+            body = "Не приходите в банк";
+        }
+        long id = request.getId();
+        int hash = request.getEmail().hashCode();
+        body += "</br> <a href='" + link + "/request/remove/" + id + "/" + hash + "'>Если вы не подавали в банк заявку, просто нажмите тут</a>";
+        send(MailUtil.FROM, email, "Ваша заявка рассмотрена", body);
     }
 
     @Bean

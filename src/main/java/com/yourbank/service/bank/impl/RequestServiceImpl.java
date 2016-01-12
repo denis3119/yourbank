@@ -1,11 +1,12 @@
 package com.yourbank.service.bank.impl;
 
-import com.yourbank.config.mail.MailSender;
+import com.yourbank.config.mail.EmailSender;
 import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.repository.RequestRepository;
 import com.yourbank.service.bank.RequestService;
+import com.yourbank.service.status.RequestStatus;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.RequestUtil;
@@ -22,7 +23,7 @@ import java.util.List;
 public class RequestServiceImpl implements RequestService {
 
     @Autowired
-    MailSender sender;
+    EmailSender sender;
     @Autowired
     RequestRepository requestRepository;
     @Autowired
@@ -59,14 +60,19 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAll();
     }
 
-    public List<Request> getAll(Iterable<Long> listID) {
-        return requestRepository.findAll(listID);
+    @Override
+    public Request approve(Request request) {
+        return setStatusAndUpdate(request, RequestStatus.APPROVED);
+    }
+
+    private Request setStatusAndUpdate(Request request, RequestStatus status) {
+        request.setStatus(status);
+        return update(request);
     }
 
     @Override
-    public Request approve(Request request) {
-        request.setApproved(true);
-        return update(request);
+    public Request unApprove(Request request) {
+        return setStatusAndUpdate(request, RequestStatus.DECLINED);
     }
 
     @Override

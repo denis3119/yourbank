@@ -17,4 +17,7 @@ import javax.persistence.Entity;
 public class ScoreType extends AbstractExpiringEntity {
     private String name;
 
+    public ScoreType(String name) {
+        this.name = name;
+    }
 }

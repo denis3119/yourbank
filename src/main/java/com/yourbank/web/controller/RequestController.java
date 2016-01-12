@@ -1,23 +1,25 @@
 package com.yourbank.web.controller;
 
 
-import com.yourbank.config.mail.MailSender;
+import com.yourbank.config.mail.EmailSender;
 import com.yourbank.data.model.bank.Request;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.bank.RequestService;
-import com.yourbank.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author admin.
  */
 @Controller
-@RequestMapping("request")
+@RequestMapping(value = "/request")
 public class RequestController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class RequestController {
     CreditService creditService;
 
     @Autowired
-    MailSender sender;
+    EmailSender sender;
 
     @RequestMapping(value = "/new/layout", method = RequestMethod.GET)
     public String newLayout() {
@@ -58,14 +60,36 @@ public class RequestController {
     public Request approve(Request request) {
         request = requestService.approve(request);
         if (request != null) {
-            sender.sendConfirmInBank(request.getEmail());
+            sender.sendConfirmInBank(request.getEmail(), true, request);
         }
         return requestService.approve(request);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/unApprove", method = RequestMethod.POST)
+    public Request unApprove(Request request) {
+        request = requestService.approve(request);
+        if (request != null) {
+            sender.sendConfirmInBank(request.getEmail(), false, request);
+        }
+        return requestService.unApprove(request);
+    }
+
     @RequestMapping(value = "/{requestID}", method = RequestMethod.GET)
     @ResponseBody
-    public Request detail(@PathVariable long requestID, Map<String, Object> model) {
+    @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
+    public Request detail(@PathVariable long requestID) {
         return requestService.get(requestID);
+    }
+
+    @RequestMapping(value = "/remove/{requestID}/{hash}", method = RequestMethod.GET)
+    @ResponseBody
+    public boolean remove(@PathVariable long requestID,@PathVariable int hash) throws Exception {
+        Request request = requestService.get(requestID);
+        if (request == null || hash != request.getEmail().hashCode()) {
+            return false;
+        }
+        requestService.delete(request);
+        return true;
     }
 }
