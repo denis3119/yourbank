@@ -23,8 +23,9 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class User extends AbstractExpiringEntity implements UserDetails {
 
+    private int countErrors = 0;
     @OneToMany
-    public List<UserCredit> userCredits;
+    private List<UserCredit> userCredits;
 
     private boolean enabled = false;
 

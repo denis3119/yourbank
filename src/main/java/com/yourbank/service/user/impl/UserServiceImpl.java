@@ -26,15 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    private UserProfileRepository userProfileRepository;
-
     @Autowired
     UserProfileService userProfileService;
-
     @Autowired
     UserRoleService userRoleService;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     public User add(@NotNull User user) {
         if (user != null && getByEmail(user.getEmail()) == null) {
@@ -114,6 +111,26 @@ public class UserServiceImpl implements UserService {
             addRole(user, userRole);
         }
         return getByEmail(user.getEmail());
+    }
+
+    @Override
+    public User block(User user) {
+        user.setCountErrors(user.getCountErrors() + 1);
+        if (user.getCountErrors() < 3) {
+            return update(user);
+        }
+        return setBlocked(user, true);
+    }
+
+    private User setBlocked(User user, boolean blocked) {
+        user.setEnabled(!blocked);
+        return update(user);
+    }
+
+    @Override
+    public User unBlock(User user) {
+        user.setCountErrors(0);
+        return setBlocked(user, false);
     }
 
     @Override

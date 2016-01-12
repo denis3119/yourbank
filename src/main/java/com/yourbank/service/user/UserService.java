@@ -17,9 +17,13 @@ public interface UserService extends Service<User> {
 
     boolean hasRole(String string, User user);
 
-    void confirm(String email, String  newPassword);
+    void confirm(String email, String newPassword);
 
     User current();
 
     User register(User user, String... roleList);
+
+    User block(User user);
+
+    User unBlock(User user);
 }

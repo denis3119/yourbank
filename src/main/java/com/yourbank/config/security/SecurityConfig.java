@@ -20,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    LoginFail loginFail;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
-                .formLogin().loginPage("/login").failureUrl("/#/login?error")
+                .formLogin().loginPage("/login").failureUrl("/#/login?error").failureHandler(loginFail)
                 .usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/").permitAll()
                 .and()

@@ -32,4 +32,10 @@ public class AdminController {
     private List<User> viewAllUsers() {
         return userService.getAll();
     }
+
+    @RequestMapping(value = "/unBlock", method = RequestMethod.POST)
+    @ResponseBody
+    public User unBlock(User user) {
+        return userService.unBlock(user);
+    }
 }
