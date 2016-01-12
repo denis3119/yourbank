@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by admin on 11/6/2015.
  */
 public interface CreditService extends Service<Credit> {
-    UserCredit approveCredit(Credit credit, User user, double sum, int term) throws CloneNotSupportedException;
+    UserCredit approveCredit(UserCredit credit, User user, double sum, int term) throws CloneNotSupportedException;
 
     Credit getByCurrency(Currency currency);
 

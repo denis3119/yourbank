@@ -2,6 +2,8 @@ package com.yourbank.data.model.user;
 
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Credit;
+import com.yourbank.data.model.bank.Score;
+import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,8 +19,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class UserCredit extends Credit {
+public class UserCredit extends AbstractExpiringEntity {
 
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    private Credit.CurrencyCode currency;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Score score;
+
+    private String name;
+
+    private double percent;
     @ManyToOne
     private User user;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -27,12 +40,9 @@ public class UserCredit extends Credit {
     private double sum;
     private boolean paid;
 
-    public UserCredit(Credit credit, User user, double sum, int term) {
+    public UserCredit(UserCredit credit, User user, double sum, int term) {
         setDescription(credit.getDescription());
-        setCreditTypes(credit.getCreditTypes());
         setCurrency(credit.getCurrency());
-        setMaxSum(credit.getMaxSum());
-        setMinSum(credit.getMinSum());
         setName(credit.getName());
         setPercent(credit.getPercent());
         this.user = user;
