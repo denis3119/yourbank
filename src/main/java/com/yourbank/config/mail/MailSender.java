@@ -2,6 +2,7 @@ package com.yourbank.config.mail;
 
 import com.yourbank.data.model.user.User;
 import com.yourbank.util.MailUtil;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -30,7 +31,6 @@ public class MailSender {
         } catch (Exception e) {
             /*ignore*/
         }
-
         javaMailSender.send(message);
     }
 
@@ -42,6 +42,11 @@ public class MailSender {
     public void sendConfirmMail(User user) {
         String body = getConfirmUserBody(user);
         send(MailUtil.FROM, user.getEmail(), "Confirm", body);
+    }
+
+    public void sendConfirmInBank(String email) {
+        String body = "Приходите в банк";
+        send(MailUtil.FROM, email, "Ваша заявка одобрена", body);
     }
 
     @Bean
