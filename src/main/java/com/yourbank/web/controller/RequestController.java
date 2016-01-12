@@ -1,9 +1,11 @@
 package com.yourbank.web.controller;
 
 
+import com.yourbank.config.mail.MailSender;
 import com.yourbank.data.model.bank.Request;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.bank.RequestService;
+import com.yourbank.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,9 @@ public class RequestController {
     @Autowired
     CreditService creditService;
 
+    @Autowired
+    MailSender sender;
+
     @RequestMapping(value = "/new/layout", method = RequestMethod.GET)
     public String newLayout() {
         return "public/create-request";
@@ -31,7 +36,7 @@ public class RequestController {
 
     @RequestMapping(value = "/new/add", method = RequestMethod.POST)
     @ResponseBody
-    public Request add(@RequestBody Request request) {
+    public Request add(Request request) {
         return requestService.add(request);
     }
 
@@ -46,6 +51,16 @@ public class RequestController {
     public List<Request> delete(Request request) {
         requestService.delete(request);
         return requestService.getAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    public Request approve(Request request) {
+        request = requestService.approve(request);
+        if (request != null) {
+            sender.sendConfirmInBank(request.getEmail());
+        }
+        return requestService.approve(request);
     }
 
     @RequestMapping(value = "/{requestID}", method = RequestMethod.GET)
