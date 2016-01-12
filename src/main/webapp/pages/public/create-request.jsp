@@ -4,31 +4,43 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">First name</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" ng-model="request.request.firstName">
+          <input class="form-control" required type="text" ng-model="request.request.firstName">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Last name</label>
         <div class="col-md-10">
-          <input class="form-control"  type="text" ng-model="request.request.lastName">
+          <input class="form-control" required type="text" ng-model="request.request.lastName">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Patronymic</label>
         <div class="col-md-10">
-          <input class="form-control"  type="text" ng-model="request.request.patronymic">
+          <input class="form-control" required type="text" ng-model="request.request.patronymic">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Email</label>
         <div class="col-md-10">
-          <input class="form-control"  type="email" ng-model="request.request.email">
+          <input class="form-control" required type="email" ng-model="request.request.email">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label">Phone</label>
         <div class="col-md-10">
-          <input class="form-control"  type="text" ng-model="request.request.phone">
+          <input class="form-control" required ui-mask="+99999-999-99-99" type="tel" ng-model="request.request.phoneNumber">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Target</label>
+        <div class="col-md-10">
+          <input class="form-control" required type="text" ng-model="request.request.target">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" uib-tooltip="In months" tooltip-placement="bottom">Period</label>
+        <div class="col-md-10">
+          <input class="form-control" required type="number" ng-model="request.request.period">
         </div>
       </div>
       <div class="form-group">

@@ -29,6 +29,11 @@ public class RequestController {
         return "public/create-request";
     }
 
+    @RequestMapping(value = "/new/completed/layout", method = RequestMethod.GET)
+    public String newCompletedLayout() {
+        return "public/create-request-complete";
+    }
+
     @RequestMapping(value = "/new/add", method = RequestMethod.POST)
     @ResponseBody
     public Request add(@RequestBody Request request) {

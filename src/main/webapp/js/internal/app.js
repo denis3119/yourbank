@@ -3,7 +3,8 @@
     angular
         .module('yourbank', [
             'ngRoute',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ui.mask'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider
@@ -21,6 +22,9 @@
                 })
                 .when('/request/new', {
                     templateUrl: 'request/new/layout', controller: 'CreateRequestController', controllerAs: 'request'
+                })
+                .when('/request/new/completed', {
+                    templateUrl: 'request/new/completed/layout'
                 })
                 .when('/manager', {
                     templateUrl: 'manager/layout', controller: 'ManagerController', controllerAs: 'manager'
