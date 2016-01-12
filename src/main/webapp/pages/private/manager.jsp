@@ -4,7 +4,8 @@
             No request found
         </div>
         <uib-accordion>
-            <uib-accordion-group heading="Request number {{request.id}}" ng-repeat="request in manager.requests">
+            <uib-accordion-group ng-class="{'panel-success': request.approved, 'panel-danger': request.status == 'danger'}"
+                                 heading="Request number {{request.id}}" ng-repeat="request in manager.requests">
                 <ul class="list-group">
                     <li class="list-group-item"><strong>First name: </strong><em>{{request.firstName}}</em></li>
                     <li class="list-group-item"><strong>Last name: </strong><em>{{request.lastName}}</em></li>
@@ -14,8 +15,8 @@
                     <li class="list-group-item"><strong>Credit period: </strong><em>{{request.period}}</em></li>
                 </ul>
                 <br/>
-                <button class="btn btn-success" ng-click="manager.approve">Approve</button>
-                <button class="btn btn-danger" ng-click="manager.decline">Decline</button>
+                <button class="btn btn-success" ng-click="manager.approve(request)">Approve</button>
+                <button class="btn btn-danger" ng-click="manager.decline(request)">Decline</button>
             </uib-accordion-group>
         </uib-accordion>
 

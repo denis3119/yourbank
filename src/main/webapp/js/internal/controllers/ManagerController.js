@@ -14,12 +14,12 @@
             })
         })();
 
-        vm.approve = function() {
-
+        vm.approve = function(request) {
+            request.status = 'success';
         };
 
-        vm.decline = function() {
-
+        vm.decline = function(request) {
+            request.status = 'danger';
         };
     }
 })();

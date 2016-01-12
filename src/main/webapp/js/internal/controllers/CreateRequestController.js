@@ -8,7 +8,7 @@
 
         vm.submit = function() {
             $http.post('request/new/add', vm.request).then(function () {
-                $location.path('/');
+                $location.path('/request/new/completed');
             })
         }
     }

@@ -14,6 +14,7 @@
 
 <script src="<c:url value="/js/external/angular/angular.js"/>"></script>
 <script src="<c:url value="/js/external/angular/angular-route.js"/>"></script>
+<script src="<c:url value="/js/external/angular/angular-mask.js"/>"></script>
 <script src="<c:url value="/js/external/jquery/jquery-1.11.3.min.js"/>"></script>
 <script src="<c:url value="/js/external/bootstrap/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/js/external/bootstrap/ui-bootstrap-tpls-0.14.3.js"/>"></script>
@@ -26,6 +27,7 @@
 <script src="<c:url value="/js/internal/controllers/ProfileController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/CreateRequestController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/ManagerController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/AdminController.js"/>"></script>
 
 <script src="<c:url value="/js/internal/services/current-user.service.js"/>"></script>
 
