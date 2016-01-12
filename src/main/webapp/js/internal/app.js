@@ -29,6 +29,9 @@
                 .when('/manager', {
                     templateUrl: 'manager/layout', controller: 'ManagerController', controllerAs: 'manager'
                 })
+                .when('/admin', {
+                    templateUrl: 'admin/layout', controller: 'AdminController', controllerAs: 'admin'
+                })
                 .otherwise({
                     redirectTo: '/home'
                 });
