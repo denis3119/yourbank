@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by admin on 11.01.2016.
  */
 @Controller
-@RequestMapping(value = "/score/")
+@RequestMapping(value = "/score")
 public class PaymentController {
     @Autowired
     UserService userService;
@@ -61,10 +61,4 @@ public class PaymentController {
         return paymentRepository.saveAndFlush(payment);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/pay/", method = RequestMethod.POST)
-    @Secured("USER_ROLE")
-    public void creditPay(@RequestBody UserCredit userCredit, @RequestBody int value) {
-
-    }
 }
