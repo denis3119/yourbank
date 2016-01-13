@@ -8,10 +8,7 @@ import com.yourbank.service.bank.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,7 +40,7 @@ public class RequestController {
 
     @RequestMapping(value = "/new/add", method = RequestMethod.POST)
     @ResponseBody
-    public Request add(Request request) {
+    public Request add(@RequestBody Request request) {
         return requestService.add(request);
     }
 

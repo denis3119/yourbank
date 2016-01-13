@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @author admin.
  */
 @Controller
-@RequestMapping(value = "/credit/")
+@RequestMapping(value = "/credit")
 public class CreditController {
 
     @Autowired
