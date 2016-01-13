@@ -20,9 +20,6 @@ public class Credit extends AbstractExpiringEntity implements Cloneable {
     @Enumerated(EnumType.STRING)
     private CurrencyCode currency;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Score score;
-
     private String name;
 
     private double minSum;
@@ -30,9 +27,6 @@ public class Credit extends AbstractExpiringEntity implements Cloneable {
     private double maxSum;
 
     private double percent;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private CreditType creditTypes;
 
     public Credit clone() throws CloneNotSupportedException {
         return (Credit) super.clone();

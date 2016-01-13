@@ -1,6 +1,7 @@
 package com.yourbank.data.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,9 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = UserProfile.class)
     private UserProfile userProfile;
 
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Score.class)
+    private Score score;
     public User(String password, String email) {
         this.password = password;
         this.email = email;

@@ -30,5 +30,6 @@ public class LoginFail implements AuthenticationFailureHandler {
             System.err.println("block " + user.getEmail());
         }
         httpServletResponse.setStatus(401);
+        httpServletResponse.sendRedirect("/#/login?error");
     }
 }

@@ -43,7 +43,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model) {
+    public User processRegistration(@ModelAttribute("userForm") User user) {
         user = userService.add(user);
         UserRole role = new UserRole("ROLE_USER");
         role = userRoleService.add(role);

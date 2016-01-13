@@ -18,7 +18,6 @@ public class AccrualTask {
     @Scheduled(fixedRate = 10000)
     public void execute() {
         System.err.println("task " + new Date());
-        System.err.println("denis3119@gmail.com".hashCode());
         userCreditService.accruedAmounts();
         userCreditService.accrualFine();
     }

@@ -11,10 +11,7 @@ import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -42,7 +39,7 @@ public class CreditController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public List<Credit> add(Credit credit) {
+    public List<Credit> add(@RequestBody Credit credit) {
         creditService.add(credit);
         return creditService.getAll();
     }
@@ -93,7 +90,7 @@ public class CreditController {
 
     @ResponseBody
     @RequestMapping(value = "/getAllNotPaidAccrual", method = RequestMethod.GET)
-    public List<Accrual> getAllNotPaidAccrual(User user) {
+    public List<Accrual> getAllNotPaidAccrual(@RequestBody User user) {
         user = userService.getByEmail(user.getEmail());
         List<Accrual> accruals = new ArrayList<>();
         for (UserCredit credit : user.getUserCredits()) {

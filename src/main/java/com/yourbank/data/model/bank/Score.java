@@ -1,15 +1,14 @@
 package com.yourbank.data.model.bank;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import com.yourbank.data.model.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * @author admin.
@@ -22,7 +21,9 @@ public class Score extends AbstractExpiringEntity {
 
     private String name;
     private double value;
-    @ManyToOne
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    @JsonBackReference
     private User user;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ScoreType scoreTypes;

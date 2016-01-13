@@ -21,4 +21,8 @@ public class Accrual extends AbstractExpiringEntity {
     private double fine;//пеня
     private Date month;//за какой месяц
     private boolean paid;//оплачено или нет
+
+    public double allSum() {
+        return sum + percent + fine;
+    }
 }

@@ -1,6 +1,9 @@
 package com.yourbank.web.controller;
 
-import com.yourbank.data.model.bank.*;
+import com.yourbank.data.model.bank.Credit;
+import com.yourbank.data.model.bank.Request;
+import com.yourbank.data.model.bank.Score;
+import com.yourbank.data.model.bank.ScoreType;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.repository.CreditTypeRepository;
 import com.yourbank.service.bank.CreditService;
@@ -58,8 +61,10 @@ public class BaseController {
     }
 
     private void createCredits() {
+        if (!creditService.getAll().isEmpty()) {
+            return;
+        }
         Credit credit = new Credit();
-        credit.setCreditTypes(new CreditType("На машину"));
         credit.setCurrency(Credit.CurrencyCode.BLR);
         credit.setDescription("Не дорого на машину");
         credit.setMaxSum(100);
@@ -72,8 +77,6 @@ public class BaseController {
         score.setCurrency(Credit.CurrencyCode.BLR);
         score.setScoreTypes(new ScoreType("auto"));
         score.setValue(0);
-
-        credit.setScore(score);
         creditService.add(credit);
     }
 
