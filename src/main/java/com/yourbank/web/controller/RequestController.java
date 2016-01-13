@@ -68,8 +68,8 @@ public class RequestController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/unApprove", method = RequestMethod.POST)
-    public Request unApprove(@RequestBody Request request) {
+    @RequestMapping(value = "/decline", method = RequestMethod.POST)
+    public Request decline(@RequestBody Request request) {
         request = requestService.approve(request);
         if (request != null) {
             sender.sendConfirmInBank(request.getEmail(), false, request);

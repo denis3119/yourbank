@@ -6,7 +6,7 @@
     function ManagerController($http) {
         var vm = this;
 
-        vm.requests = {};
+        vm.requests = [];
 
         (function () {
             $http.get('request/all').then(function (data) {
@@ -15,11 +15,19 @@
         })();
 
         vm.approve = function(request) {
-            request.status = 'success';
+            $http.post('request/approve', request).then(function (responce) {
+                _.extend(_.find(vm.requests, function (elem) {
+                    return elem.id == responce.data.id;
+                }), responce.data);
+            });
         };
 
         vm.decline = function(request) {
-            request.status = 'danger';
+            $http.post('request/decline', request).then(function (responce) {
+                _.extend(_.find(vm.requests, function (elem) {
+                    return elem.id == responce.data.id;
+                }), responce.data);
+            });
         };
     }
 })();
