@@ -12,6 +12,7 @@ import com.yourbank.service.bank.ScoreService;
 import com.yourbank.service.status.RequestStatus;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -115,12 +116,14 @@ public class BaseController {
     }
 
     @RequestMapping(value = "/profile/layout", method = RequestMethod.GET)
+    @Secured("ROLE_USER")
     public String profileView() {
         return "private/profile";
     }
 
     @RequestMapping(value = "/account/current", method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_USER")
     public User currentUser() {
         return userService.current();
     }
