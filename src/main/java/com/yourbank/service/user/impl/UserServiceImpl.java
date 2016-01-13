@@ -8,6 +8,7 @@ import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
+import com.yourbank.util.PasswordValidator;
 import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
     public User add(@NotNull User user) {
         if (user != null && getByEmail(user.getEmail()) == null) {
+            if (!PasswordValidator.validate(user.getPassword())) {
+                return null;
+            }
             UserProfile userProfile = new UserProfile();
             user.setUserProfile(userProfile);
             user.setPassword(UserUtil.getPasswordHash(user.getPassword()));

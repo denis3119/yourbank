@@ -80,21 +80,21 @@ public class BaseController {
     private void createDefaultUser() {
         if (!userService.userCreated("admin@gmail.com")) {
             User user = new User();
-            user.setPassword("admin");
+            user.setPassword("password1*");
             user.setEmail("admin@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_ADMIN", "ROLE_USER");
         }
         if (!userService.userCreated("user@gmail.com")) {
             User user = new User();
-            user.setPassword("user");
+            user.setPassword("password1*");
             user.setEmail("user@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
         }
         if (!userService.userCreated("user1@gmail.com")) {
             User user = new User();
-            user.setPassword("user1");
+            user.setPassword("password1*");
             user.setEmail("user1@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");

@@ -3,6 +3,8 @@ package com.yourbank.web.controller;
 import com.yourbank.data.model.user.User;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.Misc;
+import com.yourbank.util.PasswordValidator;
+import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,9 +56,12 @@ public class ProfileController {
         return "/profile/confirmed";
     }
 
-    private void validate(@RequestParam("password") String password, @RequestParam("password-confirm") String password_confirm, @RequestParam("email") String email, @RequestParam("hash") int hash) throws Exception {
+    private void validate(@RequestParam("password") String password,
+                          @RequestParam("password-confirm") String password_confirm,
+                          @RequestParam("email") String email,
+                          @RequestParam("hash") int hash) throws Exception {
         password = Misc.norm(password);
-        if (!password.equals(password_confirm) || password.length() < 6) {
+        if (!password.equals(password_confirm) || !PasswordValidator.validate(password)) {
             throw new Exception("password error");
         }
         User user = userService.getByEmail(email);
@@ -66,5 +71,17 @@ public class ProfileController {
         if (hash != user.getEmail().hashCode()) {
             throw new Exception("hash error");
         }
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    @ResponseBody
+    @Secured("ROLE_USER")
+    public User changePassword(String password) {
+        User savedUser = userService.getByEmail(userService.current().getEmail());
+        if (PasswordValidator.validate(password)) {
+            savedUser.setPassword(UserUtil.getPasswordHash(password));
+            return userService.update(savedUser);
+        }
+        return null;
     }
 }
