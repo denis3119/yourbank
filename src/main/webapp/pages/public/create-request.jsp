@@ -32,6 +32,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-sm-2 control-label">Credit</label>
+        <div class="col-md-10">
+          <select class="form-control" ng-model="request.request.credit" ng-options="credit.name for credit in request.credits">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-sm-2 control-label">Target</label>
         <div class="col-md-10">
           <input class="form-control" required type="text" ng-model="request.request.target">
