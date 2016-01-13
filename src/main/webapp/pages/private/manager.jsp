@@ -30,13 +30,13 @@
         </fieldset>
     </div>
     <div class="col-md-9 well well-sm" style="margin-left: 1%">
-        <div ng-if="!(manager.requests | filter:search | filter:{status: filter.status, period: filter.period}).length">
+        <div ng-if="!(manager.requests | filter:search | filter:{status: filter.status, period: filter.period, expired: false}).length">
             No requests found
         </div>
         <uib-accordion>
             <uib-accordion-group ng-class="{'panel-success': request.status == 'APPROVED', 'panel-danger': request.status == 'DECLINED'}"
                                  heading="Request number {{request.id}}" ng-repeat="request in manager.requests
-                                 | filter:search | filter:{status: filter.status, period: filter.period}">
+                                 | filter:search | filter:{status: filter.status, period: filter.period, expired: false}">
                 <ul class="list-group">
                     <li class="list-group-item"><strong>FIO: </strong><em>{{request.firstName}} {{request.lastName}} {{request.patronymic}}</em></li>
                     <li class="list-group-item"><strong>Email: </strong><em>{{request.email}}</em></li>
