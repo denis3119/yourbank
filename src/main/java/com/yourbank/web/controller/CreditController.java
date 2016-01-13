@@ -9,6 +9,7 @@ import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +50,13 @@ public class CreditController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Credit> credits() {
+        return creditService.getAll().stream().filter(credit -> !credit.isExpired()).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @RequestMapping(value = "/allCredits", method = RequestMethod.GET)
+    @ResponseBody
+    @Secured("ROLE_ADMIN")
+    public List<Credit> activeCredits() {
         return creditService.getAll();
     }
 
