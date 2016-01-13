@@ -30,12 +30,14 @@ public class AdminController {
 
     @RequestMapping(value = "/users/all", method = RequestMethod.GET)
     @ResponseBody
+    @Secured("ROLE_ARMIN")
     private List<User> viewAllUsers() {
         return userService.getAll();
     }
 
     @RequestMapping(value = "/unBlock", method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public User unBlock(@RequestBody User user) {
         return userService.unBlock(user);
     }

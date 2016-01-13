@@ -33,12 +33,14 @@ public class CreditController {
     UserService userService;
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @Secured("ROLE_ADMIN")
     public String add() {
         return "create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     public List<Credit> add(@RequestBody Credit credit) {
         creditService.add(credit);
         return creditService.getAll();
@@ -59,7 +61,8 @@ public class CreditController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public List<Credit> Delete(Credit credit) {
+    @Secured("ROLE_ADMIN")
+    public List<Credit> Delete(@RequestBody Credit credit) {
         creditService.delete(credit);
         return creditService.getAll();
     }
@@ -72,7 +75,7 @@ public class CreditController {
 
     @ResponseBody
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
-    public UserCredit approve(UserCredit userCredit, User user, double sum, int term) throws CloneNotSupportedException {
+    public UserCredit approve(@RequestBody UserCredit userCredit, @RequestBody User user, @RequestBody double sum, @RequestBody int term) throws CloneNotSupportedException {
         return creditService.approveCredit(userCredit, user, sum, term);
     }
 
@@ -89,6 +92,7 @@ public class CreditController {
     }
 
     @ResponseBody
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/getAllNotPaidAccrual", method = RequestMethod.GET)
     public List<Accrual> getAllNotPaidAccrual(@RequestBody User user) {
         user = userService.getByEmail(user.getEmail());
