@@ -7,8 +7,6 @@ import com.yourbank.util.PasswordValidator;
 import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,14 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProfileController {
     @Autowired
     UserService userService;
-
-    @ResponseBody
-    @Secured("ROLE_USER")
-    @RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
-    public User loginView() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
-        return userService.getByEmail(userDetails.getUsername());
-    }
 
     //  @ResponseBody
     @Secured("ROLE_USER")
@@ -76,12 +66,12 @@ public class ProfileController {
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
     @ResponseBody
     @Secured("ROLE_USER")
-    public User changePassword(String password) {
-        User savedUser = userService.getByEmail(userService.current().getEmail());
+    public User changePassword(String password) throws Exception {
+        User savedUser = userService.current();
         if (PasswordValidator.validate(password)) {
             savedUser.setPassword(UserUtil.getPasswordHash(password));
             return userService.update(savedUser);
         }
-        return null;
+       throw new Exception("error");
     }
 }
