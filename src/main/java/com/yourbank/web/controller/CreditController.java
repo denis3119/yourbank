@@ -2,8 +2,10 @@ package com.yourbank.web.controller;
 
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Credit;
+import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
+import com.yourbank.data.repository.RequestRepository;
 import com.yourbank.data.repository.UserCreditRepository;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.user.UserService;
@@ -32,10 +34,13 @@ public class CreditController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    @Secured("ROLE_ADMIN")
-    public String add() {
-        return "create";
+    @Autowired
+    private RequestRepository requestRepository;
+
+    @RequestMapping(value = "/new/layout", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
+    public String create() {
+        return "private/create-credit";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -74,9 +79,12 @@ public class CreditController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/approve", method = RequestMethod.POST)
-    public UserCredit approve(@RequestBody UserCredit userCredit, @RequestBody User user) throws CloneNotSupportedException {
-        return creditService.approveCredit(userCredit, user);
+    @RequestMapping(value = "/approve/{requestId}", method = RequestMethod.POST)
+    public UserCredit approve(@RequestBody UserCredit userCredit, @PathVariable Long requestId) throws CloneNotSupportedException {
+        Request request = requestRepository.findOne(requestId);
+        request.setExpired(true);
+        requestRepository.saveAndFlush(request);
+        return creditService.approveCredit(userCredit, userCredit.getUser(), userCredit.getSum(), userCredit.getTerm());
     }
 
     @ResponseBody

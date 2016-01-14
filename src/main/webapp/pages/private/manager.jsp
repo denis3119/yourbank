@@ -1,15 +1,44 @@
 <div class="manager-content">
-    <div class="well well-sm">
-        <div ng-if="!manager.requests.length">
-            No request found
+    <div class="col-md-2 well well-sm">
+        <fieldset class="form-horizontal">
+            <legend>Filters</legend>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" ng-model="search.$">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label">Status</label>
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control" ng-model="filter.status">
+                        <option>Approved</option>
+                        <option selected="selected">Pending</option>
+                        <option>Declined</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label">Period</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" ng-model="filter.period">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-md-9 well well-sm" style="margin-left: 1%">
+        <div ng-if="!(manager.requests | filter:search | filter:{status: filter.status, period: filter.period, expired: false}).length">
+            No requests found
         </div>
         <uib-accordion>
             <uib-accordion-group ng-class="{'panel-success': request.status == 'APPROVED', 'panel-danger': request.status == 'DECLINED'}"
-                                 heading="Request number {{request.id}}" ng-repeat="request in manager.requests">
+                                 heading="Request number {{request.id}}" ng-repeat="request in manager.requests
+                                 | filter:search | filter:{status: filter.status, period: filter.period, expired: false}">
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>First name: </strong><em>{{request.firstName}}</em></li>
-                    <li class="list-group-item"><strong>Last name: </strong><em>{{request.lastName}}</em></li>
-                    <li class="list-group-item"><strong>Patronymic: </strong><em>{{request.patronymic}}</em></li>
+                    <li class="list-group-item"><strong>FIO: </strong><em>{{request.firstName}} {{request.lastName}} {{request.patronymic}}</em></li>
                     <li class="list-group-item"><strong>Email: </strong><em>{{request.email}}</em></li>
                     <li class="list-group-item"><strong>Credit name: </strong><em>{{request.credit.name}}</em></li>
                     <li class="list-group-item"><strong>Credit period: </strong><em>{{request.period}}</em></li>

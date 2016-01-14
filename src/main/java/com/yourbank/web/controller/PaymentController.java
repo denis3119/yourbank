@@ -36,7 +36,7 @@ public class PaymentController {
 
     @ResponseBody
     @RequestMapping(value = "/pay/", method = RequestMethod.POST)
-    @Secured("USER_ROLE")
+    @Secured("ROLE_USER")
     public Payment creditPay(@RequestBody UserCredit userCredit, @RequestBody Accrual accrual) {
         Payment payment = new Payment();
         User user = userService.current();
