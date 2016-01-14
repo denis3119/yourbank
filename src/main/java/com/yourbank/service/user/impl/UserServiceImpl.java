@@ -1,5 +1,7 @@
 package com.yourbank.service.user.impl;
 
+import com.yourbank.config.mail.EmailSender;
+import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
@@ -9,6 +11,7 @@ import com.yourbank.service.user.UserProfileService;
 import com.yourbank.service.user.UserRoleService;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.PasswordValidator;
+import com.yourbank.util.RequestUtil;
 import com.yourbank.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -31,6 +34,8 @@ public class UserServiceImpl implements UserService {
     UserProfileService userProfileService;
     @Autowired
     UserRoleService userRoleService;
+    @Autowired
+    EmailSender sender;
     @Autowired
     private UserProfileRepository userProfileRepository;
 
@@ -117,6 +122,7 @@ public class UserServiceImpl implements UserService {
         return getByEmail(user.getEmail());
     }
 
+
     @Override
     public User block(User user) {
         user.setCountErrors(user.getCountErrors() + 1);
@@ -149,6 +155,17 @@ public class UserServiceImpl implements UserService {
     public void setUserProfile(User user, UserProfile userProfile) {
         user.setUserProfile(userProfile);
         update(user);
-        userProfileService.add(userProfile);
+    }
+
+    @Override
+    public User createUserFromRequest(Request request) {
+        User user = RequestUtil.getUserFromRequest(request);
+        user = add(user);
+        UserProfile userProfile = RequestUtil.getUserProfile(request);
+        userProfile.setUser(user);
+        userProfile = userProfileService.add(userProfile);
+        user.setUserProfile(userProfile);
+        sender.sendConfirmMail(user);
+        return update(user);
     }
 }

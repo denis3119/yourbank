@@ -1,7 +1,6 @@
 package com.yourbank.service.bank;
 
 import com.yourbank.data.model.bank.Request;
-import com.yourbank.data.model.user.User;
 import com.yourbank.service.common.Service;
 
 /**
@@ -10,5 +9,4 @@ import com.yourbank.service.common.Service;
 public interface RequestService extends Service<Request> {
         Request approve(Request request);
         Request unApprove(Request request);
-        User createUserFromRequest(Request request);
 }

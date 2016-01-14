@@ -39,12 +39,4 @@ public class UserCredit extends AbstractExpiringEntity {
     private int term; // окончание
     private double sum;
     private boolean paid;
-
-    public UserCredit(UserCredit credit, User user) {
-        setDescription(credit.getDescription());
-        setCurrency(credit.getCurrency());
-        setName(credit.getName());
-        setPercent(credit.getPercent());
-        this.user = user;
-    }
 }

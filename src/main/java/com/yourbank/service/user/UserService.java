@@ -1,7 +1,9 @@
 package com.yourbank.service.user;
 
 
+import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.service.common.Service;
 
 /**
@@ -26,4 +28,8 @@ public interface UserService extends Service<User> {
     User block(User user);
 
     User unBlock(User user);
+
+    void setUserProfile(User user, UserProfile userProfile);
+
+    User createUserFromRequest(Request request);
 }

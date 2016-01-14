@@ -2,7 +2,7 @@ package com.yourbank.service.bank;
 
 
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.service.common.Service;
 
@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by admin on 11/6/2015.
  */
 public interface CreditService extends Service<Credit> {
-    UserCredit approveCredit(UserCredit credit, User user) throws CloneNotSupportedException;
+    UserCredit approveCredit(UserCredit credit, Request request) throws CloneNotSupportedException;
 
     Credit getByCurrency(Currency currency);
 

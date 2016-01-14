@@ -5,6 +5,7 @@ import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.bank.ScoreType;
 import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.repository.CreditTypeRepository;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.bank.RequestService;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @author Yugov Alexandr.
@@ -87,7 +91,10 @@ public class BaseController {
             user.setPassword("password1*");
             user.setEmail("admin@gmail.com");
             user.setEnabled(true);
-            userService.register(user, "ROLE_ADMIN", "ROLE_USER");
+            user = userService.register(user, "ROLE_ADMIN", "ROLE_USER");
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            user.setUserProfile(profile);
+            userService.update(user);
         }
         if (!userService.userCreated("user@gmail.com")) {
             User user = new User();
@@ -95,6 +102,9 @@ public class BaseController {
             user.setEmail("user@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            user.setUserProfile(profile);
+            userService.update(user);
         }
         if (!userService.userCreated("user1@gmail.com")) {
             User user = new User();
@@ -102,6 +112,9 @@ public class BaseController {
             user.setEmail("user1@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            user.setUserProfile(profile);
+            userService.update(user);
         }
     }
 

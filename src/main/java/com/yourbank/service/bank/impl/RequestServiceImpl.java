@@ -75,15 +75,4 @@ public class RequestServiceImpl implements RequestService {
         return setStatusAndUpdate(request, RequestStatus.DECLINED);
     }
 
-    @Override
-    public User createUserFromRequest(Request request) {
-        User user = RequestUtil.getUserFromRequest(request);
-        userService.add(user);
-        UserProfile userProfile = RequestUtil.getUserProfile(request);
-        userProfile.setUser(user);
-        userProfile = userProfileService.add(userProfile);
-        user.setUserProfile(userProfile);
-        sender.sendConfirmMail(user);
-        return userService.update(user);
-    }
 }
