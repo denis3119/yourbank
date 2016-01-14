@@ -62,8 +62,8 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public UserCredit approveCredit(UserCredit credit, User user, double sum, int term) throws CloneNotSupportedException {
-        UserCredit userCredit = new UserCredit(credit, user, sum, term);
+    public UserCredit approveCredit(UserCredit credit, User user) throws CloneNotSupportedException {
+        UserCredit userCredit = new UserCredit(credit, user);
         return userCreditRepository.saveAndFlush(userCredit);
     }
 

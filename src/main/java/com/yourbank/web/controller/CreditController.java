@@ -84,7 +84,7 @@ public class CreditController {
         Request request = requestRepository.findOne(requestId);
         request.setExpired(true);
         requestRepository.saveAndFlush(request);
-        return creditService.approveCredit(userCredit, userCredit.getUser(), userCredit.getSum(), userCredit.getTerm());
+        return creditService.approveCredit(userCredit, userCredit.getUser());
     }
 
     @ResponseBody
