@@ -4,7 +4,8 @@
         .module('yourbank', [
             'ngRoute',
             'ui.bootstrap',
-            'ui.mask'
+            'ui.mask',
+            'cgBusy'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider

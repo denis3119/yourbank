@@ -33,7 +33,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-md-10">
-          <button class="btn btn-success pull-right" type="submit">Create request</button>
+          <button class="btn btn-success pull-right" type="submit">Create credit</button>
           <button class="btn btn-danger pull-right" style="margin-right: 1%" type="button" ng-click="$dismiss('qwerty')">Cancel</button>
         </div>
       </div>

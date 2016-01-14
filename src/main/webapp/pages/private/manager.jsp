@@ -29,7 +29,7 @@
             </div>
         </fieldset>
     </div>
-    <div class="col-md-9 well well-sm" style="margin-left: 1%">
+    <div class="col-md-9 well well-sm" style="margin-left: 1%" cg-busy="manager.busy">
         <div ng-if="!(manager.requests | filter:search | filter:{status: filter.status, period: filter.period, expired: false}).length">
             No requests found
         </div>

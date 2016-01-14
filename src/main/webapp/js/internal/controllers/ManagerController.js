@@ -17,7 +17,7 @@
         vm.initData();
 
         vm.approve = function(request) {
-            $http.post('request/approve', request).then(function (responce) {
+            vm.busy = $http.post('request/approve', request).then(function (responce) {
                 _.extend(_.find(vm.requests, function (elem) {
                     return elem.id == responce.data.id;
                 }), responce.data);
@@ -25,7 +25,7 @@
         };
 
         vm.decline = function(request) {
-            $http.post('request/decline', request).then(function (responce) {
+            vm.busy = $http.post('request/decline', request).then(function (responce) {
                 _.extend(_.find(vm.requests, function (elem) {
                     return elem.id == responce.data.id;
                 }), responce.data);
@@ -39,7 +39,7 @@
                 size: 'lg',
                 templateUrl: 'credit/new/layout'
             }).result.then(function (result) {
-                    $http.post('credit/approve/' + request.id, {}).then(function (responce) {
+                    $http.post('credit/approve/' + request.id, result).then(function (responce) {
                         _.extend(_.find(vm.requests, function (elem) {
                             return elem.id == responce.data.id;
                         }), responce.data);
