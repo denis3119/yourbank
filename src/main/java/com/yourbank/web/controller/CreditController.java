@@ -75,8 +75,8 @@ public class CreditController {
 
     @ResponseBody
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
-    public UserCredit approve(@RequestBody UserCredit userCredit, @RequestBody User user, @RequestBody double sum, @RequestBody int term) throws CloneNotSupportedException {
-        return creditService.approveCredit(userCredit, user, sum, term);
+    public UserCredit approve(@RequestBody UserCredit userCredit, @RequestBody User user) throws CloneNotSupportedException {
+        return creditService.approveCredit(userCredit, user);
     }
 
     @ResponseBody
