@@ -1,7 +1,6 @@
 package com.yourbank.data.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,8 +23,6 @@ import java.util.stream.Collectors;
 public class User extends AbstractExpiringEntity implements UserDetails {
 
     private int countErrors = 0;
-    @OneToMany
-    private List<UserCredit> userCredits;
 
     private boolean enabled = false;
 
@@ -47,9 +43,6 @@ public class User extends AbstractExpiringEntity implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = UserProfile.class)
     private UserProfile userProfile;
 
-    @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Score.class)
-    private Score score;
     public User(String password, String email) {
         this.password = password;
         this.email = email;

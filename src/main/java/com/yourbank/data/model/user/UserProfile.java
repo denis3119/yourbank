@@ -33,13 +33,16 @@ public class UserProfile extends AbstractExpiringEntity {
     @NonNull
     private String passportNumber;
 
-    @OneToMany
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Score.class)
     @NonNull
-    private List<Score> scores = new ArrayList<>();
+    private Score score;
 
     @NonNull
     @OneToOne(fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private User user;
+
+    @OneToMany
+    private List<UserCredit> userCredits = new ArrayList<>();
 }

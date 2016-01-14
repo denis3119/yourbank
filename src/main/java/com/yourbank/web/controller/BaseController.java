@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -92,7 +91,7 @@ public class BaseController {
             user.setEmail("admin@gmail.com");
             user.setEnabled(true);
             user = userService.register(user, "ROLE_ADMIN", "ROLE_USER");
-            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score(), user);
             user.setUserProfile(profile);
             userService.update(user);
         }
@@ -102,7 +101,7 @@ public class BaseController {
             user.setEmail("user@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
-            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score(), user);
             user.setUserProfile(profile);
             userService.update(user);
         }
@@ -112,7 +111,7 @@ public class BaseController {
             user.setEmail("user1@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
-            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new ArrayList<>(), user);
+            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score(), user);
             user.setUserProfile(profile);
             userService.update(user);
         }
