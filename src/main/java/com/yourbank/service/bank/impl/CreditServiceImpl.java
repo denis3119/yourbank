@@ -7,6 +7,7 @@ import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.CreditRepository;
 import com.yourbank.data.repository.UserCreditRepository;
 import com.yourbank.service.bank.CreditService;
+import com.yourbank.service.bank.RequestService;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class CreditServiceImpl implements CreditService {
     CreditRepository creditRepository;
     @Autowired
     UserCreditRepository userCreditRepository;
+
+    @Autowired
+    RequestService requestService;
 
     @Autowired
     UserService userService;
@@ -67,7 +71,10 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public UserCredit approveCredit(UserCredit credit, Request request) throws CloneNotSupportedException {
+    public UserCredit approveCredit(UserCredit credit, Long requestId) throws CloneNotSupportedException {
+        Request request = requestService.get(requestId);
+        request.setExpired(true);
+        requestService.add(request);
         User user = userService.createUserFromRequest(request);
         credit.setUser(user);
         return userCreditRepository.saveAndFlush(credit);

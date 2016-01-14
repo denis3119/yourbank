@@ -2,7 +2,6 @@ package com.yourbank.web.controller;
 
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.RequestRepository;
@@ -81,10 +80,7 @@ public class CreditController {
     @ResponseBody
     @RequestMapping(value = "/approve/{requestId}", method = RequestMethod.POST)
     public UserCredit approve(@RequestBody UserCredit userCredit, @PathVariable Long requestId) throws CloneNotSupportedException {
-        Request request = requestRepository.findOne(requestId);
-        request.setExpired(true);
-        requestRepository.saveAndFlush(request);
-        return creditService.approveCredit(userCredit, request);
+        return creditService.approveCredit(userCredit, requestId);
     }
 
     @ResponseBody
