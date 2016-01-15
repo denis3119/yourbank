@@ -32,8 +32,6 @@ public class UserCredit extends AbstractExpiringEntity {
     private String name;
 
     private double percent;
-    @ManyToOne
-    private User user;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Accrual> accruals = new ArrayList<>();
     private int term; // окончание

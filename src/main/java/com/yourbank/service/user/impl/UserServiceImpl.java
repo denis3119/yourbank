@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
             user.setPassword(UserUtil.getPasswordHash(user.getPassword()));
             return userRepository.saveAndFlush(user);
         }
-        return user;
+        return getByEmail(user.getEmail());
     }
 
     public void delete(@NotNull User user) {
@@ -161,8 +161,10 @@ public class UserServiceImpl implements UserService {
     public User createUserFromRequest(Request request) {
         User user = RequestUtil.getUserFromRequest(request);
         user = add(user);
+        if (user.getUserProfile() != null) {
+            return user;
+        }
         UserProfile userProfile = RequestUtil.getUserProfile(request);
-        userProfile.setUser(user);
         userProfile = userProfileService.add(userProfile);
         user.setUserProfile(userProfile);
         sender.sendConfirmMail(user);
