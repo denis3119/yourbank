@@ -1,15 +1,20 @@
 package com.yourbank.util;
 
+import com.sun.scenario.effect.Effect;
 import com.yourbank.data.model.bank.Score;
+import com.yourbank.data.model.log.ScoreLog;
 import com.yourbank.data.model.user.User;
 import com.yourbank.service.bank.ScoreService;
+import com.yourbank.service.log.ScoreLogService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by admin on 12.12.2015.
  */
 
 public class ScoreUtil {
-
+    @Autowired
+    static ScoreLogService scoreLogService;
     private static boolean notValidated(Score fromScore, Score toScore) {
         return validateScore(fromScore) || validateScore(toScore);
     }
@@ -35,23 +40,31 @@ public class ScoreUtil {
     }
 
     public static synchronized State transfer(Score fromScore, Score toScore, User user, double value, ScoreService scoreService) {
+        Action actionType = Action.TRANSFER;
+        ScoreLog scoreLog ;
+        State state = State.FAIL;
+        fromScore = downValue(fromScore, value);
         try {
             if (!hasPermissions(user, fromScore)) {
-                return State.PERMISSION_ERROR;
+                state = State.PERMISSION_ERROR;
+            } else if (notValidated(fromScore, toScore)) {
+                state = State.VALUE_ERROR;
+            } else if (fromScore.getValue() < value) {
+                state = State.VALUE_ERROR;
+            } else
+            {
+                toScore = upValue(toScore, value);
+                scoreService.update(fromScore, toScore);
+                state =  State.OK;
             }
-            if (notValidated(fromScore, toScore)) {
-                return State.VALUE_ERROR;
-            }
-            fromScore = downValue(fromScore, value);
-            if (fromScore.getValue() < value) {
-                return State.VALUE_ERROR;
-            }
-            toScore = upValue(toScore, value);
-            scoreService.update(fromScore, toScore);
-            return State.OK;
+
         } catch (Exception e) {
-            return State.FAIL;
+            state =  State.FAIL;
         }
+        scoreLog = new ScoreLog(state,actionType,fromScore,toScore,value,user);
+        scoreLogService.add(scoreLog);
+
+        return state;
     }
 
     public static Score upValue(Score score, double value) {
@@ -66,5 +79,9 @@ public class ScoreUtil {
 
     public enum State {
         OK, FAIL, VALUE_ERROR, PERMISSION_ERROR;
+    }
+
+    public enum Action {
+        TRANSFER;
     }
 }

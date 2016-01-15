@@ -14,4 +14,5 @@ public interface ScoreService extends Service<Score> {
     List<Score> update(Score... scores);
 
     Score getByName(String name);
+
 }

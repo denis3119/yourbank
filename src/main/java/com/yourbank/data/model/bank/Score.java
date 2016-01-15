@@ -3,12 +3,14 @@ package com.yourbank.data.model.bank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
+import com.yourbank.data.model.log.ScoreLog;
 import com.yourbank.data.model.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author admin.
@@ -33,5 +35,4 @@ public class Score extends AbstractExpiringEntity {
         this.name = name;
         this.value = value;
     }
-
 }
