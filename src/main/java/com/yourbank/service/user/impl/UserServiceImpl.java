@@ -147,9 +147,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void confirm(String email, String password) {
-        User user = getByEmail(email);
+    public void confirm(Long userId, String password) {
+        User user = userRepository.findOne(userId);
         user.setPassword(UserUtil.getPasswordHash(password));
+        setBlocked(user, false);
         user.setEnabled(true);
         update(user);
     }

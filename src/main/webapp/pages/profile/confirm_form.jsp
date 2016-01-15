@@ -10,8 +10,8 @@
 <input type="password" min="6" name="password" value="123456" id="password" placeholder="введите пароль"/>
 <input type="password" min="6" name="password_confirm" value="123456" id="password_confirm" placeholder="повторите пароль"/>
 
-    <input type="hidden" name="email" id="email" value="test@test.by" placeholder="повторите пароль"/>
-    <input type="hidden" name="hash" id="hash" value="<%="test@test.by".hashCode()%>" placeholder="повторите пароль"/>
+    <input type="hidden" name="userId" id="email" value="${userId}"/>
+    <input type="hidden" name="hash" id="hash" value="${hash}"/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <button type="submit" value="Сохранить"></button>
 </form>
