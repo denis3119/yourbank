@@ -3,7 +3,7 @@ package com.yourbank.data.model.bank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
-import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.user.UserProfile;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,14 +20,19 @@ import javax.persistence.*;
 public class Score extends AbstractExpiringEntity {
 
     private String name;
+
     private double value;
+
     @OneToOne
     @PrimaryKeyJoinColumn
     @JsonBackReference
-    private User user;
+    private UserProfile userProfile;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ScoreType scoreTypes;
-    private Credit.CurrencyCode currency;
+
+    @Enumerated(EnumType.STRING)
+    private Credit.CurrencyCode currency = Credit.CurrencyCode.BLR;
 
     public Score(String name, double value) {
         this.name = name;

@@ -3,18 +3,20 @@ package com.yourbank.service.user.impl;
 import com.yourbank.data.model.user.UserRole;
 import com.yourbank.data.repository.UserRoleRepository;
 import com.yourbank.service.user.UserRoleService;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author admin.
  */
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
+
     @Autowired
-    UserRoleRepository userRoleRepository;
+    private UserRoleRepository userRoleRepository;
 
     public UserRole add(UserRole entity) {
         if (getByRole(entity.getRole()) != null) {

@@ -28,7 +28,7 @@ public class ScoreUtil {
         if (score == null || user == null) {
             return false;
         }
-        if (score.getUser().getEmail().equals(user.getEmail())) {
+        if (score.getUserProfile().getUser().getEmail().equals(user.getEmail())) {
             return true;
         }
         return false;
