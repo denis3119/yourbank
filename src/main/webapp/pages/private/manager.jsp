@@ -53,6 +53,5 @@
                 </div>
             </uib-accordion-group>
         </uib-accordion>
-
     </div>
 </div>

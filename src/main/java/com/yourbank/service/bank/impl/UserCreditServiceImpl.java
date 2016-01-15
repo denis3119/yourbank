@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserCreditServiceImpl implements UserCreditService {
 
-    private static final int MONTH = 1;
+    private static final int MONTH = 0;
     @Autowired
     UserCreditRepository userCreditRepository;
     @Autowired

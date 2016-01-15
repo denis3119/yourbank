@@ -92,7 +92,7 @@ public class CreditController {
     @ResponseBody
     @RequestMapping(value = "/getAllByUser", method = RequestMethod.POST)
     public List<UserCredit> allUserCredit() {
-        return userService.getByEmail(UserUtil.getCurrentUserDetailInfo().getUsername()).getUserCredits();
+        return userService.getByEmail(UserUtil.getCurrentUserDetailInfo().getUsername()).getUserProfile().getUserCredits();
     }
 
     @ResponseBody
@@ -101,10 +101,9 @@ public class CreditController {
     public List<Accrual> getAllNotPaidAccrual(@RequestBody User user) {
         user = userService.getByEmail(user.getEmail());
         List<Accrual> accruals = new ArrayList<>();
-        for (UserCredit credit : user.getUserCredits()) {
+        for (UserCredit credit : user.getUserProfile().getUserCredits()) {
             accruals.addAll(credit.getAccruals().stream().filter(accrual -> !accrual.isPaid()).collect(Collectors.toList()));
         }
         return accruals;
     }
-
 }

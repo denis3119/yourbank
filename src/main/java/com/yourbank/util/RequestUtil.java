@@ -31,6 +31,8 @@ public class RequestUtil {
         userProfile.setFirstName(request.getFirstName());
         userProfile.setLastName(request.getLastName());
         userProfile.setPatronymic(request.getPatronymic());
+        userProfile.setPassportNumber(request.getPassportNumber());
+        userProfile.setPersonalNumber(request.getPersonalNumber());
         return userProfile;
     }
 }

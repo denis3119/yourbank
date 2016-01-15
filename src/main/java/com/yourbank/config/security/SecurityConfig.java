@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    LoginFail loginFail;
+    private LoginFail loginFail;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

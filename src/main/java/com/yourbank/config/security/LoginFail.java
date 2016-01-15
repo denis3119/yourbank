@@ -18,8 +18,9 @@ import java.io.IOException;
  */
 @Component
 public class LoginFail implements AuthenticationFailureHandler {
+
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {

@@ -8,9 +8,12 @@ import com.yourbank.data.repository.CreditRepository;
 import com.yourbank.data.repository.UserCreditRepository;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.bank.RequestService;
+import com.yourbank.service.bank.ScoreService;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
@@ -30,6 +33,9 @@ public class CreditServiceImpl implements CreditService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ScoreService scoreService;
 
     public Credit add(Credit entity) {
         return creditRepository.saveAndFlush(entity);
@@ -71,13 +77,30 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public UserCredit approveCredit(UserCredit credit, Long requestId) throws CloneNotSupportedException {
+    @ResponseBody
+    public UserCredit approveCredit(@RequestBody UserCredit credit, Long requestId) throws CloneNotSupportedException {
         Request request = requestService.get(requestId);
         request.setExpired(true);
-        requestService.add(request);
+
+        credit.setName(request.getCredit().getName());
+//        credit.setSum(request.getSum());
+        credit.setPercent(request.getCredit().getPercent());
+        credit.setDescription(request.getCredit().getDescription());
+        credit.setCurrency(request.getCredit().getCurrency());
+        credit.setTerm(credit.getTerm());
+        request = requestService.add(request);
         User user = userService.createUserFromRequest(request);
-        credit.setUser(user);
-        return userCreditRepository.saveAndFlush(credit);
+//        Score score = new Score();
+//        score.setValue(0);
+//        score.setCurrency(Credit.CurrencyCode.BLR);
+//        score.setName("123");
+//        credit.setScore(scoreService.add(score));
+        credit = userCreditRepository.saveAndFlush(credit);
+        List<UserCredit> credits = user.getUserProfile().getUserCredits();
+        credits.add(credit);
+        user.getUserProfile().setUserCredits(credits);
+        userService.update(user);
+        return credit;
     }
 
     public Credit getByCurrency(Currency currency) {

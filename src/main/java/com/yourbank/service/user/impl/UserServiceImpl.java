@@ -2,6 +2,7 @@ package com.yourbank.service.user.impl;
 
 import com.yourbank.config.mail.EmailSender;
 import com.yourbank.data.model.bank.Request;
+import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.model.user.UserRole;
@@ -29,13 +30,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    UserProfileService userProfileService;
+    private UserProfileService userProfileService;
     @Autowired
-    UserRoleService userRoleService;
+    private UserRoleService userRoleService;
     @Autowired
-    EmailSender sender;
+    private EmailSender sender;
     @Autowired
     private UserProfileRepository userProfileRepository;
 
@@ -45,11 +46,13 @@ public class UserServiceImpl implements UserService {
                 return null;
             }
             UserProfile userProfile = new UserProfile();
+            Score score = new Score();
+            userProfile.setScore(score);
             user.setUserProfile(userProfile);
             user.setPassword(UserUtil.getPasswordHash(user.getPassword()));
             return userRepository.saveAndFlush(user);
         }
-        return user;
+        return getByEmail(user.getEmail());
     }
 
     public void delete(@NotNull User user) {
@@ -161,8 +164,11 @@ public class UserServiceImpl implements UserService {
     public User createUserFromRequest(Request request) {
         User user = RequestUtil.getUserFromRequest(request);
         user = add(user);
+        if (user.getUserProfile() != null) {
+            return user;
+        }
         UserProfile userProfile = RequestUtil.getUserProfile(request);
-        userProfile.setUser(user);
+        userProfile.setId(user.getUserProfile().getId());
         userProfile = userProfileService.add(userProfile);
         user.setUserProfile(userProfile);
         sender.sendConfirmMail(user);

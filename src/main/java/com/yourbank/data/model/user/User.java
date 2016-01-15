@@ -1,29 +1,32 @@
 package com.yourbank.data.model.user;
 
-import com.yourbank.data.model.bank.Credit;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
-import com.yourbank.data.model.log.ScoreLog;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends AbstractExpiringEntity {
+public class User extends AbstractExpiringEntity implements UserDetails {
+
+    private int countErrors = 0;
 
     private boolean enabled = false;
-
-    @Column(unique = true, nullable = false)
-    private String name;
 
     @Column(nullable = false)
     private String password;
@@ -35,20 +38,54 @@ public class User extends AbstractExpiringEntity {
     @Column(unique = true)
     private String phone;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
-    @OneToMany
-    private List<Credit> credits;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Set<UserRole> userRole = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserProfile userProfile;
 
-    public User(String name, String password, String email) {
-        this.name = name;
+    public User(String password, String email) {
         this.password = password;
         this.email = email;
     }
 
     @OneToMany
     private List<ScoreLog> scoreLog = new ArrayList<>(0); ;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getUserRole().stream()
+                .map(UserRole::getRole)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email);
+    }
 }
 

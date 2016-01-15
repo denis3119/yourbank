@@ -32,6 +32,12 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-sm-2 control-label">Target</label>
+        <div class="col-md-10">
+          <input class="form-control" required type="text" ng-model="request.request.target">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-sm-2 control-label">Credit</label>
         <div class="col-md-10">
           <select class="form-control" ng-model="request.request.credit" ng-options="credit.name for credit in request.credits">
@@ -39,15 +45,16 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Target</label>
+        <label class="col-sm-2 control-label" uib-tooltip="In months" tooltip-placement="bottom">Sum</label>
         <div class="col-md-10">
-          <input class="form-control" required type="text" ng-model="request.request.target">
+          <input class="form-control" ng-disabled="!request.request.credit" required min="{{request.request.credit.minSum}}" max="{{request.request.credit.maxSum}}"
+                 type="number" ng-model="request.request.sum">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label" uib-tooltip="In months" tooltip-placement="bottom">Period</label>
         <div class="col-md-10">
-          <input class="form-control" required type="number" ng-model="request.request.period">
+          <input class="form-control" required min="3" type="number" ng-model="request.request.period">
         </div>
       </div>
       <div class="form-group">

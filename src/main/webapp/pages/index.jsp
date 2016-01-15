@@ -9,6 +9,7 @@
   <link href="<c:url value="/css/external/bootstrap.css"/>" rel="stylesheet" type="text/css">
   <link href="<c:url value="/css/external/bootstrap-theme.css"/>" rel="stylesheet" type="text/css">
   <link href="<c:url value="/css/external/angular-busy.css"/>" rel="stylesheet" type="text/css">
+  <link href="<c:url value="/css/external/angular-growl.css"/>" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
 </head>
 <body ng-controller="GlobalController as global">
@@ -17,6 +18,7 @@
 <script src="<c:url value="/js/external/angular/angular-route.js"/>"></script>
 <script src="<c:url value="/js/external/angular/angular-mask.js"/>"></script>
 <script src="<c:url value="/js/external/angular/angular-busy.js"/>"></script>
+<script src="<c:url value="/js/external/angular/angular-growl.js"/>"></script>
 <script src="<c:url value="/js/external/jquery/jquery-1.11.3.min.js"/>"></script>
 <script src="<c:url value="/js/external/bootstrap/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/js/external/bootstrap/ui-bootstrap-tpls-0.14.3.js"/>"></script>
@@ -31,8 +33,11 @@
 <script src="<c:url value="/js/internal/controllers/ManagerController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/AdminController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/CreateCreditController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/EditProfileController.js"/>"></script>
 
 <script src="<c:url value="/js/internal/services/current-user.service.js"/>"></script>
+
+<div growl></div>
 
 <div class="container-fluid">
   <jsp:include page="partials/header.jsp"/>

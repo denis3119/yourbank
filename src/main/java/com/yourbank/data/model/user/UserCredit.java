@@ -2,7 +2,6 @@ package com.yourbank.data.model.user;
 
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Credit;
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,14 +25,13 @@ public class UserCredit extends AbstractExpiringEntity {
     @Enumerated(EnumType.STRING)
     private Credit.CurrencyCode currency;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Score score;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private UserProfile userProfile;
 
     private String name;
 
     private double percent;
-    @ManyToOne
-    private User user;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Accrual> accruals = new ArrayList<>();
     private int term; // окончание

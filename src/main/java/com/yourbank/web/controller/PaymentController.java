@@ -3,6 +3,7 @@ package com.yourbank.web.controller;
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Payment;
 import com.yourbank.data.model.bank.Score;
+import com.yourbank.data.model.dto.PayCreditDto;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.AccrualRepository;
@@ -37,20 +38,24 @@ public class PaymentController {
     @ResponseBody
     @RequestMapping(value = "/pay/", method = RequestMethod.POST)
     @Secured("ROLE_USER")
-    public Payment creditPay(@RequestBody UserCredit userCredit, @RequestBody Accrual accrual) {
+    public Payment creditPay(@RequestBody PayCreditDto payCreditDto) throws Exception {
         Payment payment = new Payment();
         User user = userService.current();
-        Score userScore = user.getScore();
+        Score userScore = user.getUserProfile().getScore();
         if (userScore == null) {
-            return null;
+            throw new Exception("");
         }
         double scoreValue = userScore.getValue();
-        if (scoreValue < accrual.allSum()) {
-            return null;
+        Accrual accrual = payCreditDto.getAccrual();
+        UserCredit userCredit = payCreditDto.getCredit();
+        if (scoreValue < accrual.allSum() && payCreditDto.getSum() < accrual.allSum()) {
+            throw new Exception("");
         }
+
         double value = accrual.allSum();
+        double rest = payCreditDto.getSum() - value;
         userScore.setValue(userScore.getValue() - value);
-        scoreService.update(userScore);
+        userScore = scoreService.update(userScore);
         accrual.setPaid(true);
         accrualRepository.saveAndFlush(accrual);
         userCredit.setSum(userCredit.getSum() - value);
@@ -58,7 +63,15 @@ public class PaymentController {
         payment.setUserCredit(userCredit);
         payment.setValue(value);
         payment.setPaymentType(PaymentType.CREDIT);
+        if (rest > 0) {
+            double crib = Math.abs(userCredit.getSum() - rest);
+            if (userCredit.getSum() < rest) {
+                userScore.setValue(0);
+            } else {
+                userCredit.setSum(userCredit.getSum() - rest);
+            }
+            userScore.setValue(userScore.getValue() - crib);
+        }
         return paymentRepository.saveAndFlush(payment);
     }
-
 }

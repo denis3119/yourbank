@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by admin on 09.01.2016.
@@ -21,9 +18,9 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 public class Payment extends AbstractExpiringEntity {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserCredit userCredit;
 
     private double value;

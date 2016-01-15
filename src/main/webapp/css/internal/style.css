@@ -5,3 +5,7 @@ body {
 body .navbar-header-right {
     padding-right: 3%;
 }
+
+.editProfile {
+    float: right;
+}
