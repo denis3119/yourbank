@@ -49,8 +49,8 @@
           <input class="form-control" required type="number" ng-model="request.sum">
         </div>
       </div>
-    </div>
   </form>
+</div>
 </div>
 
 <div class="modal-footer">

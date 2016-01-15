@@ -165,6 +165,7 @@ public class UserServiceImpl implements UserService {
             return user;
         }
         UserProfile userProfile = RequestUtil.getUserProfile(request);
+        userProfile.setId(user.getUserProfile().getId());
         userProfile = userProfileService.add(userProfile);
         user.setUserProfile(userProfile);
         sender.sendConfirmMail(user);
