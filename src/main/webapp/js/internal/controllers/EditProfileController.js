@@ -7,8 +7,11 @@
 
         $scope.changePassword = function() {
             $http.post('profile/changePassword', $scope.newPassword).then(function () {
-                $scope.newPassword = '';
                 growl.success("Password was updated");
+            }).catch(function () {
+                growl.error("Wrong password");
+            }).finally(function () {
+                $scope.newPassword = '';
             })
         }
     }

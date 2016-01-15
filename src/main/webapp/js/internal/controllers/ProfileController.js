@@ -3,7 +3,7 @@
     angular.module('yourbank')
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, $uibModal, CurrentUser) {
+    function ProfileController($rootScope, $uibModal, $http, CurrentUser, growl) {
         var vm = this;
 
         vm.view = 'general';
@@ -15,7 +15,10 @@
                 controller: 'EditProfileController',
                 templateUrl: 'profile/edit/layout'
             }).result.then(function (result) {
-                    console.log(CurrentUser.current.user);
+                    $http.post('', result).then(function() {
+                        CurrentUser.updateUser();
+                        growl.success('Data was updated');
+                    })
                 });
 
         }

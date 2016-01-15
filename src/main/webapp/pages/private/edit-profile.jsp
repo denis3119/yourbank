@@ -3,32 +3,26 @@
 </div>
 
 <div class="modal-body">
-  <form class="form-horizontal" name="createCreditForm">
+  <form class="form-horizontal" name="editProfileForm">
     <div class="form-group">
-      <label class="col-sm-3 control-label">First name</label>
-      <div class="col-md-8">
-        <input class="form-control" disabled type="text" ng-model="user.userProfile.firstName">
+      <label class="col-sm-3 control-label">Email</label>
+      <div class="col-md-5">
+        <input class="form-control" required type="email" ng-model="user.email">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3  control-label">Last name</label>
-      <div class="col-md-8">
-        <input class="form-control" disabled type="text" ng-model="user.userProfile.lastName">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Patronymic</label>
-      <div class="col-md-8">
-        <input class="form-control" disabled type="text" ng-model="user.userProfile.patronymic">
+      <label class="col-sm-3 control-label">Phone</label>
+      <div class="col-md-5">
+        <input class="form-control" required ui-mask="+99999-999-99-99" type="tel" ng-model="user.phone">
       </div>
     </div>
   </form>
-  <br/>
+  <hr/>
   <form class="form-horizontal" name="changePasswordForm" ng-submit="changePassword()">
     <div class="form-group">
       <label class="col-sm-3 control-label">Change password</label>
       <div class="col-md-5">
-        <input class="form-control" type="password" ng-model="newPassword">
+        <input class="form-control" minlength="6" type="password" ng-model="newPassword">
       </div>
       <button type="submit" ng-disabled="!newPassword" class="btn btn-success">Change</button>
     </div>

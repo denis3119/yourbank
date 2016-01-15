@@ -34,8 +34,8 @@
           <div class="col-md-9 well well-sm" style="margin-left: 1%" cg-busy="profile.busy">
             <uib-accordion>
               <uib-accordion-group ng-class="{'panel-success': credit.paid, 'panel-danger': !credit.paid}"
-                                   heading="Credit number {{credit.id}}" ng-repeat="credit in global.current.user.userProfile.userCredits
-                                 | filter:search | filter:{ expired: false}">
+                                   heading="Credit {{credit.id}}" ng-repeat="credit in global.current.user.userProfile.userCredits
+                                 | filter:search | filter:{expired: false}">
                 <ul class="list-group">
                   <li class="list-group-item"><strong>Name: </strong><em>{{credit.name}}</em></li>
                   <li class="list-group-item"><strong>Percent: </strong><em>{{credit.percent}}</em></li>
