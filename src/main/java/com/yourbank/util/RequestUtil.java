@@ -23,16 +23,13 @@ public class RequestUtil {
     }
 
     @Contract(value = "null -> null", pure = true)
-    public static UserProfile getUserProfile(Request request) {
+    public static UserProfile fillUserProfile(Request request, UserProfile userProfile) {
         if (request == null) {
             return null;
         }
-        UserProfile userProfile = new UserProfile();
         userProfile.setFirstName(request.getFirstName());
         userProfile.setLastName(request.getLastName());
         userProfile.setPatronymic(request.getPatronymic());
-        userProfile.setPassportNumber(request.getPassportNumber());
-        userProfile.setPersonalNumber(request.getPersonalNumber());
         return userProfile;
     }
 }

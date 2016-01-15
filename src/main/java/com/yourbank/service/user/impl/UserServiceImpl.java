@@ -162,14 +162,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUserFromRequest(Request request) {
+        User persistedUser = userRepository.getByEmail(request.getEmail());
+
+        if (persistedUser != null) {
+            return persistedUser;
+        }
+
         User user = RequestUtil.getUserFromRequest(request);
         user = add(user);
-        if (user.getUserProfile() != null) {
-            return user;
-        }
-        UserProfile userProfile = RequestUtil.getUserProfile(request);
-        userProfile.setId(user.getUserProfile().getId());
-        userProfile = userProfileService.add(userProfile);
+        UserProfile userProfile = RequestUtil.fillUserProfile(request, user.getUserProfile());
         user.setUserProfile(userProfile);
         sender.sendConfirmMail(user);
         return update(user);

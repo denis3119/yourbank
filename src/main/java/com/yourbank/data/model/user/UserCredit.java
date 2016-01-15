@@ -1,5 +1,6 @@
 package com.yourbank.data.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.common.AbstractExpiringEntity;
@@ -26,6 +27,7 @@ public class UserCredit extends AbstractExpiringEntity {
     private Credit.CurrencyCode currency;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private UserProfile userProfile;
 
     private String name;
