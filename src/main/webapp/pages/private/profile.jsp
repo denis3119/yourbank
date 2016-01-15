@@ -43,7 +43,7 @@
                 </ul>
                 <br/>
                 <div ng-if="!(global.current.user.userProfile.userCredits.accruals | filter:search | filter:{ paid:false, expired: false}).length">
-                  <button class="btn-default btn">Погасить счет</button>
+                  <button class="btn-default btn">Pay</button>
                 </div>
               </uib-accordion-group>
             </uib-accordion>
