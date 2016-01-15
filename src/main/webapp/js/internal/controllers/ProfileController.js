@@ -27,11 +27,14 @@
             $uibModal.open({
                 scope: _.extend($rootScope.$new(), {score: CurrentUser.current.user.userProfile.score}),
                 backdrop: 'static',
-                controller: 'EditProfileController',
+                controller: 'DepositController',
                 templateUrl: 'profile/score/layout'
-            }).result.then(function() {
-                    growl.success('Success');
-                })
+            }).result.then(function(value) {
+                    $http.post('score/refill', {value: value.test}).then(function() {
+                        CurrentUser.updateUser();
+                        growl.success('Success');
+                    });
+                });
         }
     }
 })();
