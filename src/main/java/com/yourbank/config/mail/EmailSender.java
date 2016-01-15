@@ -40,7 +40,7 @@ public class EmailSender {
 
     private String getConfirmUserBody(User user) {
         String url = link + "/profile/confirm/" + user.getId() + "/" + user.getEmail().hashCode() + "/";
-        return "<a href='" + url + "'>Нажми сюда</a>";
+        return "<a href='" + url + "'>Click here</a>";
     }
 
     public void sendConfirmMail(User user) {
@@ -51,14 +51,14 @@ public class EmailSender {
     public void sendConfirmInBank(String email, boolean approve, Request request) {
         String body;
         if (approve) {
-            body = "Приходите в банк";
+            body = "Come to the bank";
         } else {
-            body = "Не приходите в банк";
+            body = "Do not come to the bank";
         }
         long id = request.getId();
         int hash = request.getEmail().hashCode();
-        body += "</br> <a href='" + link + "/request/remove/" + id + "/" + hash + "'>Если вы не подавали в банк заявку, просто нажмите тут</a>";
-        send(MailUtil.FROM, email, "Ваша заявка рассмотрена", body);
+        body += "</br> <a href='" + link + "/request/remove/" + id + "/" + hash + "'>If you have not filed an application to the bank, just click here</a>";
+        send(MailUtil.FROM, email, "Your application is considered", body);
     }
 
     @Bean
