@@ -32,7 +32,7 @@ public class EmailSender {
         } catch (Exception e) {
             /*ignore*/
         }
-     //   javaMailSender.send(message);
+        javaMailSender.send(message);
     }
 
     private String getConfirmUserBody(User user) {
