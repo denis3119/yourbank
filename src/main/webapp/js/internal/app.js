@@ -5,7 +5,8 @@
             'ngRoute',
             'ui.bootstrap',
             'ui.mask',
-            'cgBusy'
+            'cgBusy',
+            'angular-growl'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider

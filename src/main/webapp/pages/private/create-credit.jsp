@@ -49,12 +49,11 @@
           <input class="form-control" required type="number" ng-model="request.sum">
         </div>
       </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-md-10">
-          <button class="btn btn-success pull-right" type="submit">Create credit</button>
-          <button class="btn btn-danger pull-right" style="margin-right: 1%" type="button" ng-click="$dismiss('qwerty')">Cancel</button>
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" type="button" ng-click="$dismiss()">Cancel</button>
+  <button class="btn btn-primary" type="button" ng-click="$close(credit)">Save</button>
 </div>
