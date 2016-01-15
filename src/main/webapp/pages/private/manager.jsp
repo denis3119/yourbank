@@ -36,7 +36,7 @@
         <uib-accordion>
             <uib-accordion-group ng-class="{'panel-success': request.status == 'APPROVED', 'panel-danger': request.status == 'DECLINED'}"
                                  heading="Request number {{request.id}}" ng-repeat="request in manager.requests
-                                 | filter:search | filter:{status: filter.status, period: filter.period, expired: false}">
+                                 | filter:search | filter:{status: filter.status, period: filter.period}">
                 <ul class="list-group">
                     <li class="list-group-item"><strong>FIO: </strong><em>{{request.firstName}} {{request.lastName}} {{request.patronymic}}</em></li>
                     <li class="list-group-item"><strong>Email: </strong><em>{{request.email}}</em></li>
@@ -50,7 +50,7 @@
                     <button class="btn btn-success" ng-click="manager.approve(request)">Approve</button>
                     <button class="btn btn-danger" ng-click="manager.decline(request)">Decline</button>
                 </div>
-                <div ng-if="request.status == 'APPROVED'">
+                <div ng-if="request.status == 'APPROVED' && !request.expired">
                     <button class="btn btn-success" ng-click="manager.createCredit(request)">Create credit</button>
                 </div>
             </uib-accordion-group>
