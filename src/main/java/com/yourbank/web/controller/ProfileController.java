@@ -1,7 +1,6 @@
 package com.yourbank.web.controller;
 
 import com.yourbank.data.model.user.User;
-import com.yourbank.data.repository.UserRepository;
 import com.yourbank.service.user.UserService;
 import com.yourbank.util.Misc;
 import com.yourbank.util.PasswordValidator;
@@ -11,6 +10,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.security.PermitAll;
 
 /**
  * Created by admin on 14.12.2015.
@@ -22,21 +23,20 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Secured("ROLE_USER")
     @RequestMapping(value = "/edit/layout", method = RequestMethod.GET)
     public String editProfileLayout() {
         return "private/edit-profile";
     }
 
+    //  @ResponseBody
     @Secured("ROLE_USER")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "/profile/index";
     }
 
+    @PermitAll
     @RequestMapping(value = "/confirm/{id}/{hash}", method = RequestMethod.GET)
     public ModelAndView confirm(@PathVariable Long id, @PathVariable int hash, ModelAndView modelAndView) {
         modelAndView.addObject("userId", id);
@@ -45,6 +45,7 @@ public class ProfileController {
         return modelAndView;
     }
 
+    @PermitAll
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public String confirmSave(@RequestParam("password") String password,
                               @RequestParam("password_confirm") String password_confirm,
@@ -63,7 +64,7 @@ public class ProfileController {
         if (!password.equals(password_confirm) || !PasswordValidator.validate(password)) {
             throw new Exception("password error");
         }
-        User user = userRepository.findOne(userId);
+        User user = userService.get(userId);
         if (Misc.isNull(user)) {
             throw new Exception("user not found");
         }
@@ -81,6 +82,6 @@ public class ProfileController {
             savedUser.setPassword(UserUtil.getPasswordHash(password));
             return userService.update(savedUser);
         }
-       throw new Exception("error");
+        throw new Exception("error");
     }
 }
