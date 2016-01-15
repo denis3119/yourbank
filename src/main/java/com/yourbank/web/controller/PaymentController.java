@@ -74,4 +74,15 @@ public class PaymentController {
         }
         return paymentRepository.saveAndFlush(payment);
     }
+
+    @RequestMapping(value = "/refill/{value}", method = RequestMethod.POST)
+    public Score refill(@RequestBody double value) throws Exception {
+        if (value < 0) {
+            throw new Exception("value < 0");
+        }
+        User user = userService.current();
+        Score score = user.getUserProfile().getScore();
+        score.setValue(score.getValue() + value);
+        return scoreService.update(score);
+    }
 }

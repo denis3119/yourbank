@@ -22,17 +22,20 @@ public class EmailSender {
 
     private void send(String from, String to, String subject, String body) {
         MimeMessage message = javaMailSender.createMimeMessage();
+
         MimeMessageHelper helper;
         try {
             helper = new MimeMessageHelper(message, true);
             helper.setSubject(subject);
             helper.setFrom(from);
             helper.setTo(to);
-            helper.setText(body);
+            helper.setText(body, true);
+            System.err.println(body);
+            javaMailSender.send(message);
         } catch (Exception e) {
             /*ignore*/
         }
-        javaMailSender.send(message);
+
     }
 
     private String getConfirmUserBody(User user) {

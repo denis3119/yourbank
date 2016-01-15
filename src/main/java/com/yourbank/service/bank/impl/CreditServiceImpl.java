@@ -98,8 +98,9 @@ public class CreditServiceImpl implements CreditService {
 //        credit = userCreditRepository.saveAndFlush(credit);
         List<UserCredit> credits = user.getUserProfile().getUserCredits();
         credits.add(credit);
-        credit.setUserProfile(user.getUserProfile());
         user.getUserProfile().setUserCredits(credits);
+        user.getUserProfile().setPassportNumber(credit.getUserProfile().getPassportNumber());
+        user.getUserProfile().setPersonalNumber(credit.getUserProfile().getPersonalNumber());
         userService.update(user);
         return credit;
     }

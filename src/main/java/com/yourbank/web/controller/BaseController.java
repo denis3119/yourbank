@@ -5,6 +5,7 @@ import com.yourbank.data.model.bank.Request;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.bank.ScoreType;
 import com.yourbank.data.model.user.User;
+import com.yourbank.data.model.user.UserProfile;
 import com.yourbank.data.repository.CreditTypeRepository;
 import com.yourbank.service.bank.CreditService;
 import com.yourbank.service.bank.RequestService;
@@ -88,8 +89,8 @@ public class BaseController {
             user.setEmail("admin@gmail.com");
             user.setEnabled(true);
             user = userService.register(user, "ROLE_ADMIN", "ROLE_USER");
-//            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score());
-//            user.setUserProfile(profile);
+            UserProfile profile = new UserProfile("first", "last", "pan", "pesonal number", "passport", new Score(), user);
+            user.setUserProfile(profile);
             userService.update(user);
         }
         if (!userService.userCreated("user@gmail.com")) {
@@ -98,8 +99,8 @@ public class BaseController {
             user.setEmail("user@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
-//            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score());
-//            user.setUserProfile(profile);
+            UserProfile profile = new UserProfile("first", "last", "pan", "pesonal number", "passport", new Score(), user);
+            user.setUserProfile(profile);
             userService.update(user);
         }
         if (!userService.userCreated("user1@gmail.com")) {
@@ -108,8 +109,8 @@ public class BaseController {
             user.setEmail("user1@gmail.com");
             user.setEnabled(true);
             userService.register(user, "ROLE_USER");
-//            UserProfile profile = new UserProfile("first", "last", "pan", new Date(), "pesonal number", "passport", new Score());
-//            user.setUserProfile(profile);
+            UserProfile profile = new UserProfile("first", "last", "pan", "pesonal number", "passport", new Score(), user);
+            user.setUserProfile(profile);
             userService.update(user);
         }
     }

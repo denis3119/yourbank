@@ -7,7 +7,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,8 +25,6 @@ public class UserProfile extends AbstractExpiringEntity {
     private String lastName;
     @NonNull
     private String patronymic;
-    @NonNull
-    private Date birthday;
     @NonNull
     private String personalNumber;
     @NonNull
