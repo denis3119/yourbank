@@ -34,6 +34,7 @@
 <script src="<c:url value="/js/internal/controllers/AdminController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/CreateCreditController.js"/>"></script>
 <script src="<c:url value="/js/internal/controllers/EditProfileController.js"/>"></script>
+<script src="<c:url value="/js/internal/controllers/DepositController.js"/>"></script>
 
 <script src="<c:url value="/js/internal/services/current-user.service.js"/>"></script>
 

@@ -10,6 +10,9 @@
       <li data-toggle="tab" role="presentation">
         <a href="javascript:void(0)" ng-click="profile.view = 'credits'">Credits</a>
       </li>
+      <li data-toggle="tab" role="presentation">
+        <a href="javascript:void(0)" ng-click="profile.view = 'score'">Score</a>
+      </li>
     </ul>
     <div class="tab-content">
       <div ng-if="profile.view == 'general'" class="col-md-offset-1 col-md-9">
@@ -43,10 +46,26 @@
                 </ul>
                 <br/>
                 <div ng-if="!(global.current.user.userProfile.userCredits.accruals | filter:search | filter:{ paid:false, expired: false}).length">
-                  <button class="btn-default btn">Погасить счет</button>
+                  <button class="btn-default btn">Pay</button>
                 </div>
               </uib-accordion-group>
             </uib-accordion>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="profile.view == 'score'" class="col-md-10">
+        <div class="row">
+          <div class="col-md-offset-1 col-md-9">
+            <ul class="list-group col-md-9">
+              <li class="list-group-item"><strong>Value: </strong><em>{{global.current.user.userProfile.score.value}}</em></li>
+              <li class="list-group-item"><strong>Currency: </strong><em>{{global.current.user.userProfile.score.currency}}</em></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-1 col-md-5">
+            <button type="button" ng-click="profile.deposit()" class="btn btn-success form-control">Deposit</button>
           </div>
         </div>
       </div>

@@ -32,6 +32,12 @@ public class ProfileController {
     }
 
     @Secured("ROLE_USER")
+    @RequestMapping(value = "/score/layout", method = RequestMethod.GET)
+    public String editScoreLayout() {
+        return "private/edit-score";
+    }
+
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "/profile/index";

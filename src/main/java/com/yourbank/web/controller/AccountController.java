@@ -1,5 +1,6 @@
 package com.yourbank.web.controller;
 
+import com.yourbank.data.model.dto.UserDto;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserRole;
 import com.yourbank.service.user.UserRoleService;
@@ -53,9 +54,12 @@ public class AccountController {
         return user;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
     @ResponseBody
-    public User update(@RequestBody User user) {
+    public User update(@RequestBody UserDto userDto) {
+        User user = userService.current();
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
         return userService.update(user);
     }
 }
