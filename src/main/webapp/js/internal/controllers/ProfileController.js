@@ -15,12 +15,23 @@
                 controller: 'EditProfileController',
                 templateUrl: 'profile/edit/layout'
             }).result.then(function (result) {
-                    $http.post('', result).then(function() {
+                    $http.post('user/update', {userId: result.id, phone: result.phone, email: result.email}).then(function() {
                         CurrentUser.updateUser();
                         growl.success('Data was updated');
                     })
                 });
 
+        };
+
+        vm.deposit = function() {
+            $uibModal.open({
+                scope: _.extend($rootScope.$new(), {score: CurrentUser.current.user.userProfile.score}),
+                backdrop: 'static',
+                controller: 'EditProfileController',
+                templateUrl: 'profile/score/layout'
+            }).result.then(function() {
+                    growl.success('Success');
+                })
         }
     }
 })();
