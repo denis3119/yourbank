@@ -3,7 +3,7 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value="/#/"/>">YourBank</a>
+      <a class="navbar-brand" style="color:#178017"  href="<c:url value="/#/"/>">YourBank</a>
     </div>
 
     <div class="collapse navbar-collapse">
