@@ -2,7 +2,6 @@ package com.yourbank.service.bank.impl;
 
 import com.yourbank.data.model.bank.Credit;
 import com.yourbank.data.model.bank.Request;
-import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.CreditRepository;
@@ -81,20 +80,21 @@ public class CreditServiceImpl implements CreditService {
     @ResponseBody
     public UserCredit approveCredit(@RequestBody UserCredit credit, Long requestId) throws CloneNotSupportedException {
         Request request = requestService.get(requestId);
-        //    request.setExpired(true);
+        request.setExpired(true);
+
         credit.setName(request.getCredit().getName());
-        credit.setSum(request.getSum());
+//        credit.setSum(request.getSum());
         credit.setPercent(request.getCredit().getPercent());
         credit.setDescription(request.getCredit().getDescription());
         credit.setCurrency(request.getCredit().getCurrency());
-        credit.setTerm(request.getPeriod());
+        credit.setTerm(credit.getTerm());
         request = requestService.add(request);
         User user = userService.createUserFromRequest(request);
-        Score score = new Score();
-        score.setValue(0);
-        score.setCurrency(Credit.CurrencyCode.BLR);
-        score.setName("123");
-        credit.setScore(scoreService.add(score));
+//        Score score = new Score();
+//        score.setValue(0);
+//        score.setCurrency(Credit.CurrencyCode.BLR);
+//        score.setName("123");
+//        credit.setScore(scoreService.add(score));
         credit = userCreditRepository.saveAndFlush(credit);
         List<UserCredit> credits = user.getUserProfile().getUserCredits();
         credits.add(credit);

@@ -39,6 +39,7 @@
                 size: 'lg',
                 templateUrl: 'credit/new/layout'
             }).result.then(function (result) {
+                    _.extend(result, {userProfile: {personalNumber: result.personalNumber, passportNumber: result.passportNumber}});
                     $http.post('credit/approve/' + request.id, result).then(function (responce) {
                         _.extend(_.find(vm.requests, function (elem) {
                             return elem.id == responce.data.id;

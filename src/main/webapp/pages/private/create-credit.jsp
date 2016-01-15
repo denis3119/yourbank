@@ -43,13 +43,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Credit period</label>
       <div class="col-md-7">
-        <input class="form-control" required type="number" ng-model="credit.period">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Credit percent</label>
-      <div class="col-md-7">
-        <input class="form-control" required type="number" ng-model="credit.percent">
+        <input class="form-control" required type="number" ng-model="credit.term">
       </div>
     </div>
   </form>
