@@ -30,6 +30,8 @@ public class Request extends AbstractExpiringEntity {
     private Credit credit;
     private double income; //доходы за 3 месяца
     private double sum;//сколько выдали
+    private String personalNumber;
+    private String passportNumber;
 
     public Request(String phoneNumber, String firstName, String target,
                    String lastName, String patronymic, Credit credit, String email) {
