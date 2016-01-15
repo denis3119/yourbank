@@ -1,10 +1,15 @@
+
+<div class="login-content col-md-offset-3 col-md-6 well well-lg text-center bg-danger"
+     style="background-color: #d9534f !important; background-image: none; color: #fff" ng-if="login.showError">
+    Invalid email or password
+</div>
 <div class="login-content col-md-offset-3 col-md-6 well well-lg">
     <form class="public-form login" name="loginForm" ng-submit="login.submit(loginForm)" action="/login" method="post">
         <div class="row">
             <label class="col-md-3" for="login_username">Email:</label>
             <div class="col-md-9 form-group"
                  ng-class="{ 'has-error': (loginForm.email.$touched || loginForm.email.$dirty) && loginForm.email.$invalid }">
-                <input type="text" id="login_username" name="username" required placeholder="Username"
+                <input type="email" id="login_username" name="username" required placeholder="Username"
                        class="form-control" ng-model="login.user.username">
             </div>
         </div>
