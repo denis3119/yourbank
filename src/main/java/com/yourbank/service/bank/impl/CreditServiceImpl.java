@@ -95,9 +95,10 @@ public class CreditServiceImpl implements CreditService {
 //        score.setCurrency(Credit.CurrencyCode.BLR);
 //        score.setName("123");
 //        credit.setScore(scoreService.add(score));
-        credit = userCreditRepository.saveAndFlush(credit);
+//        credit = userCreditRepository.saveAndFlush(credit);
         List<UserCredit> credits = user.getUserProfile().getUserCredits();
         credits.add(credit);
+        credit.setUserProfile(user.getUserProfile());
         user.getUserProfile().setUserCredits(credits);
         userService.update(user);
         return credit;
