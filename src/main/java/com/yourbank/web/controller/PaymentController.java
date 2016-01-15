@@ -4,6 +4,7 @@ import com.yourbank.data.model.bank.Accrual;
 import com.yourbank.data.model.bank.Payment;
 import com.yourbank.data.model.bank.Score;
 import com.yourbank.data.model.dto.PayCreditDto;
+import com.yourbank.data.model.dto.RefillDto;
 import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.AccrualRepository;
@@ -75,14 +76,15 @@ public class PaymentController {
         return paymentRepository.saveAndFlush(payment);
     }
 
-    @RequestMapping(value = "/refill/{value}", method = RequestMethod.POST)
-    public Score refill(@RequestBody double value) throws Exception {
-        if (value < 0) {
+    @RequestMapping(value = "/refill", method = RequestMethod.POST)
+    @ResponseBody
+    public Score refill(@RequestBody RefillDto refillDto) throws Exception {
+        if (refillDto.getValue() < 0) {
             throw new Exception("value < 0");
         }
         User user = userService.current();
         Score score = user.getUserProfile().getScore();
-        score.setValue(score.getValue() + value);
+        score.setValue(score.getValue() + refillDto.getValue());
         return scoreService.update(score);
     }
 }

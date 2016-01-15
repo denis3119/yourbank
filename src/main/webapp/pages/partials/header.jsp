@@ -13,9 +13,9 @@
         <li ng-if="global.current.user && global.hasAnyRole(['ROLE_MANAGER', 'ROLE_ADMIN'])">
           <a href="<c:url value="/#/manager"/>">Manager page</a>
         </li>
-        <li ng-if="global.current.user && global.hasAnyRole(['ROLE_ADMIN'])">
-          <a href="<c:url value="/#/admin"/>">Admin page</a>
-        </li>
+        <%--<li ng-if="global.current.user && global.hasAnyRole(['ROLE_ADMIN'])">--%>
+          <%--<a href="<c:url value="/#/admin"/>">Admin page</a>--%>
+        <%--</li>--%>
       </ul>
       <div class="navbar-header-right navbar-right">
         <div ng-if="!global.current.user">

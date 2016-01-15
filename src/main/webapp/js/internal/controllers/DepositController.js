@@ -3,7 +3,7 @@
     angular.module('yourbank')
         .controller('DepositController', DepositController);
 
-    function DepositController() {
+    function DepositController($scope) {
     }
 })();
 

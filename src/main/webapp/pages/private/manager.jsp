@@ -41,7 +41,9 @@
                     <li class="list-group-item"><strong>FIO: </strong><em>{{request.firstName}} {{request.lastName}} {{request.patronymic}}</em></li>
                     <li class="list-group-item"><strong>Email: </strong><em>{{request.email}}</em></li>
                     <li class="list-group-item"><strong>Credit name: </strong><em>{{request.credit.name}}</em></li>
+                    <li class="list-group-item"><strong>Credit sum: </strong><em>{{request.sum}}</em></li>
                     <li class="list-group-item"><strong>Credit period: </strong><em>{{request.period}}</em></li>
+                    <li class="list-group-item"><strong>Target: </strong><em>{{request.target}}</em></li>
                 </ul>
                 <br/>
                 <div ng-if="request.status == 'PENDING'">
