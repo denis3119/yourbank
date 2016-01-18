@@ -35,7 +35,13 @@
                         growl.success('Success');
                     });
                 });
-        }
+        };
+
+        vm.pay = function(credit, accural) {
+            $http.post('score/pay/', {sum: 0, credit: credit, accrual:credit.accruals[credit.accruals.length - 1]}).then(function () {
+                growl.success('Success');
+            })
+        };
     }
 })();
 

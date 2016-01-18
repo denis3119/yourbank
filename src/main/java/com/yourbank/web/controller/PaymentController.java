@@ -9,11 +9,11 @@ import com.yourbank.data.model.user.User;
 import com.yourbank.data.model.user.UserCredit;
 import com.yourbank.data.repository.AccrualRepository;
 import com.yourbank.data.repository.PaymentRepository;
+import com.yourbank.data.repository.UserCreditRepository;
 import com.yourbank.service.bank.ScoreService;
 import com.yourbank.service.status.PaymentType;
 import com.yourbank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +35,12 @@ public class PaymentController {
 
     @Autowired
     PaymentRepository paymentRepository;
+    @Autowired
+    UserCreditRepository userCreditRepository;
 
     @ResponseBody
     @RequestMapping(value = "/pay/", method = RequestMethod.POST)
-    @Secured("ROLE_USER")
+//    @Secured({"ROLE_USER", "ROLE_MANAGER", "ROLE_ADMIN"})
     public Payment creditPay(@RequestBody PayCreditDto payCreditDto) throws Exception {
         Payment payment = new Payment();
         User user = userService.current();
@@ -73,6 +75,7 @@ public class PaymentController {
             }
             userScore.setValue(userScore.getValue() - crib);
         }
+        userCreditRepository.save(userCredit);
         return paymentRepository.saveAndFlush(payment);
     }
 

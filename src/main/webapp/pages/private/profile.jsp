@@ -42,10 +42,11 @@
                   <li class="list-group-item"><strong>Name: </strong><em>{{credit.name}}</em></li>
                   <li class="list-group-item"><strong>Percent: </strong><em>{{credit.percent}}</em></li>
                   <li class="list-group-item"><strong>Term: </strong><em>{{credit.term}}</em></li>
+                  <li class="list-group-item"><strong>Sum: </strong><em>{{credit.sum}}</em></li>
                 </ul>
                 <br/>
                 <div ng-if="!(global.current.user.userProfile.userCredits.accruals | filter:search | filter:{ paid:false, expired: false}).length">
-                  <button class="btn-default btn">Pay</button>
+                  <button class="btn-default btn" ng-click="profile.pay(credit)">Pay</button>
                 </div>
               </uib-accordion-group>
             </uib-accordion>
